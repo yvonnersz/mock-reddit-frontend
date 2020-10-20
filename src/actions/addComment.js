@@ -9,6 +9,6 @@ export const addComment = (comment, postId) => {
             body: JSON.stringify(comment)
         })
         .then(response => response.json())
-        .then(json => dispatch({ type: 'ADD_COMMENT', payload: comment }))
+        .then(post => dispatch({ type: 'ADD_COMMENT', payload: post }))
     }
 }
