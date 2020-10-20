@@ -1,5 +1,6 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
+import CommentsContainer from '../containers/CommentsContainer'
 
 const Post = (props) => {
 
@@ -9,6 +10,7 @@ const Post = (props) => {
         <div>
             <h2>{post ? post.title:null}</h2>
             <p>{post ? post.content:null}</p>
+            <CommentsContainer post={post} />
         </div>
     )
 }
