@@ -6,7 +6,7 @@ const Comments = (props) => {
             Comments
             {props.posts && props.posts.map(comment => 
                 <li key={comment.id}>
-                    {comment.content}
+                    {comment.content} by {comment.user.username}
                 </li>    
             )}
         </div>
