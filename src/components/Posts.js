@@ -14,7 +14,6 @@ const Posts = (props) => {
                     </Link>
                 </div>
             )}
-            {/* {props.posts.map(post => <Post post={post}/>)} */}
         </div>
     )
 }

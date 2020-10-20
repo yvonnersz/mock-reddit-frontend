@@ -13,6 +13,8 @@ class PostsContainer extends React.Component {
     }
     
     render() {
+        console.log(this.props.posts)
+
         return (
             <div>
                 <Switch>

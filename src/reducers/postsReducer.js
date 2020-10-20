@@ -4,7 +4,7 @@ export default function postsReducer(state = { posts: [] }, action) {
             return {posts: action.payload}
         case 'ADD_POST':
             return {...state, posts: [...state.posts, action.payload]}
-        case 'ADD_TRANSACTION':
+        case 'ADD_COMMENT':
             let posts = state.posts.map(post => {
                 if (post.id === action.payload.id) {
                     return action.payload

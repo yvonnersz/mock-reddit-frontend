@@ -6,6 +6,7 @@ import CommentsContainer from '../containers/CommentsContainer'
 const Post = (props) => {
 
     let post = props.posts[props.match.params.id - 1]
+    console.log(post)
 
     return (
         <div>
