@@ -4,6 +4,7 @@ import Posts from '../components/Posts';
 import { connect } from 'react-redux';
 import {fetchPosts} from '../actions/fetchPosts';
 import {Route} from 'react-router-dom';
+import Post from '../components/Post';
 
 class PostsContainer extends React.Component {
     componentDidMount() {
@@ -14,7 +15,8 @@ class PostsContainer extends React.Component {
         return (
             <div>
                 <Route path='/posts/new' component={PostInput} />
-                <Route exact path='/posts' render= {() => <Posts posts={this.props.posts} />} />
+                <Route path='/posts/:id' render={(routerProps) => <Post {...routerProps} posts={this.props.posts} />} />
+                <Route exact path='/posts' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} />} />
             </div>
         )
     }
