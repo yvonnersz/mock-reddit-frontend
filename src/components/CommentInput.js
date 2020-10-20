@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
 import {addComment} from '../actions/addComment';
 
 class CommentInput extends React.Component {

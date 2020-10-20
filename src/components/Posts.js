@@ -1,6 +1,7 @@
 import React from 'react';
-import Post from './Post';
 import {Route, Link} from 'react-router-dom';
+
+import Post from './Post';
 
 // Could also deconstruct are use ({posts}) but it's personal preference.
 const Posts = (props) => {
