@@ -1,9 +1,10 @@
 import React from 'react';
-import PostInput from '../components/PostInput';
-import Posts from '../components/Posts';
 import { connect } from 'react-redux';
 import {fetchPosts} from '../actions/fetchPosts';
 import {Route, Switch} from 'react-router-dom';
+
+import PostInput from '../components/PostInput';
+import Posts from '../components/Posts';
 import Post from '../components/Post';
 
 class PostsContainer extends React.Component {

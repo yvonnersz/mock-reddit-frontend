@@ -12,7 +12,6 @@ export default function postsReducer(state = { posts: [] }, action) {
                     return post
                 }
             })
-
             return {...state, posts: posts}
         default:
             return state
