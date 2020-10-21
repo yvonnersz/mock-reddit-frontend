@@ -44,6 +44,8 @@ class Post extends React.Component {
         return (
             <div>
                 <h2>{post ? post.title:null}</h2>
+                <sub>r/{post ? post.subreddit:null}</sub><br/>
+                <sub>u/{post ? post.user:null}</sub>
                 <p>{post ? post.content:null}</p>
                 <span>{post ? post.upvotes : null} </span>
                 <button onClick={this.handleVote} name='upvote'>Upvote</button>
