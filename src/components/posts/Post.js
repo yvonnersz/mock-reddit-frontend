@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 
-import CommentsContainer from '../containers/CommentsContainer'
+import CommentsContainer from '../../containers/CommentsContainer'
 
 const Post = (props) => {
     console.log(props)

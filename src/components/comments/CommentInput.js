@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {addComment} from '../actions/addComment';
+import {addComment} from '../../actions/addComment';
 
 class CommentInput extends React.Component {
     constructor() {
@@ -21,7 +21,8 @@ class CommentInput extends React.Component {
 
     handleOnSubmit = event => {
         event.preventDefault();
-        this.props.addComment(this.state, this.props.post.id)
+        let comment = {...this.state, post_id: this.props.post.id}
+        this.props.addComment(comment, this.props.post.id)
         this.setState({
             content: '',
             user: ''

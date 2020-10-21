@@ -1,7 +1,7 @@
 import React from 'react';
 
-import CommentInput from '../components/CommentInput'
-import Comments from '../components/Comments'
+import CommentInput from '../components/comments/CommentInput'
+import Comments from '../components/comments/Comments'
 
 class CommentsContainer extends React.Component {
     render() {

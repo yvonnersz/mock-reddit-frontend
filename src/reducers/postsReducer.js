@@ -8,6 +8,9 @@ export default function postsReducer(state = { posts: [] }, action) {
             let post = state.posts.filter(post => post.id === action.payload.post_id)[0]
             let newPost = {...post, comments: [...post.comments, action.payload]}
             return {...state, posts: [newPost]}
+        case 'EDIT_COMMENT':
+            console.log(action.payload)
+            return state
         default:
             return state
     }
