@@ -40,7 +40,6 @@ class Post extends React.Component {
 
     render() {
         let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
-        console.log(post)
         return (
             <div>
                 <h2>{post ? post.title:null}</h2>
