@@ -2,10 +2,9 @@ export const addComment = (comment, postId) => {
 
     let commentObject = {
         content: comment.content,
+        user: comment.user,
         upvotes: 0,
-        post_id: postId,
-        user_id: 1
-        // Will need to update the user_id to the person who is currently signed in.
+        post_id: postId
     }
 
     return(dispatch) => {

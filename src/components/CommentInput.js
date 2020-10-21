@@ -8,6 +8,7 @@ class CommentInput extends React.Component {
         super();
         this.state = {
             content: '',
+            user: '',
             upvotes: 0
         }
     }
@@ -23,7 +24,7 @@ class CommentInput extends React.Component {
         this.props.addComment(this.state, this.props.post.id)
         this.setState({
             content: '',
-            upvotes: 0
+            user: ''
         })
     }
 
@@ -31,8 +32,13 @@ class CommentInput extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleOnSubmit}>
-                    <input type='text' value={this.state.content} name='content' onChange={this.handleOnChange} />
+
+                    <input type='text' value={this.state.content} name='content' onChange={this.handleOnChange} placeholder='Comment' /><br/>
+
+                    <input type='text' value={this.state.user} name='user' onChange={this.handleOnChange} placeholder='Name' /><br/>
+
                     <input type='submit' />
+
                 </form>
             </div>
         )
