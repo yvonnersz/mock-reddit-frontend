@@ -17,7 +17,9 @@ class PostsContainer extends React.Component {
             <div>
                 <Switch>
                     <Route path='/posts/new' component={PostInput} />
+
                     <Route path='/posts/:id' render={(routerProps) => <Post {...routerProps} posts={this.props.posts} />} />
+                    
                     <Route exact path='/posts' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} />} />
                 </Switch>
             </div>

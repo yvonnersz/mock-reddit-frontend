@@ -11,10 +11,12 @@ export default function postsReducer(state = { posts: [] }, action) {
         case 'EDIT_POST':
         // NEED TO UPDATE REDUCER SO THAT REDUX DISPLAYS EDITED POST.
             let filteredPost = state.posts.filter(post => post.id === action.payload.id)[0]
-
             let editPost = {...filteredPost, title: action.payload.title, content: action.payload.content, subreddit: action.payload.subreddit}
-
             return {...state, posts: [editPost]}
+        case 'EDIT_VOTE':
+            let filteredPost2 = state.posts.filter(post => post.id === action.payload.id)[0]
+            let editPost2 = {...filteredPost2, upvotes: action.payload.upvotes}
+            return {...state, posts: [editPost2]}
         default:
             return state
     }
