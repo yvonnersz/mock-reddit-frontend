@@ -26,7 +26,7 @@ import {editVote} from '../../actions/editVote';
 
 class Post extends React.Component {
     handleVote = (event) => {
-        let post = this.props.posts[this.props.match.params.id - 1]
+        let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
 
         if (event.target.name === "upvote") {
             let updatePost = {...post, upvotes: post.upvotes + 1}
@@ -39,8 +39,8 @@ class Post extends React.Component {
 
 
     render() {
-        let post = this.props.posts[this.props.match.params.id - 1]
-
+        let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
+        console.log(post)
         return (
             <div>
                 <h2>{post ? post.title:null}</h2>
