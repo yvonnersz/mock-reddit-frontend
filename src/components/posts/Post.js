@@ -11,7 +11,7 @@ const Post = (props) => {
     return (
         <div>
             <h2>{post ? post.title:null}</h2>
-            <p>{post ? post.content:null}</p>
+            <p>{post ? post.content:null}</p><br/>
             <CommentsContainer post={post} />
         </div>
     )
