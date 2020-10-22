@@ -6,7 +6,11 @@ export default function postsReducer(state = { posts: [] }, action) {
             return {...state, posts: [...state.posts, action.payload]}
         case 'ADD_COMMENT':
             let post = state.posts.filter(post => post.id === action.payload.post_id)[0]
-            let newPost = {...post, comments: [...post.comments, action.payload]}
+            console.log(post)
+
+            let newPost = {...post, upvotes: post.upvotes + 1, comments: [...post.comments, action.payload]}
+            console.log(newPost)
+
             return {...state, posts: [newPost]}
         case 'EDIT_POST':
             let filteredPost = state.posts.filter(post => post.id === action.payload.id)[0]
