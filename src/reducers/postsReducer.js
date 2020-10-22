@@ -16,6 +16,8 @@ export default function postsReducer(state = { posts: [] }, action) {
             let filteredPost2 = state.posts.filter(post => post.id === action.payload.id)[0]
             let editPost2 = {...filteredPost2, upvotes: action.payload.upvotes}
             return {...state, posts: [editPost2]}
+        case 'EDIT_COMMENT_VOTE':
+            // NEED TO SET UP REDUCER TO REFLECT COMMENT UPVOTE CHANGE.
         default:
             return state
     }
