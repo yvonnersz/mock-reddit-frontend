@@ -33,6 +33,10 @@ export default function postsReducer(state = { posts: [] }, action) {
             let newPostComments = {...originalPost, comments: alteredComments}
 
             return {...state, posts: [newPostComments]}
+        case 'DELETE_POST':
+            let newFilteredPost = state.posts.filter(post => post.id != action.payload.id)
+
+            return {...state, posts: [newFilteredPost]}
         default:
             return state
     }

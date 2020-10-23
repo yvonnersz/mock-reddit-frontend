@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import CommentsContainer from '../../containers/CommentsContainer';
 import PostEdit from './PostEdit';
 import {editVote} from '../../actions/editVote';
+import {deletePost} from '../../actions/deletePost';
 
 // const Post = (this.props) => {
 //     let post = this.props.posts[this.props.match.params.id - 1] || this.props.match.params.id
@@ -37,6 +38,10 @@ class Post extends React.Component {
         }
     }
 
+    handleDelete = (event) => {
+        let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
+        this.props.deletePost(post)
+    }
 
     render() {
         let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
@@ -49,6 +54,7 @@ class Post extends React.Component {
                 <span>{post ? post.upvotes : null} </span>
                 <button onClick={this.handleVote} name='upvote'>Upvote</button>
                 <button onClick={this.handleVote} name='downvote'>Downvote</button>
+                <button onClick={this.handleDelete}>Delete Post</button>
                 <CommentsContainer post={post} />
 
                 {/* Below is the PostEdit Form */}
@@ -58,4 +64,4 @@ class Post extends React.Component {
     }
 }
 
-export default connect(null, {editVote})(Post)
+export default connect(null, {editVote, deletePost})(Post)
