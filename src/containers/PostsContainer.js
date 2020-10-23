@@ -6,6 +6,7 @@ import {Route, Switch} from 'react-router-dom';
 import PostInput from '../components/posts/PostInput';
 import Posts from '../components/posts/Posts';
 import Post from '../components/posts/Post';
+import NavBar from '../components/NavBar';
 
 class PostsContainer extends React.Component {
     componentDidMount() {
@@ -15,11 +16,11 @@ class PostsContainer extends React.Component {
     render() {
         return (
             <div>
+                <NavBar />
+
                 <Switch>
                     <Route path='/posts/new' component={PostInput} />
-
                     <Route path='/posts/:id' render={(routerProps) => <Post {...routerProps} posts={this.props.posts} />} />
-                    
                     <Route exact path='/posts' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} />} />
                 </Switch>
             </div>
