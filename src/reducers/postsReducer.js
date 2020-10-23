@@ -6,10 +6,10 @@ export default function postsReducer(state = { posts: [] }, action) {
             return {...state, posts: [...state.posts, action.payload]}
         case 'ADD_COMMENT':
             let post = state.posts.filter(post => post.id === action.payload.post_id)[0]
-            console.log(post)
+            // console.log(post)
 
             let newPost = {...post, upvotes: post.upvotes + 1, comments: [...post.comments, action.payload]}
-            console.log(newPost)
+            // console.log(newPost)
 
             return {...state, posts: [newPost]}
         case 'EDIT_POST':
@@ -27,7 +27,12 @@ export default function postsReducer(state = { posts: [] }, action) {
             selectedPost.comments.splice(commentIndex, 1, action.payload)
 
             return {...state, posts: [selectedPost]}
+        case 'DELETE_COMMENT':
+            let originalPost = state.posts.filter(post => post.id === action.payload.post_id )[0]
+            let alteredComments = originalPost.comments.filter(comment => comment.id != action.payload.id)
+            let newPostComments = {...originalPost, comments: alteredComments}
 
+            return {...state, posts: [newPostComments]}
         default:
             return state
     }

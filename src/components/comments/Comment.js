@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {editCommentVote} from '../../actions/editCommentVote';
+import {deleteComment} from '../../actions/deleteComment';
 
 class Comment extends React.Component {
     
@@ -16,6 +17,12 @@ class Comment extends React.Component {
             let updatedComment = {...comment, upvotes: comment.upvotes - 1}
             this.props.editCommentVote(updatedComment, postId)
         }
+    }
+
+    handleDelete = (event) => {
+        let postId = this.props.comment.post_id
+        let commentId = this.props.comment.id
+        this.props.deleteComment(commentId, postId)
     }
 
     render() {
@@ -33,4 +40,4 @@ class Comment extends React.Component {
     }
 }
 
-export default connect (null, {editCommentVote})(Comment)
+export default connect (null, {editCommentVote, deleteComment})(Comment)
