@@ -6,7 +6,7 @@ const NavBar = (props) => {
 
   return (
     <div>
-      <Link to='/posts' style={{paddingRight: '10px'}}>Posts</Link>
+      <Link to='/posts'>Posts</Link>
       <Link to='/posts/new'>Add Post</Link>
     </div>
 
