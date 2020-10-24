@@ -21,9 +21,27 @@ export default function postsReducer(state = { posts: [] }, action) {
             let editPost = {...filteredPost, title: action.payload.title, content: action.payload.content, subreddit: action.payload.subreddit}
             return {...state, posts: [editPost]}
         case 'EDIT_VOTE':
-            let filteredPost2 = state.posts.filter(post => post.id === action.payload.id)[0]
-            let editPost2 = {...filteredPost2, upvotes: action.payload.upvotes}
-            return {...state, posts: [editPost2]}
+            // let filteredPost2 = state.posts.filter(post => post.id === action.payload.id)[0]
+            // let editPost2 = {...filteredPost2, upvotes: action.payload.upvotes}
+            // return {...state, posts: [editPost2]}
+
+            //find id
+            let postVoteId = state.posts.findIndex(post => post.id === action.payload.id)
+
+            //slice array
+
+            console.log(state.posts.slice(0, postVoteId))
+            let beginning = state.posts.slice(0, postVoteId)
+            // add new object
+            let end = state.posts.slice(postVoteId + 1)
+            console.log(end)
+
+            console.log(beginning.concat(action.payload).concat(end))
+            let newArray = beginning.concat(action.payload).concat(end)
+
+            return {...state, posts: newArray}
+
+            // return {...state, posts: state.posts}
         case 'EDIT_COMMENT_VOTE':
             let selectedPost = state.posts.filter(post => post.id === action.payload.post_id)[0]
             let commentIndex = selectedPost.comments.findIndex(comment => comment.id === action.payload.id)
