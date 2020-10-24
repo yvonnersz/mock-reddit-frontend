@@ -15,7 +15,7 @@ class CommentsContainer extends React.Component {
 
                 {/* <Post posts={this.props.posts} /> */}
                 <CommentInput posts={this.props.posts} id={this.props.match.params.id}/>
-                <Comments posts={this.props.posts} id={this.props.match.params.id}/>
+                <Comments posts={this.props.posts} postRouterId={this.props.match.params.id}/>
 
             </div>
         )
