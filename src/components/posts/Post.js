@@ -46,20 +46,33 @@ class Post extends React.Component {
     render() {
         let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
         return (
-            <div>
-                <h2>{post ? post.title:null}</h2>
-                <sub>r/{post ? post.subreddit:null}</sub><br/>
-                <sub>u/{post ? post.user:null}</sub>
-                <p>{post ? post.content:null}</p>
-                <span>{post ? post.upvotes : null} </span>
-                <button onClick={this.handleVote} name='upvote'>Upvote</button>
-                <button onClick={this.handleVote} name='downvote'>Downvote</button>
-                <button onClick={this.handleDelete}>Delete Post</button>
-                {/* <CommentsContainer post={post} /> */}
+            <div class='container-fluid text-center'>
+                <div class='row content'>
+                    <div class='upvotes-column'>
+                        <button onClick={this.handleVote} name='upvote'>⇧</button><br/>
+                        {post ? post.upvotes:null}<br/>
+                        <button onClick={this.handleVote}name='downvote'>⇩</button><br/>
+                    </div>
 
-                {/* Below is the PostEdit Form */}
-                {/* <PostEdit post={post}/> */}
+                    <div class='col-lg-8 text-left'>
+                        <span>r/{post ? post.subreddit:null} • u/{post ? post.user:null} • {post ? post.created_at:null}</span><br/>
+                        <h3>{post ? post.title:null}</h3>
+                        <p>{post ? post.content:null}</p>
+                        <span>{post ? post.comments.length:null} Comments</span>
+                    </div>
+                </div>
             </div>
+
+            //     <span>{post ? post.upvotes : null} </span>
+            //     <button onClick={this.handleVote} name='upvote'>Upvote</button>
+            //     <button onClick={this.handleVote} name='downvote'>Downvote</button>
+            //     <button onClick={this.handleDelete}>Delete Post</button>
+            //     <CommentsContainer post={post} />
+
+            //     {/* Below is the PostEdit Form */}
+            //     {/* <PostEdit post={post}/> */}
+            // </div>
+
         )
     }
 }

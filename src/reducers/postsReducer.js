@@ -27,6 +27,7 @@ export default function postsReducer(state = { posts: [] }, action) {
             selectedPost.comments.splice(commentIndex, 1, action.payload)
 
             return {...state, posts: [selectedPost]}
+            // EDIT COMMENT NEED TO FIX. WHEN UPVOTED POST, RETURNS BACK ONLY UPVOTED POST.
         case 'DELETE_COMMENT':
             let originalPost = state.posts.filter(post => post.id === action.payload.post_id )[0]
             let alteredComments = originalPost.comments.filter(comment => comment.id != action.payload.id)
