@@ -11,6 +11,12 @@ const Posts = (props) => {
             {props.posts.map(post => 
                 <div class='container-fluid text-center' key={post.id}>
                     <div class="row content">
+                        <div class='upvotes-column'>
+                            <button>⇧</button><br/>
+                            {post.upvotes}<br/>
+                            <button>⇩</button><br/>
+                        </div>
+
                         <div class='col-lg-8 text-left'>
 
                             <span>r/{post.subreddit} • Posted by u/{post.user} • {post.created_at}</span>
