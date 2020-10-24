@@ -21,8 +21,8 @@ class CommentInput extends React.Component {
 
     handleOnSubmit = event => {
         event.preventDefault();
-        let comment = {...this.state, post_id: this.props.post.id}
-        this.props.addComment(comment, this.props.post.id)
+        let comment = {...this.state, post_id: this.props.id}
+        this.props.addComment(comment, this.props.id)
         this.setState({
             content: '',
             user: ''

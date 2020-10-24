@@ -30,8 +30,6 @@ class Comment extends React.Component {
             <div class='container-fluid text-center'>
                 <div class='row content'>
                     <div class='col-lg-8 text-left'>
-                        <h3>Comments</h3>
-
                         <li key={this.props.comment.id}>
                             {this.props.comment.content} by {this.props.comment.user}
                             <span>{this.props.comment.upvotes}</span>
