@@ -1,6 +1,8 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import Pluralize from 'react-pluralize'
 
 import CommentsContainer from '../../containers/CommentsContainer';
 import PostEdit from './PostEdit';
@@ -58,7 +60,7 @@ class Post extends React.Component {
                         <span>r/{post ? post.subreddit:null} • u/{post ? post.user:null} • {post ? post.created_at:null}</span><br/>
                         <h3>{post ? post.title:null}</h3>
                         <p>{post ? post.content:null}</p>
-                        <span>{post ? post.comments.length:null} Comments</span>
+                        <span><Link to={`/posts/${post ? post.id:null}/comments/`}><Pluralize singular={'Comment'} count={post ? post.comments.length:null} /></Link></span>
                     </div>
                 </div>
             </div>

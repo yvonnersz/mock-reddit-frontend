@@ -37,7 +37,7 @@ class Comment extends React.Component {
                         </div>
 
                         <div class='col-lg-8 text-left'>
-                            <span>{this.props.comment.user}</span>
+                            <span>{this.props.comment.user} • {this.props.comment.created_at}</span>
                             <p>{this.props.comment.content}</p>
                             <button onClick={this.handleDelete}>Delete</button>
                         </div>
