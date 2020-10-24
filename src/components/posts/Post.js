@@ -55,7 +55,7 @@ class Post extends React.Component {
                 <button onClick={this.handleVote} name='upvote'>Upvote</button>
                 <button onClick={this.handleVote} name='downvote'>Downvote</button>
                 <button onClick={this.handleDelete}>Delete Post</button>
-                <CommentsContainer post={post} />
+                {/* <CommentsContainer post={post} /> */}
 
                 {/* Below is the PostEdit Form */}
                 {/* <PostEdit post={post}/> */}

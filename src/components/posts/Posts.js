@@ -14,11 +14,9 @@ const Posts = (props) => {
                         <div class='col-lg-8 text-left'>
 
                             <span>r/{post.subreddit} • Posted by u/{post.user} • {post.created_at}</span>
-                            <Link to={`/posts/${post.id}`}>
-                                <h3>{post.title}</h3>
-                            </Link>
+                            <h3><Link to={`/posts/${post.id}`}>{post.title}</Link></h3>
                             <p>{post.content}</p>
-                            <span><Pluralize singular={'Comment'} count={post.comments.length} /></span>
+                            <span><Link to={`/posts/${post.id}/comments/`}><Pluralize singular={'Comment'} count={post.comments.length} /></Link></span>
 
                         </div>
                     </div>
