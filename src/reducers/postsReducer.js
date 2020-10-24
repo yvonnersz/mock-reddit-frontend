@@ -38,13 +38,32 @@ export default function postsReducer(state = { posts: [] }, action) {
 
             // return {...state, posts: state.posts}
         case 'EDIT_COMMENT_VOTE':
-            let selectedPost = state.posts.filter(post => post.id === action.payload.post_id)[0]
-            let commentIndex = selectedPost.comments.findIndex(comment => comment.id === action.payload.id)
 
-            selectedPost.comments.splice(commentIndex, 1, action.payload)
+            //CREATE POST WITH NEW COMMENT
 
-            return {...state, posts: [selectedPost]}
-            // EDIT COMMENT NEED TO FIX. WHEN UPVOTED POST, RETURNS BACK ONLY UPVOTED POST.
+            let desiredpost = state.posts.filter(post => post.id === action.payload.post_id)[0]
+
+            let commentindex = desiredpost.comments.findIndex(comment => comment.id === action.payload.id)
+
+            let commentbegin = desiredpost.comments.slice(0, commentindex)
+            let commentend = desiredpost.comments.slice(commentindex + 1)
+
+            let newcomment = commentbegin.concat(action.payload).concat(commentend)
+
+            let newobjectpost = {...desiredpost, comments: newcomment}
+            console.log(newobjectpost)
+
+            // SLICE
+
+            let findindex = state.posts.findIndex(post => post.id === action.payload.post_id)
+
+            let begslice = state.posts.slice(0, findindex)
+            let endslice = state.posts.slice(findindex + 1)
+
+            let allposts = begslice.concat(newobjectpost).concat(endslice)
+            
+            return {...state, posts: allposts}
+
         case 'DELETE_COMMENT':
             let originalPost = state.posts.filter(post => post.id === action.payload.post_id )[0]
             let alteredComments = originalPost.comments.filter(comment => comment.id != action.payload.id)
