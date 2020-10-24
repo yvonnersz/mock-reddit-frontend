@@ -3,10 +3,8 @@ export default function postsReducer(state = { posts: [] }, action) {
         case 'FETCH_POSTS':
             return {posts: action.payload}
         case 'ADD_POST':
-            console.log(action.payload)
             // console.log({...state, posts: [...state.posts, action.payload]})
             let addPost = {...action.payload, comments: []}
-            console.log(addPost)
             return {...state, posts: [...state.posts, addPost]}
         case 'ADD_COMMENT':
             let post = state.posts.filter(post => post.id === action.payload.post_id)[0]
@@ -30,13 +28,10 @@ export default function postsReducer(state = { posts: [] }, action) {
 
             //slice array
 
-            console.log(state.posts.slice(0, postVoteId))
             let beginning = state.posts.slice(0, postVoteId)
             // add new object
             let end = state.posts.slice(postVoteId + 1)
-            console.log(end)
 
-            console.log(beginning.concat(action.payload).concat(end))
             let newArray = beginning.concat(action.payload).concat(end)
 
             return {...state, posts: newArray}
