@@ -29,15 +29,19 @@ class Comment extends React.Component {
         return (
             <div class='container-fluid text-center'>
                 <div class='row content'>
-                    <div class='col-lg-8 text-left'>
-                        <li key={this.props.comment.id}>
-                            {this.props.comment.content} by {this.props.comment.user}
-                            <span>{this.props.comment.upvotes}</span>
-                            <button name='upvote' onClick={this.handleVote}>Upvote</button>
-                            <button name='downvote' onClick={this.handleVote}>Downvote</button>
+                    {/* <div class='col-lg-8 text-left'> */}
+                        <div class='comment-upvote'>
+                            <button name='upvote' onClick={this.handleVote}>⇧</button><br/>
+                            {this.props.comment.upvotes}<br/>
+                            <button name='downvote' onClick={this.handleVote}>⇩</button><br/>
+                        </div>
+
+                        <div class='col-lg-8 text-left'>
+                            <span>{this.props.comment.user}</span>
+                            <p>{this.props.comment.content}</p>
                             <button onClick={this.handleDelete}>Delete</button>
-                        </li>
-                    </div>
+                        </div>
+                    {/* </div> */}
             </div>
         </div>
         )
