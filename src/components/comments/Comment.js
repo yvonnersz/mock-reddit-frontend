@@ -46,7 +46,7 @@ class Comment extends React.Component {
                             <p>{this.props.comment.content}</p>
                             {/* <button onClick={this.handleDelete}>Delete</button> */}
                             <span><Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link></span> &nbsp;
-                            <span>Delete</span> &nbsp;
+                            <span onClick={this.handleDelete}><Link>Delete</Link></span> &nbsp;
                         </div>
                     {/* </div> */}
             </div>
