@@ -1,6 +1,4 @@
 export const editComment = (comment, post) => {
-    // console.log(comment.id)
-    // console.log(post.id)
     return(dispatch) => {
         fetch(`http://localhost:3000/api/v1/posts/${post.id}/comments/${comment.id}`, {
             headers: {

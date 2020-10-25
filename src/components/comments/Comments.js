@@ -9,7 +9,6 @@ class Comments extends React.Component {
 
         return (
             <div>
-                {/* {this.props.posts && this.props.posts.map(comment => <Comment key={comment.id} comment={comment} />)} */}
                 {post ? post.comments.map(comment => <Comment key={comment.id} comment={comment}/>):null}
            </div>
         )

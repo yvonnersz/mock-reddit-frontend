@@ -29,11 +29,8 @@ class Post extends React.Component {
     }
 
     render() {
-        // let post = this.props.posts[this.props.match.params.id - 1]
 
-        // let post = this.props.posts
         let post = this.props.posts.filter(post => post.id === parseInt(this.props.match.params.id))[0]
-        // console.log(this.props.match.params.id)
         
         let readableDate = () => {
             if (post) {

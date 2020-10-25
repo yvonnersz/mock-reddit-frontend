@@ -3,28 +3,9 @@ export default function postsReducer(state = { posts: [] }, action) {
         case 'FETCH_POSTS':
             return {posts: action.payload}
         case 'ADD_POST':
-            // console.log({...state, posts: [...state.posts, action.payload]})
             let addPost = {...action.payload, comments: []}
             return {...state, posts: [...state.posts, addPost]}
         case 'ADD_COMMENT':
-            // let addcommentpost = state.posts.filter(post => post.id === action.payload.post_id)[0] 
-
-            // let newlyaddedcomment = {...addcommentpost, comments: [...addcommentpost.comments, action.payload]}
-
-            // // // find post index to replace newlyaddedcomment
-
-            // let addcommentpostindex = state.posts.findIndex(post => post.id === action.payload.post_id)
-
-
-            // let addcommentbegin = state.posts.slice(0, addcommentpostindex)
-
-            // let addcommentend = state.posts.slice(addcommentpostindex + 1)
-
-            // let newlyaddedpostcomment = addcommentbegin.concat(newlyaddedcomment).concat(addcommentend)
-
-            // return {...state, posts: newlyaddedpostcomment}
-
-            // grab from state.posts
             let statepost = state.posts.filter(post => post.id === action.payload.post_id)[0]
 
             // update post with upvotes and comment
@@ -45,11 +26,6 @@ export default function postsReducer(state = { posts: [] }, action) {
 
 
         case 'EDIT_POST':
-            // let filteredPost = state.posts.filter(post => post.id === action.payload.id)[0]
-            // let editPost = {...filteredPost, title: action.payload.title, content: action.payload.content, subreddit: action.payload.subreddit}
-            // return {...state, posts: [editPost]}
-            // FIND INDEX OF POST
-
             let oldobjectindex = state.posts.findIndex(post => post.id === action.payload.id)
 
             let beginningofarray = state.posts.slice(0, oldobjectindex)
@@ -61,10 +37,6 @@ export default function postsReducer(state = { posts: [] }, action) {
             return {...state, posts: neweditpostarray}
 
         case 'EDIT_VOTE':
-            // let filteredPost2 = state.posts.filter(post => post.id === action.payload.id)[0]
-            // let editPost2 = {...filteredPost2, upvotes: action.payload.upvotes}
-            // return {...state, posts: [editPost2]}
-
             //find id
             let postVoteId = state.posts.findIndex(post => post.id === action.payload.id)
 
@@ -133,8 +105,6 @@ export default function postsReducer(state = { posts: [] }, action) {
             return {...state, posts: allposts}
 
         case 'DELETE_COMMENT':
-            // console.log(action.payload)
-
             //find post the contains deleted object
 
             let postdeleteobject = state.posts.filter(post => post.id === action.payload.post_id)[0]
