@@ -7,30 +7,47 @@ export default function postsReducer(state = { posts: [] }, action) {
             let addPost = {...action.payload, comments: []}
             return {...state, posts: [...state.posts, addPost]}
         case 'ADD_COMMENT':
-            let addcommentpost = state.posts.filter(post => post.id === action.payload.post_id)[0] 
+            // let addcommentpost = state.posts.filter(post => post.id === action.payload.post_id)[0] 
 
-            let newlyaddedcomment = {...addcommentpost, comments: [...addcommentpost.comments, action.payload]}
+            // let newlyaddedcomment = {...addcommentpost, comments: [...addcommentpost.comments, action.payload]}
 
-            // // find post index to replace newlyaddedcomment
+            // // // find post index to replace newlyaddedcomment
 
-            let addcommentpostindex = state.posts.findIndex(post => post.id === action.payload.post_id)
+            // let addcommentpostindex = state.posts.findIndex(post => post.id === action.payload.post_id)
 
 
-            let addcommentbegin = state.posts.slice(0, addcommentpostindex)
+            // let addcommentbegin = state.posts.slice(0, addcommentpostindex)
 
-            let addcommentend = state.posts.slice(addcommentpostindex + 1)
+            // let addcommentend = state.posts.slice(addcommentpostindex + 1)
 
-            let newlyaddedpostcomment = addcommentbegin.concat(newlyaddedcomment).concat(addcommentend)
+            // let newlyaddedpostcomment = addcommentbegin.concat(newlyaddedcomment).concat(addcommentend)
 
-            return {...state, posts: newlyaddedpostcomment}
+            // return {...state, posts: newlyaddedpostcomment}
+
+            // grab from state.posts
+            let statepost = state.posts.filter(post => post.id === action.payload.post_id)[0]
+
+            // update post with upvotes and comment
+            let newlyupdatedpost = {...statepost, upvotes: action.payload.post.upvotes, comments: [...statepost.comments, action.payload]}
+
+            //slice
+
+            let indexpost = state.posts.findIndex(post => post.id === action.payload.post_id)
+
+            let slice1 = state.posts.slice(0, indexpost)
+            let slice2 = state.posts.slice(indexpost + 1)
+
+            let newarray = slice1.concat(newlyupdatedpost).concat(slice2)
+
+            console.log(newarray)
+
+            return {...state, posts: newarray}
+
 
         case 'EDIT_POST':
             // let filteredPost = state.posts.filter(post => post.id === action.payload.id)[0]
             // let editPost = {...filteredPost, title: action.payload.title, content: action.payload.content, subreddit: action.payload.subreddit}
             // return {...state, posts: [editPost]}
-
-            console.log(action.payload)
-
             // FIND INDEX OF POST
 
             let oldobjectindex = state.posts.findIndex(post => post.id === action.payload.id)
