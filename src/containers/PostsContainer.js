@@ -23,7 +23,7 @@ class PostsContainer extends React.Component {
                 <NavBar />
 
                 <Switch>
-                    <Route path='/' component={Home} />
+                    <Route exact path='/' component={Home} />
                     <Route path='/posts/new' component={PostInput} />
                     <Route path='/posts/:id/comments/:id' render={(routerProps) => <CommentEdit {...routerProps} posts={this.props.posts}/>} />
 
