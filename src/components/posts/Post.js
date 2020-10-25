@@ -1,31 +1,13 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Pluralize from 'react-pluralize'
+import { BrowserRouter  } from 'react-router-dom'
 
 import CommentsContainer from '../../containers/CommentsContainer';
 import PostEdit from './PostEdit';
 import {editVote} from '../../actions/editVote';
 import {deletePost} from '../../actions/deletePost';
-
-// const Post = (this.props) => {
-//     let post = this.props.posts[this.props.match.params.id - 1] || this.props.match.params.id
-
-//     return (
-//         <div>
-//             <h2>{post ? post.title:null}</h2>
-//             <p>{post ? post.content:null}</p>
-//             <span>{post ? post.upvotes : null} </span>
-//             <button>Upvote</button>
-//             <button>Downvote</button>
-//             <CommentsContainer post={post} />
-
-//             {/* Below is the PostEdit Form */}
-//             {/* <PostEdit post={post}/> */}
-//         </div>
-//     )
-// }
 
 class Post extends React.Component {
     handleVote = (event) => {
@@ -43,6 +25,7 @@ class Post extends React.Component {
     handleDelete = (event) => {
         let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
         this.props.deletePost(post)
+        this.props.history.push('/posts')
     }
 
     render() {
@@ -68,8 +51,8 @@ class Post extends React.Component {
                         <h3>{post ? post.title:null}</h3>
                         <p>{post ? post.content:null}</p>
                         <span><Link to={`/posts/${post ? post.id:null}/comments/`}><Pluralize singular={'Comment'} count={post ? post.comments.length:null} /></Link></span> &nbsp;
-                        <span><Link to={`/posts/${post ? post.id:null}/edit`}>Edit Post</Link></span> &nbsp;
-                        <span>Delete</span>
+                        <span><Link to={`/posts/${post ? post.id:null}/edit`}>Edit</Link></span> &nbsp;
+                        <span onClick={this.handleDelete}><Link to={`/posts/${post ? post.id:null}`}>Delete</Link></span>
                     </div>
                 </div>
             </div>
