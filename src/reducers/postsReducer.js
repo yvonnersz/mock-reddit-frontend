@@ -90,6 +90,7 @@ export default function postsReducer(state = { posts: [] }, action) {
         case 'EDIT_COMMENT_VOTE':
 
             //CREATE POST WITH NEW COMMENT
+            console.log(action.payload)
 
             let desiredpost = state.posts.filter(post => post.id === action.payload.post_id)[0]
 
