@@ -47,6 +47,13 @@ class Post extends React.Component {
 
     render() {
         let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
+        
+        let readableDate = () => {
+            if (post) {
+                return new Date(post.created_at).toDateString()
+            }
+        }
+
         return (
             <div class='container-fluid text-center'>
                 <div class='row content'>
@@ -57,7 +64,7 @@ class Post extends React.Component {
                     </div>
 
                     <div class='col-lg-8 text-left'>
-                        <span>r/{post ? post.subreddit:null} • u/{post ? post.user:null} • {post ? post.created_at:null}</span><br/>
+                        <span>r/{post ? post.subreddit:null} • u/{post ? post.user:null} • {post ? readableDate():null}</span><br/>
                         <h3>{post ? post.title:null}</h3>
                         <p>{post ? post.content:null}</p>
                         <span><Link to={`/posts/${post ? post.id:null}/comments/`}><Pluralize singular={'Comment'} count={post ? post.comments.length:null} /></Link></span>

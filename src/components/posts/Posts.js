@@ -21,6 +21,13 @@ class Posts extends React.Component {
     }
 
     render() {
+                
+        let readableDate = (post) => {
+            if (post) {
+                return new Date(post.created_at).toDateString()
+            }
+        }
+        
         return (
             <div>
                 {this.props.posts.map(post => 
@@ -34,7 +41,7 @@ class Posts extends React.Component {
     
                             <div class='col-lg-8 text-left'>
     
-                                <span>r/{post.subreddit} • Posted by u/{post.user} • {post.created_at}</span>
+                                <span>r/{post.subreddit} • Posted by u/{post.user} • {readableDate(post)}</span>
                                 <h3><Link to={`/posts/${post.id}`}>{post.title}</Link></h3>
                                 <p>{post.content}</p>
                                 <span><Link to={`/posts/${post.id}/comments/`}><Pluralize singular={'Comment'} count={post.comments.length} /></Link></span>
