@@ -1,4 +1,4 @@
-export const addPost = (post) => {
+export const addPost = (post, props) => {
     return(dispatch) => {
         fetch('http://localhost:3000/api/v1/posts', {
             headers: {
@@ -9,6 +9,9 @@ export const addPost = (post) => {
             body: JSON.stringify(post)
         })
         .then(response => response.json())
-        .then(json => dispatch({ type: 'ADD_POST', payload: json }))
+        .then(json => {
+            dispatch({ type: 'ADD_POST', payload: json })
+            props.history.push(`/posts/${json.id}`)
+        })
     }
 }

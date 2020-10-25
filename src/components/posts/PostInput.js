@@ -23,7 +23,7 @@ class PostInput extends React.Component {
 
     handleOnSubmit = event => {
         event.preventDefault();
-        this.props.addPost(this.state)
+        this.props.addPost(this.state, this.props)
         this.setState({
             title: '',
             subreddit: '',

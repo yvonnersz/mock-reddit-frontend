@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Pluralize from 'react-pluralize'
-import { BrowserRouter  } from 'react-router-dom'
+// import { BrowserRouter  } from 'react-router-dom'
 
 import CommentsContainer from '../../containers/CommentsContainer';
 import PostEdit from './PostEdit';
