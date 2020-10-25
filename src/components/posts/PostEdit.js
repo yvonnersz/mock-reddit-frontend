@@ -19,11 +19,13 @@ class PostInput extends React.Component {
 
     handleOnSubmit = event => {
         event.preventDefault();
+        console.log(this.props)
         let post = {...this.state, id: this.props.match.params.id}
         this.props.editPost(post)
         this.setState({
             content: ''
         })
+        // this.props.history.push(`/posts/${this.props.match.params.id}`)
     }
 
     render() {
