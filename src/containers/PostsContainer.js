@@ -10,6 +10,7 @@ import PostEdit from '../components/posts/PostEdit';
 import NavBar from '../components/NavBar';
 import CommentsContainer from './CommentsContainer';
 import CommentEdit from '../components/comments/CommentEdit.js';
+import Home from '../components/Home';
 
 class PostsContainer extends React.Component {
     componentDidMount() {
@@ -22,6 +23,7 @@ class PostsContainer extends React.Component {
                 <NavBar />
 
                 <Switch>
+                    <Route path='/' component={Home} />
                     <Route path='/posts/new' component={PostInput} />
                     <Route path='/posts/:id/comments/:id' render={(routerProps) => <CommentEdit {...routerProps} posts={this.props.posts}/>} />
 
