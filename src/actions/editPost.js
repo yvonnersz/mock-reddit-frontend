@@ -9,6 +9,6 @@ export const editPost = (post) => {
             body: JSON.stringify(post)
         })
         .then(response => response.json())
-        .then(json => dispatch({ type: 'EDIT_POST', payload: post }))
+        .then(json => dispatch({ type: 'EDIT_POST', payload: json }))
     }
 }

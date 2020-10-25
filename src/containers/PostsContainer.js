@@ -6,6 +6,7 @@ import {Route, Switch, Link} from 'react-router-dom';
 import PostInput from '../components/posts/PostInput';
 import Posts from '../components/posts/Posts';
 import Post from '../components/posts/Post';
+import PostEdit from '../components/posts/PostEdit';
 import NavBar from '../components/NavBar';
 import CommentsContainer from './CommentsContainer';
 
@@ -26,6 +27,7 @@ class PostsContainer extends React.Component {
                         <Post {...routerProps} posts={this.props.posts} />
                         <CommentsContainer {...routerProps} posts={this.props.posts} />
                         </>} />
+                    <Route path='/posts/:id/edit' render={(routerProps) => <PostEdit {...routerProps} posts={this.props.posts} />} />
                     <Route path='/posts/:id' render={(routerProps) => <Post {...routerProps} posts={this.props.posts} />} />
                     <Route exact path='/posts' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} />}>
 

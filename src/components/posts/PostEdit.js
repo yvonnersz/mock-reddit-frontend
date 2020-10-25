@@ -7,10 +7,7 @@ class PostInput extends React.Component {
     constructor() {
         super();
         this.state = {
-            title: '',
-            subreddit: '',
             content: '',
-            upvotes: 0
         }
     }
 
@@ -22,24 +19,25 @@ class PostInput extends React.Component {
 
     handleOnSubmit = event => {
         event.preventDefault();
-        let post = {...this.state, id: this.props.post.id}
+        let post = {...this.state, id: this.props.match.params.id}
         this.props.editPost(post)
         this.setState({
-            title: '',
-            subreddit: '',
             content: ''
         })
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleOnSubmit}>
-                    <input type='text' placeholder='Title' value={this.state.title} name='title' onChange={this.handleOnChange} /><br/>
-                    <input type='text' placeholder='Content' value={this.state.content} name='content' onChange={this.handleOnChange} /><br/>
-                    <input type='text' placeholder='Subreddit' value={this.state.subreddit} name='subreddit' onChange={this.handleOnChange} /><br/>
-                    <input type='submit' value="Edit Post" /><br/>
-                </form>
+            <div class='container-fluid text-center'>
+                <h2>Edit a Post</h2>
+                <div class='row content new-post'>
+                    <div class='form-group'>
+                        <form onSubmit={this.handleOnSubmit}>
+                            <textarea rows='7' placeholder='Content' value={this.state.content} name='content' onChange={this.handleOnChange} class="form-control" /><br/>
+                            <input type='submit' value="Edit Post" /><br/>
+                        </form>
+                    </div>
+                </div>
             </div>
         )
     }

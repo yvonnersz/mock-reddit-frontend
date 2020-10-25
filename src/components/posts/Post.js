@@ -67,21 +67,12 @@ class Post extends React.Component {
                         <span>r/{post ? post.subreddit:null} • u/{post ? post.user:null} • {post ? readableDate():null}</span><br/>
                         <h3>{post ? post.title:null}</h3>
                         <p>{post ? post.content:null}</p>
-                        <span><Link to={`/posts/${post ? post.id:null}/comments/`}><Pluralize singular={'Comment'} count={post ? post.comments.length:null} /></Link></span>
+                        <span><Link to={`/posts/${post ? post.id:null}/comments/`}><Pluralize singular={'Comment'} count={post ? post.comments.length:null} /></Link></span> &nbsp;
+                        <span><Link to={`/posts/${post ? post.id:null}/edit`}>Edit Post</Link></span> &nbsp;
+                        <span>Delete</span>
                     </div>
                 </div>
             </div>
-
-            //     <span>{post ? post.upvotes : null} </span>
-            //     <button onClick={this.handleVote} name='upvote'>Upvote</button>
-            //     <button onClick={this.handleVote} name='downvote'>Downvote</button>
-            //     <button onClick={this.handleDelete}>Delete Post</button>
-            //     <CommentsContainer post={post} />
-
-            //     {/* Below is the PostEdit Form */}
-            //     {/* <PostEdit post={post}/> */}
-            // </div>
-
         )
     }
 }
