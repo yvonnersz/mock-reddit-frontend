@@ -11,7 +11,7 @@ import {deletePost} from '../../actions/deletePost';
 
 class Post extends React.Component {
     handleVote = (event) => {
-        let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
+        let post = this.props.posts.filter(post => post.id === parseInt(this.props.match.params.id))[0]
 
         if (event.target.name === "upvote") {
             let updatePost = {...post, upvotes: post.upvotes + 1}
@@ -23,7 +23,7 @@ class Post extends React.Component {
     }
 
     handleDelete = (event) => {
-        let post = this.props.posts[this.props.match.params.id - 1] || this.props.posts[0]
+        let post = this.props.posts.filter(post => post.id === parseInt(this.props.match.params.id))[0]
         this.props.deletePost(post)
         this.props.history.push('/posts')
     }

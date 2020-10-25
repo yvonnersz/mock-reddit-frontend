@@ -62,6 +62,31 @@ export default function postsReducer(state = { posts: [] }, action) {
             return {...state, posts: newArray}
 
             // return {...state, posts: state.posts}
+        case 'EDIT_COMMENT':
+             //CREATE POST WITH NEW COMMENT
+
+             let desiredpost2 = state.posts.filter(post => post.id === action.payload.post_id)[0]
+
+             let commentindex2 = desiredpost2.comments.findIndex(comment => comment.id === action.payload.id)
+ 
+             let commentbegin2 = desiredpost2.comments.slice(0, commentindex2)
+             let commentend2 = desiredpost2.comments.slice(commentindex2 + 1)
+ 
+             let newcomment2 = commentbegin2.concat(action.payload).concat(commentend2)
+ 
+             let newobjectpost2 = {...desiredpost2, comments: newcomment2}
+ 
+             // SLICE
+ 
+             let findindex2 = state.posts.findIndex(post => post.id === action.payload.post_id)
+ 
+             let begslice2 = state.posts.slice(0, findindex2)
+             let endslice2 = state.posts.slice(findindex2 + 1)
+ 
+             let allposts2 = begslice2.concat(newobjectpost2).concat(endslice2)
+             
+             return {...state, posts: allposts2}
+
         case 'EDIT_COMMENT_VOTE':
 
             //CREATE POST WITH NEW COMMENT

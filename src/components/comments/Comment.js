@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import {editCommentVote} from '../../actions/editCommentVote';
 import {deleteComment} from '../../actions/deleteComment';
@@ -43,7 +44,9 @@ class Comment extends React.Component {
                         <div class='col-lg-8 text-left'>
                             <span>{this.props.comment.user} • {readableDate}</span>
                             <p>{this.props.comment.content}</p>
-                            <button onClick={this.handleDelete}>Delete</button>
+                            {/* <button onClick={this.handleDelete}>Delete</button> */}
+                            <span><Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link></span> &nbsp;
+                            <span>Delete</span> &nbsp;
                         </div>
                     {/* </div> */}
             </div>
