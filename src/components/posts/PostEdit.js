@@ -25,7 +25,7 @@ class PostInput extends React.Component {
         this.setState({
             content: ''
         })
-        // this.props.history.push(`/posts/${this.props.match.params.id}`)
+        this.props.history.push(`/posts/${this.props.match.params.id}`)
     }
 
     render() {
