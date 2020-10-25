@@ -9,6 +9,6 @@ export const editCommentVote = (comment, postId) => {
             body: JSON.stringify(comment)
         })
         .then(response => response.json())
-        .then(json => dispatch({ type: 'EDIT_COMMENT_VOTE', payload: comment }))
+        .then(json => dispatch({ type: 'EDIT_COMMENT_VOTE', payload: json }))
     }
 }

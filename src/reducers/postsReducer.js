@@ -115,11 +115,33 @@ export default function postsReducer(state = { posts: [] }, action) {
             return {...state, posts: allposts}
 
         case 'DELETE_COMMENT':
-            let originalPost = state.posts.filter(post => post.id === action.payload.post_id )[0]
-            let alteredComments = originalPost.comments.filter(comment => comment.id != action.payload.id)
-            let newPostComments = {...originalPost, comments: alteredComments}
+            // console.log(action.payload)
 
-            return {...state, posts: [newPostComments]}
+            //find post the contains deleted object
+
+            let postdeleteobject = state.posts.filter(post => post.id === action.payload.post_id)[0]
+
+            //alter post to contain new comments
+
+            let updatedcommentpostdeleteobject = postdeleteobject.comments.filter(comment => comment.id != action.payload.id)
+
+            //we have updated comments. now need to update post.
+
+            let newupdatedcommentpost = {...postdeleteobject, comments: updatedcommentpostdeleteobject}
+            console.log(newupdatedcommentpost)
+
+            // NEED TO RETURN STATE POSTS
+
+            let indexofpost = state.posts.findIndex(post => post.id === action.payload.post_id)
+
+            let indexslicebegin = state.posts.slice(0, indexofpost)
+            let indexsliceend = state.posts.slice(indexofpost + 1)
+
+            let newlydeletedpostobject = indexslicebegin.concat(newupdatedcommentpost).concat(indexsliceend)
+
+            return {...state, posts: newlydeletedpostobject}
+
+
         case 'DELETE_POST':
             let newfilteredpost = state.posts.filter(post => post.id != action.payload.id)
 
