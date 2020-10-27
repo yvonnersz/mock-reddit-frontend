@@ -19,18 +19,16 @@ class CommentEdit extends React.Component {
 
     handleOnSubmit = event => {
         event.preventDefault();
+
         let commentId = parseInt(this.props.match.params.id)
-
         let post = this.props.posts.filter(post => post.comments.find(comment => comment.id === commentId))[0]
-
         let comment = {...this.state, post_id: post.id, id: commentId}
-        console.log(comment)
 
         this.props.editComment(comment, post)
         this.setState({
             content: '',
         })
-
+        
         this.props.history.push(`/posts/${post.id}/comments`)
     }
 

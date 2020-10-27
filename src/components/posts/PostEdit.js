@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { editPost } from '../../actions/editPost'
+import {editPost} from '../../actions/editPost';
 
 class PostInput extends React.Component {
     constructor() {
@@ -19,7 +19,6 @@ class PostInput extends React.Component {
 
     handleOnSubmit = event => {
         event.preventDefault();
-        console.log(this.props)
         let post = {...this.state, id: this.props.match.params.id}
         this.props.editPost(post)
         this.setState({

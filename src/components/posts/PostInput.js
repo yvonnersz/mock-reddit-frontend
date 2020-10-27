@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { addPost } from '../../actions/addPost'
+import {addPost} from '../../actions/addPost';
 
 class PostInput extends React.Component {
     constructor() {
@@ -15,13 +15,13 @@ class PostInput extends React.Component {
         }
     }
 
-    handleOnChange = event => {
+    handleOnChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
 
-    handleOnSubmit = event => {
+    handleOnSubmit = (event) => {
         event.preventDefault();
         this.props.addPost(this.state, this.props)
         this.setState({
@@ -40,13 +40,9 @@ class PostInput extends React.Component {
                     <div class='form-group'>
                         <form onSubmit={this.handleOnSubmit}>
                             <input type='text' placeholder='Title' value={this.state.title} name='title' onChange={this.handleOnChange} class="form-control"/><br/>
-
                             <input type='text' placeholder='Subreddit' value={this.state.subreddit} name='subreddit' onChange={this.handleOnChange} class="form-control"/><br/>
-
                             <input type='text' placeholder='User' value={this.state.user} name='user' onChange={this.handleOnChange} class="form-control"/><br/>
-
                             <textarea rows="7" placeholder='Content' value={this.state.content} name='content' onChange={this.handleOnChange} class="form-control"/><br/>
-
                             <input type='submit' value="Create Post" /><br/>
                         </form>
                     </div>
