@@ -18,7 +18,7 @@ class Comment extends React.Component {
     }
 
     handleDelete = (event) => {
-        this.props.deleteComment(this.props.comment.id, this.props.comment.post_id)
+        this.props.deleteComment(this.props.comment)
     }
 
     dateFormat = (comment) => {

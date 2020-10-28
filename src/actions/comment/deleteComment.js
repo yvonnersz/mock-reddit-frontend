@@ -1,6 +1,6 @@
-export const deleteComment = (commentId, postId) => {
+export const deleteComment = (comment) => {
     return (dispatch) => {
-      return fetch(`http://localhost:3000/api/v1/posts/${postId}/comments/${commentId}`, {
+      return fetch(`http://localhost:3000/api/v1/posts/${comment.post_id}/comments/${comment.id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
