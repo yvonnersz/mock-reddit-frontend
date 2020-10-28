@@ -31,18 +31,6 @@ export default function postsReducer(state = { posts: [] }, action) {
              let endslice2 = state.posts.slice(findindex2 + 1)
              let allposts2 = begslice2.concat(newobjectpost2).concat(endslice2)
              return {...state, posts: allposts2}
-        case 'EDIT_COMMENT_VOTE':
-            let desiredpost = state.posts.filter(post => post.id === action.payload.post_id)[0]
-            let commentindex = desiredpost.comments.findIndex(comment => comment.id === action.payload.id)
-            let commentbegin = desiredpost.comments.slice(0, commentindex)
-            let commentend = desiredpost.comments.slice(commentindex + 1)
-            let newcomment = commentbegin.concat(action.payload).concat(commentend)
-            let newobjectpost = {...desiredpost, comments: newcomment}
-            let findindex = state.posts.findIndex(post => post.id === action.payload.post_id)
-            let begslice = state.posts.slice(0, findindex)
-            let endslice = state.posts.slice(findindex + 1)
-            let allposts = begslice.concat(newobjectpost).concat(endslice)
-            return {...state, posts: allposts}
         case 'DELETE_COMMENT':
             let postdeleteobject = state.posts.filter(post => post.id === action.payload.post_id)[0]
             let updatedcommentpostdeleteobject = postdeleteobject.comments.filter(comment => comment.id != action.payload.id)

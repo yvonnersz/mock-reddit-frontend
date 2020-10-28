@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {editCommentVote} from '../../actions/comment/editCommentVote';
+import {editComment} from '../../actions/comment/editComment';
 import {deleteComment} from '../../actions/comment/deleteComment';
 
 class Comment extends React.Component {
@@ -10,10 +10,10 @@ class Comment extends React.Component {
     handleVote = (event) => {
         if (event.target.name === 'upvote') {
             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1}
-            this.props.editCommentVote(updatedComment, this.props.comment.post_id)
+            this.props.editComment(updatedComment, this.props.post)
         } else if (event.target.name === 'downvote') {
             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1}
-            this.props.editCommentVote(updatedComment, this.props.comment.post_id)
+            this.props.editComment(updatedComment, this.props.post)
         }
     }
 
@@ -51,4 +51,4 @@ class Comment extends React.Component {
     }
 }
 
-export default connect (null, {editCommentVote, deleteComment})(Comment)
+export default connect (null, {editComment, deleteComment})(Comment)

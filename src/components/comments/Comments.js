@@ -9,7 +9,7 @@ const Comments = (props) => {
 
     return (
         <div>
-            {post ? post.comments.map(comment => <Comment key={comment.id} comment={comment}/>):null}
+            {post ? post.comments.map(comment => <Comment key={comment.id} comment={comment} post={post}/>):null}
        </div>
     )
 }
