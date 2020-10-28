@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {editComment} from '../../actions/editComment';
+import {editComment} from '../../actions/comment/editComment';
 
 class CommentEdit extends React.Component {
     constructor() {

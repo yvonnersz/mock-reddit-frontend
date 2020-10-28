@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {editPost} from '../../actions/editPost';
+import {editPost} from '../../actions/post/editPost';
 
 class PostInput extends React.Component {
     constructor() {

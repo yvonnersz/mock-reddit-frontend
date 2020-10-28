@@ -3,7 +3,7 @@ import Pluralize from 'react-pluralize';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {editVote} from '../../actions/editVote';
+import {editVote} from '../../actions/post/editVote';
 
 class Posts extends React.Component {
 

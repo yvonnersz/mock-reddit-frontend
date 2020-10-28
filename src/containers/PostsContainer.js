@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchPosts} from '../actions/fetchPosts';
 import {Route, Switch} from 'react-router-dom';
 
 import Post from '../components/posts/Post';
@@ -11,7 +10,7 @@ import CommentsContainer from './CommentsContainer';
 import CommentEdit from '../components/comments/CommentEdit.js';
 import Home from '../components/Home';
 import NavBar from '../components/NavBar';
-
+import {fetchPosts} from '../actions/post/fetchPosts';
 
 class PostsContainer extends React.Component {
     componentDidMount() {

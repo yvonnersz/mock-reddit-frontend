@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {editCommentVote} from '../../actions/editCommentVote';
-import {deleteComment} from '../../actions/deleteComment';
+import {editCommentVote} from '../../actions/comment/editCommentVote';
+import {deleteComment} from '../../actions/comment/deleteComment';
 
 class Comment extends React.Component {
     
