@@ -3,7 +3,7 @@ import Pluralize from 'react-pluralize';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import {editVote} from '../../actions/post/editVote';
+import {editPost} from '../../actions/post/editPost';
 import {deletePost} from '../../actions/post/deletePost';
 
 class Post extends React.Component {
@@ -11,10 +11,10 @@ class Post extends React.Component {
     handleVote = (event, post) => {
         if (post && event.target.name === "upvote") {
             let updatePost = {...post, upvotes: post.upvotes + 1}
-            this.props.editVote(updatePost)
+            this.props.editPost(updatePost)
         } else if (post && event.target.name === "downvote") {
             let updatePost = {...post, upvotes: post.upvotes - 1}
-            this.props.editVote(updatePost)
+            this.props.editPost(updatePost)
         }
     }
 
@@ -57,4 +57,4 @@ class Post extends React.Component {
     }
 }
 
-export default connect(null, {editVote, deletePost})(Post)
+export default connect(null, {editPost, deletePost})(Post)

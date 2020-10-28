@@ -19,12 +19,6 @@ export default function postsReducer(state = { posts: [] }, action) {
             let endofarray = state.posts.slice(oldobjectindex + 1)
             let neweditpostarray = beginningofarray.concat(action.payload).concat(endofarray)
             return {...state, posts: neweditpostarray}
-        case 'EDIT_VOTE':
-            let postVoteId = state.posts.findIndex(post => post.id === action.payload.id)
-            let beginning = state.posts.slice(0, postVoteId)
-            let end = state.posts.slice(postVoteId + 1)
-            let newArray = beginning.concat(action.payload).concat(end)
-            return {...state, posts: newArray}
         case 'EDIT_COMMENT':
              let desiredpost2 = state.posts.filter(post => post.id === action.payload.post_id)[0]
              let commentindex2 = desiredpost2.comments.findIndex(comment => comment.id === action.payload.id)
