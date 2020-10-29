@@ -2,10 +2,10 @@ import React from 'react';
 
 import Comment from './Comment';
 
-const Comments = (props) => {
+const Comments = ({posts, postRouterId}) => {
 
-    let postId = parseInt(props.postRouterId)
-    let post = props.posts.filter(post => post.id === postId)[0]
+    let postId = parseInt(postRouterId)
+    let post = posts.filter(post => post.id === postId)[0]
 
     return (
         <div>

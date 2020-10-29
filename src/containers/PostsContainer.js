@@ -12,11 +12,7 @@ import Home from '../components/Home';
 import NavBar from '../components/NavBar';
 import {fetchPosts} from '../actions/post/fetchPosts';
 
-class PostsContainer extends React.Component {
-    componentDidMount() {
-        this.props.fetchPosts();
-    }
-    
+class PostsContainer extends React.Component {    
     render() {
         return (
             <div>
@@ -29,11 +25,14 @@ class PostsContainer extends React.Component {
                     <Route path='/posts/:id/comments' render={(routerProps) => <><Post {...routerProps} posts={this.props.posts} /><CommentsContainer {...routerProps} posts={this.props.posts} /></>} />
                     <Route path='/posts/:id/edit' render={(routerProps) => <PostEdit {...routerProps} posts={this.props.posts} />} />
                     <Route path='/posts/:id' render={(routerProps) => <Post {...routerProps} posts={this.props.posts} />} />
-                    <Route exact path='/posts' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} />}>
-                    </Route>
+                    <Route exact path='/posts' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} />} />
                 </Switch>
             </div>
         )
+    }
+
+    componentDidMount() {
+        this.props.fetchPosts();
     }
 }
 
