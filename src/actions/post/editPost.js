@@ -9,6 +9,12 @@ export const editPost = (post) => {
             body: JSON.stringify(post)
         })
         .then(response => response.json())
-        .then(json => dispatch({ type: 'EDIT_POST', payload: json }))
+        .then(json => {
+            if (json.error) {
+                alert(json.error)
+            } else {
+                dispatch({ type: 'EDIT_POST', payload: json })
+            }
+        })
     }
 }

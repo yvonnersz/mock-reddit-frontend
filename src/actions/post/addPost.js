@@ -10,8 +10,12 @@ export const addPost = (post, props) => {
         })
         .then(response => response.json())
         .then(json => {
-            dispatch({ type: 'ADD_POST', payload: json })
-            props.history.push(`/posts/${json.id}`)
+            if (json.error) {
+                alert(json.error)
+            } else {
+                dispatch({ type: 'ADD_POST', payload: json })
+                props.history.push(`/posts/${json.id}`)
+            }
         })
     }
 }

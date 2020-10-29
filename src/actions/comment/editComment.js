@@ -9,6 +9,12 @@ export const editComment = (comment, post) => {
             body: JSON.stringify(comment)
         })
         .then(response => response.json())
-        .then(json => dispatch({ type: 'EDIT_COMMENT', payload: json }))
+        .then(json => {
+            if (json.error) {
+                alert(json.error)
+            } else {
+                dispatch({ type: 'EDIT_COMMENT', payload: json })
+            }
+        }) 
     }
 }
