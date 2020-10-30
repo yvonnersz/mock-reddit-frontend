@@ -6,8 +6,10 @@ export default function postsReducer(state = { posts: [] }, action) {
             let addPost = {...action.payload, comments: []}
             return {...state, posts: [...state.posts, addPost]}
         case 'EDIT_POST':
+            // console.log(action.payload)
             let editOriginalPostIndex = state.posts.findIndex(post => post.id === action.payload.id)
             let editUpdatedPost = state.posts.slice(0, editOriginalPostIndex).concat(action.payload).concat(state.posts.slice(editOriginalPostIndex + 1))
+            // console.log({...state, posts: editUpdatedPost})
             return {...state, posts: editUpdatedPost}
         case 'DELETE_POST':
             let deleteUpdatedPost = state.posts.filter(post => post.id != action.payload.id)

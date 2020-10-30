@@ -9,12 +9,22 @@ import {deletePost} from '../../actions/post/deletePost';
 class Post extends React.Component {
     
     handleVote = (event, post) => {
-        if (post && event.target.name === "upvote") {
-            let updatePost = {...post, upvotes: post.upvotes + 1}
-            this.props.editPost(updatePost)
-        } else if (post && event.target.name === "downvote") {
-            let updatePost = {...post, upvotes: post.upvotes - 1}
-            this.props.editPost(updatePost)
+        if (event.target.name === "upvote") {
+            if (post.toggle_downvote === true) {
+                let updatePost = {...post, upvotes: post.upvotes + 1, toggle_upvote: false, toggle_downvote: false}
+                this.props.editPost(updatePost)
+            } else {
+                let updatePost = {...post, upvotes: post.upvotes + 1, toggle_upvote: true, toggle_downvote: false}
+                this.props.editPost(updatePost)
+            }
+        } else if (event.target.name === "downvote") {
+            if (post.toggle_upvote === true) {
+                let updatePost = {...post, upvotes: post.upvotes - 1, toggle_upvote: false, toggle_downvote: false}
+                this.props.editPost(updatePost)
+            } else {
+                let updatePost = {...post, upvotes: post.upvotes - 1, toggle_upvote: false, toggle_downvote: true}
+                this.props.editPost(updatePost)
+            }
         }
     }
 
@@ -38,8 +48,8 @@ class Post extends React.Component {
                 <div class='row content'>
 
                     <div class='upvotes-column'>
-                        <button onClick={(event) => this.handleVote(event, post)} name='upvote'>⇧</button><br/> {post ? post.upvotes:null}<br/>
-                        <button onClick={(event) => this.handleVote(event, post)}name='downvote'>⇩</button><br/>
+                        <button name='upvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_upvote === true ? 'true':''}>⇧</button><br/> {post.upvotes}<br/>
+                        <button name='downvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_downvote === true ? 'true':''}>⇩</button><br/>
                     </div>
 
                     <div class='col-lg-8 text-left'>

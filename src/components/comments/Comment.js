@@ -9,11 +9,22 @@ class Comment extends React.Component {
     
     handleVote = (event) => {
         if (event.target.name === 'upvote') {
-            let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1}
-            this.props.editComment(updatedComment, this.props.post)
+            if (this.props.comment.toggle_downvote === true) {
+                let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1, toggle_upvote: false, toggle_downvote: false}
+                this.props.editComment(updatedComment, this.props.post)
+            } else {
+                let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1, toggle_upvote: true, toggle_downvote: false}
+                this.props.editComment(updatedComment, this.props.post) // 
+            }
         } else if (event.target.name === 'downvote') {
-            let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1}
-            this.props.editComment(updatedComment, this.props.post)
+            if (this.props.comment.toggle_upvote === true) {
+                let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1, toggle_upvote: false, toggle_downvote: false}
+                this.props.editComment(updatedComment, this.props.post)
+                console.log(updatedComment) //
+            } else {
+                let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1, toggle_upvote: false, toggle_downvote: true}
+                this.props.editComment(updatedComment, this.props.post)
+            }
         }
     }
 
@@ -34,8 +45,8 @@ class Comment extends React.Component {
                 <div class='row content'>
 
                         <div class='comment-upvote'>
-                            <button name='upvote' onClick={this.handleVote}>⇧</button><br/> {this.props.comment.upvotes}<br/>
-                            <button name='downvote' onClick={this.handleVote}>⇩</button><br/>
+                            <button name='upvote' onClick={this.handleVote} disabled={this.props.comment.toggle_upvote === true ? 'true':''}>⇧</button><br/> {this.props.comment.upvotes}<br/>
+                            <button name='downvote' onClick={this.handleVote} disabled={this.props.comment.toggle_downvote === true ? 'true':''}>⇩</button><br/>
                         </div>
 
                         <div class='col-lg-8 text-left'>

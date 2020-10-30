@@ -9,7 +9,9 @@ class CommentInput extends React.Component {
         this.state = {
             content: '',
             user: '',
-            upvotes: 0
+            upvotes: 0,
+            toggle_upvote: false,
+            toggle_downvote: false
         }
     }
 

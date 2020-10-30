@@ -28,7 +28,9 @@ class PostInput extends React.Component {
             title: '',
             subreddit: '',
             user: '',
-            content: ''
+            content: '',
+            toggle_upvote: false, 
+            toggle_downvote: false
         })
     }
 

@@ -9,11 +9,21 @@ class Posts extends React.Component {
 
     handleVote = (event, post) => {
         if (event.target.name === "upvote") {
-            let updatePost = {...post, upvotes: post.upvotes + 1}
-            this.props.editPost(updatePost)
+            if (post.toggle_downvote === true) {
+                let updatePost = {...post, upvotes: post.upvotes + 1, toggle_upvote: false, toggle_downvote: false}
+                this.props.editPost(updatePost)
+            } else {
+                let updatePost = {...post, upvotes: post.upvotes + 1, toggle_upvote: true, toggle_downvote: false}
+                this.props.editPost(updatePost)
+            }
         } else if (event.target.name === "downvote") {
-            let updatePost = {...post, upvotes: post.upvotes - 1}
-            this.props.editPost(updatePost)
+            if (post.toggle_upvote === true) {
+                let updatePost = {...post, upvotes: post.upvotes - 1, toggle_upvote: false, toggle_downvote: false}
+                this.props.editPost(updatePost)
+            } else {
+                let updatePost = {...post, upvotes: post.upvotes - 1, toggle_upvote: false, toggle_downvote: true}
+                this.props.editPost(updatePost)
+            }
         }
     }
 
@@ -31,8 +41,8 @@ class Posts extends React.Component {
                         <div class="row content">
 
                             <div class='upvotes-column'>
-                                <button name='upvote' onClick={(event) => this.handleVote(event, post)}>⇧</button><br/> {post.upvotes}<br/>
-                                <button name='downvote' onClick={(event) => this.handleVote(event, post)}>⇩</button><br/>
+                                <button name='upvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_upvote === true ? 'true':''}>⇧</button><br/> {post.upvotes}<br/>
+                                <button name='downvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_downvote === true ? 'true':''}>⇩</button><br/>
                             </div>
     
                             <div class='col-lg-8 text-left'>
@@ -49,5 +59,6 @@ class Posts extends React.Component {
         )
     }
 }
+
 
 export default connect(null, {editPost})(Posts)
