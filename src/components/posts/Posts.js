@@ -41,13 +41,12 @@ class Posts extends React.Component {
 
     handleBySort = () => {
         this.setState({
-            sort: true
+            sort: !this.state.sort
         })
     }
 
     render() {
-        let mapPosts = this.props.posts
-        let sortPosts = this.props.posts.map(post => post).sort((a,b) => a.upvotes - b.upvotes).reverse()
+        const sortPosts = [...this.props.posts].sort((a,b) => a.upvotes - b.upvotes).reverse()
         
 
        // if (this.state.sort === false) {
@@ -55,7 +54,7 @@ class Posts extends React.Component {
                 <div>
                     <button onClick={this.handleBySort}>Sort by Votes</button>
     
-                    {(this.state.sort === false ? mapPosts:sortPosts).map(post => 
+                    {(this.state.sort === false ? this.props.posts:sortPosts).map(post => 
                         <div class='container-fluid text-center' key={post.id}>
                             <div class="row content">
     
