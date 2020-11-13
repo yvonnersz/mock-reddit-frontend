@@ -6,6 +6,12 @@ import {connect} from 'react-redux';
 import {editPost} from '../../actions/post/editPost';
 
 class Posts extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            sort: false
+        }
+    }
 
     handleVote = (event, post) => {
         if (event.target.name === "upvote") {
@@ -33,30 +39,43 @@ class Posts extends React.Component {
         }    
     }
 
-    render() {
-        return (
-            <div>
-                {this.props.posts.map(post => 
-                    <div class='container-fluid text-center' key={post.id}>
-                        <div class="row content">
+    handleBySort = () => {
+        this.setState({
+            sort: true
+        })
+    }
 
-                            <div class='upvotes-column'>
-                                <button name='upvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_upvote === true ? 'true':''}>⇧</button><br/> {post.upvotes}<br/>
-                                <button name='downvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_downvote === true ? 'true':''}>⇩</button><br/>
-                            </div>
+    render() {
+        let mapPosts = this.props.posts
+        let sortPosts = this.props.posts.map(post => post).sort((a,b) => a.upvotes - b.upvotes).reverse()
+        
+
+       // if (this.state.sort === false) {
+            return (
+                <div>
+                    <button onClick={this.handleBySort}>Sort by Votes</button>
     
-                            <div class='col-lg-8 text-left'>
-                                <span>r/{post.subreddit} • Posted by u/{post.user} • {this.dateFormat(post)}</span>
-                                <h3><Link to={`/posts/${post.id}`}>{post.title}</Link></h3>
-                                <p>{post.content}</p>
-                                <span><Link to={`/posts/${post.id}/comments`}><Pluralize singular={'Comment'} count={post.comments.length} /></Link></span>
+                    {(this.state.sort === false ? mapPosts:sortPosts).map(post => 
+                        <div class='container-fluid text-center' key={post.id}>
+                            <div class="row content">
+    
+                                <div class='upvotes-column'>
+                                    <button name='upvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_upvote === true ? 'true':''}>⇧</button><br/> {post.upvotes}<br/>
+                                    <button name='downvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_downvote === true ? 'true':''}>⇩</button><br/>
+                                </div>
+        
+                                <div class='col-lg-8 text-left'>
+                                    <span>r/{post.subreddit} • Posted by u/{post.user} • {this.dateFormat(post)}</span>
+                                    <h3><Link to={`/posts/${post.id}`}>{post.title}</Link></h3>
+                                    <p>{post.content}</p>
+                                    <span><Link to={`/posts/${post.id}/comments`}><Pluralize singular={'Comment'} count={post.comments.length} /></Link></span>
+                                </div>
+                                
                             </div>
-                            
                         </div>
-                    </div>
-                )}
-            </div>
-        )
+                    )}
+                </div>
+            )
     }
 }
 
