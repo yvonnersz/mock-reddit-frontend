@@ -10,6 +10,7 @@ import CommentsContainer from './CommentsContainer';
 import CommentEdit from '../components/comments/CommentEdit.js';
 import Home from '../components/Home';
 import NavBar from '../components/NavBar';
+import UserInput from '../components/users/UserInput';
 import {fetchPosts} from '../actions/post/fetchPosts';
 
 class PostsContainer extends React.Component {    
@@ -21,6 +22,7 @@ class PostsContainer extends React.Component {
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route path='/posts/new' component={PostInput} />
+                    <Route path='/register' render={(routerProps) => <UserInput {...routerProps} />} />
                     <Route path='/posts/:id/comments/:id' render={(routerProps) => <CommentEdit {...routerProps} posts={this.props.posts}/>} />
                     <Route path='/posts/:id/comments' render={(routerProps) => <><Post {...routerProps} posts={this.props.posts} /><CommentsContainer {...routerProps} posts={this.props.posts} /></>} />
                     <Route path='/posts/:id/edit' render={(routerProps) => <PostEdit {...routerProps} posts={this.props.posts} />} />
