@@ -5,6 +5,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 import App from './App';
 import postsReducer from './reducers/postsReducer';
