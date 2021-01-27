@@ -3,6 +3,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 class NavBar extends React.Component {
+
+  handleOnClick = (event) => {
+    axios.delete('http://localhost:3000/logged_out', { withCredentials: true})
+  }
+
   render() {
     return (
       <nav class="navbar navbar-default">
@@ -11,7 +16,7 @@ class NavBar extends React.Component {
         <Link to="/posts/new">Add Post</Link>
         <Link to="/register">Register</Link>
         <Link to="/login">Login</Link>
-        <Link to="/logout">Logout</Link>
+        <Link to="/logout" onClick={this.handleOnClick}>Logout</Link>
       </nav>
     );
   }
