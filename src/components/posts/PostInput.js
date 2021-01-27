@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import {addPost} from '../../actions/post/addPost';
 
 class PostInput extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             title: '',
             subreddit: '',
-            user: '',
+            user_id: this.props.user.id,
             content: '',
             upvotes: 0
         }
@@ -27,8 +27,8 @@ class PostInput extends React.Component {
         this.setState({
             title: '',
             subreddit: '',
-            user: '',
             content: '',
+            user_id: this.props.user.id,
             toggle_upvote: false, 
             toggle_downvote: false
         })
@@ -43,7 +43,6 @@ class PostInput extends React.Component {
                         <form onSubmit={this.handleOnSubmit}>
                             <input type='text' placeholder='Title' value={this.state.title} name='title' onChange={this.handleOnChange} class="form-control"/><br/>
                             <input type='text' placeholder='Subreddit' value={this.state.subreddit} name='subreddit' onChange={this.handleOnChange} class="form-control"/><br/>
-                            <input type='text' placeholder='User' value={this.state.user} name='user' onChange={this.handleOnChange} class="form-control"/><br/>
                             <textarea rows="7" placeholder='Content' value={this.state.content} name='content' onChange={this.handleOnChange} class="form-control"/><br/>
                             <input type='submit' value="Create Post" /><br/>
                         </form>

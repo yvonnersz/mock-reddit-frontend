@@ -15,6 +15,10 @@ import UserLogin from '../components/users/UserLogin';
 import {fetchPosts} from '../actions/post/fetchPosts';
 
 class PostsContainer extends React.Component {    
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div>
@@ -22,7 +26,7 @@ class PostsContainer extends React.Component {
 
                 <Switch>
                     <Route exact path='/' component={Home} />
-                    <Route path='/posts/new' component={PostInput} />
+                    <Route path='/posts/new' render={(routerProps) => <PostInput {...routerProps} user={this.props.user} />} />
                     <Route path='/register' render={(routerProps) => <UserInput {...routerProps} />} />
                     <Route path='/login' render={(routerProps) => <UserLogin {...routerProps} />} />
                     <Route path='/posts/:id/comments/:id' render={(routerProps) => <CommentEdit {...routerProps} posts={this.props.posts}/>} />
