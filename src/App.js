@@ -9,6 +9,9 @@ class App extends React.Component {
     this.state = {
       user: ''
     }
+
+    this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   checkLogin() {
@@ -20,6 +23,36 @@ class App extends React.Component {
     })
   }
 
+  handleLogin(username, password) {
+    let user = {
+      username: username,
+      password: password
+    }
+
+    axios.post(
+      "http://localhost:3000/sessions",
+      {
+        user: user,
+      },
+      { withCredentials: true }
+    )
+    .then(response => {
+      this.setState({
+        user: response.data.user
+      })
+    })
+    // .then(response => console.log(response))
+  }
+
+  handleLogOut() {
+    axios.delete('http://localhost:3000/logged_out', { withCredentials: true})
+    .then(response => {
+      this.setState({
+        user: ''
+      })
+    })
+  }
+
   componentDidMount() {
     this.checkLogin()
   }
@@ -27,7 +60,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <PostsContainer user={this.state.user} />
+        <PostsContainer user={this.state.user} handleLogOut={this.handleLogOut} handleLogin={this.handleLogin} />
       </div>
     );
   }

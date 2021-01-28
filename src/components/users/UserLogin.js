@@ -21,16 +21,17 @@ class UserLogin extends React.Component {
 
     const { username, password } = this.state;
 
-    axios.post(
-      "http://localhost:3000/sessions",
-      {
-        user: {
-          username: username,
-          password: password
-        },
-      },
-      { withCredentials: true }
-    );
+    this.props.handleLogin(username, password)
+    // axios.post(
+    //   "http://localhost:3000/sessions",
+    //   {
+    //     user: {
+    //       username: username,
+    //       password: password
+    //     },
+    //   },
+    //   { withCredentials: true }
+    // );
 
     this.props.history.push("/");
   };
