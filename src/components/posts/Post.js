@@ -53,7 +53,7 @@ class Post extends React.Component {
                     </div>
 
                     <div class='col-lg-8 text-left'>
-                        <span>r/{post ? post.subreddit:null} • u/{post ? post.user:null} • {this.dateFormat(post)}</span><br/>
+                        <span>r/{post ? post.subreddit:null} • u/{post ? post.user.username:null} • {this.dateFormat(post)}</span><br/>
                         <h3>{post ? post.title:null}</h3>
                         <p>{post ? post.content:null}</p>
                         <span><Link to={`/posts/${post ? post.id:null}/comments/`}><Pluralize singular={'Comment'} count={post ? post.comments.length:null} /></Link></span> &nbsp;

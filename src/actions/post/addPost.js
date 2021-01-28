@@ -13,7 +13,8 @@ export const addPost = (post, props) => {
             if (json.error) {
                 alert(json.error)
             } else {
-                dispatch({ type: 'ADD_POST', payload: json })
+                let newPost = {...json, user: props.user}
+                dispatch({ type: 'ADD_POST', payload: newPost })
                 props.history.push(`/posts/${json.id}`)
             }
         })
