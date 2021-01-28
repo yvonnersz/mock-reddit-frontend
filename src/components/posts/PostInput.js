@@ -9,7 +9,7 @@ class PostInput extends React.Component {
         this.state = {
             title: '',
             subreddit: '',
-            user_id: this.props.user.id,
+            user_id: '',
             content: '',
             upvotes: 0
         }
@@ -23,6 +23,7 @@ class PostInput extends React.Component {
 
     handleOnSubmit = (event) => {
         event.preventDefault();
+        this.state.user_id= this.props.user.id
         this.props.addPost(this.state, this.props)
         this.setState({
             title: '',

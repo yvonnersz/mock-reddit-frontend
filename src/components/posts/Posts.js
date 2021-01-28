@@ -48,10 +48,11 @@ class Posts extends React.Component {
     render() {
         const sortPosts = [...this.props.posts].sort((a,b) => a.upvotes - b.upvotes).reverse()
         
-
+        
        // if (this.state.sort === false) {
             return (
                 <div>
+
                     <button onClick={this.handleBySort}>Sort by Votes</button>
     
                     {(this.state.sort === false ? this.props.posts:sortPosts).map(post => 
@@ -64,7 +65,7 @@ class Posts extends React.Component {
                                 </div>
         
                                 <div class='col-lg-8 text-left'>
-                                    <span>r/{post.subreddit} • Posted by u/{post.user} • {this.dateFormat(post)}</span>
+                                    <span>r/{post.subreddit} • Posted by u/{post.user.username} • {this.dateFormat(post)}</span>
                                     <h3><Link to={`/posts/${post.id}`}>{post.title}</Link></h3>
                                     <p>{post.content}</p>
                                     <span><Link to={`/posts/${post.id}/comments`}><Pluralize singular={'Comment'} count={post.comments.length} /></Link></span>
