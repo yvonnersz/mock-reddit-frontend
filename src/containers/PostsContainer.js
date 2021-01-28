@@ -22,7 +22,7 @@ class PostsContainer extends React.Component {
     render() {
         return (
             <div>
-                <NavBar handleLogOut={this.props.handleLogOut} />
+                <NavBar user={this.props.user} handleLogOut={this.props.handleLogOut} />
 
                 <Switch>
                     <Route exact path='/' component={Home} />

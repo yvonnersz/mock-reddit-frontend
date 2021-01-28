@@ -10,9 +10,16 @@ class NavBar extends React.Component {
         <Link to="/">Home</Link>
         <Link to="/posts">Posts</Link>
         <Link to="/posts/new">Add Post</Link>
-        <Link to="/register">Register</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/logout" onClick={this.props.handleLogOut}>Logout</Link>
+
+        {this.props.user ? <Link to="/logout" onClick={this.props.handleLogOut}>Logout</Link> : 
+          <>
+            <Link to="/register">Register</Link>
+            <Link to="/login">Login</Link> 
+          </>
+        }
+
+
+        
       </nav>
     );
   }
