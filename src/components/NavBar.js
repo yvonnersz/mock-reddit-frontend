@@ -6,7 +6,7 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <nav class="navbar navbar-default">
+      <nav class="navbar">
         <Link to="/">Home</Link>
         <Link to="/posts">Posts</Link>
         <Link to="/posts/new">Add Post</Link>

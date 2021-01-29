@@ -1,71 +1,87 @@
 html body {
-  background-color:  #d9d9d9;
+  background-color:  #dae0e6;
+  /* text-align: center; */
 }
 
-.row.content {
-  height: auto; 
-  width: 800px;
-  background-color: white;
-  margin: auto;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  padding: 5px;
-}
+@media (min-width: 992px) {
+  .navbar {
+    background-color: white;
+  }
 
-.row.content p {
-  width: 700px;
-  text-align: justify;
-}
+  .card {
+    position: relative;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 2em;
+    border-radius: 0.75em;
+  }
 
-.upvotes-column, .comment-upvote {
-  background-color: #DADADA;
-}
+  .upvotes-column {
+    margin: 0.1em;
+    position: absolute;
+    background-color: #f8f9fa;
+    float: left;
+    width: 6.5%;
+    top: 0;
+    bottom: 0;
+    border-radius: 0.5em;
+    text-align: center;
+  }
 
-.upvotes-column button, .comment-upvote button {
-  border: none;
-  font-size: 20px;
-  background-color: #DADADA;
-}
+  .upvotes-buttons {
+    margin-top: 1em;
+  }
 
-.upvotes-column button:hover, .comment-upvote button:hover {
-  background-color: #922B21;
-  transition: 0.5s;
-}
+  .upvotes-column button {
+    border: none;
+    font-size: 2em;
+    background-color: transparent;
+  }
 
-.row.content.new-post {
-  height: 300px;
-  width: 500px;
-  padding: 10px;
-}
+  .upvotes {
+    font-size: 1.5em;
+    font-weight: 600;
+  }
 
-.row.content.new-post input {
-  width: 480px;
-}
+  .card-body {
+    float: right;
+    margin-left: 3.5em;
+    text-align: left;
+    height: auto;
+  }
 
-.row.content.new-post input[type=submit] {
-  height: 35px;
-}
+  .card-header {
+    font-size: 1.15em;
+    background-color: transparent;
+    border: none;
+    margin-top: -1em;
+  }
 
-.row.content.new-post textarea, .row.content.new-comment textarea {
-  resize: none;
-}
+  .card-footer {
+    background-color: transparent;
+    border: none;
+    margin-bottom: -1em;
+  }
 
-.row.content.new-comment {
-  padding: 10px;
-  height: 175px;
-}
+  .card-title {
+    font-size: 2em;
+    font-weight: 600;
+    margin-left: 0.5em;
+  }
 
-.row.content.new-comment input {
-  margin-bottom: -5px;
-  width: 100%;
-  height: 25px;
+  .card-text {
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    max-height: 10em;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0));
+
+  }
 }
 
 .home {
   width: 100%;
-  /* height: 490px; */
-  /* border: 1px solid black; */
-  /* border-radius: 100px; */
   padding: 50px;
   background-color: white;
 }
@@ -78,7 +94,7 @@ html body {
   margin-right: auto 
 }
 
-button:disabled,
+/* button:disabled,
 button[disabled]{
 border: 1px solid #999999;
 background-color: #922B21;
@@ -87,4 +103,4 @@ color: #666666;
 
 .card-body {
   text-align: center;
-}
+} */
