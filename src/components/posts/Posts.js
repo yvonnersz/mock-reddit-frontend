@@ -93,11 +93,13 @@ class Posts extends React.Component {
                     </div>
 
                     <div class="card-title">
-                        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                      <Link to={`/posts/${post.id}`}>{post.title}</Link>
                     </div>
 
                     <div class="card-text">
+                      <Link to={`/posts/${post.id}`}>
                         <p>{post.content}</p>
+                      </Link>
                     </div>
 
                     <div class="card-footer">
