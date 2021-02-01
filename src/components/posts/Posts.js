@@ -73,44 +73,73 @@ class Posts extends React.Component {
     // if (this.state.sort === false) {
     return (
       <div>
+        <div class="card" onClick={() => this.props.history.push('/posts/new')}>
+          <div class="input-group mb-3 new-post">
+            <span class="input-group-text" id="avatar">
+              Avatar
+            </span>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Create Post"
+            />
+          </div>
+        </div>
         {/* <button onClick={this.handleBySort}>Sort by Votes</button> */}
 
-        {(this.state.sort === false ? this.props.posts : sortPosts).map(post => (
-            <div class='card' key={post.id}>
-                <div class='upvotes-column'>
-                    <div class='upvotes-buttons'>
-                    <button name='upvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_upvote === true ? 'true':''}>⇧</button><br/> 
-                    <div class='upvotes'>{post.upvotes}<br/></div>
-                    <button name='downvote' onClick={(event) => this.handleVote(event, post)} disabled={post.toggle_downvote === true ? 'true':''}>⇩</button><br/></div>
+        {(this.state.sort === false ? this.props.posts : sortPosts).map(
+          (post) => (
+            <div class="card" key={post.id}>
+              <div class="upvotes-column">
+                <div class="upvotes-buttons">
+                  <button
+                    name="upvote"
+                    onClick={(event) => this.handleVote(event, post)}
+                    disabled={post.toggle_upvote === true ? "true" : ""}
+                  >
+                    ⇧
+                  </button>
+                  <br />
+                  <div class="upvotes">
+                    {post.upvotes}
+                    <br />
+                  </div>
+                  <button
+                    name="downvote"
+                    onClick={(event) => this.handleVote(event, post)}
+                    disabled={post.toggle_downvote === true ? "true" : ""}
+                  >
+                    ⇩
+                  </button>
+                  <br />
                 </div>
-                
-                <div class="card-body">
+              </div>
 
-                    <div class="card-header">
-                        r/{post.subreddit} • 
-                        Posted by u/{post.user.username} • 
-                        {this.dateFormat(post)}
-                    </div>
+              <div class="card-body">
+                <div class="card-header">
+                  r/{post.subreddit} • Posted by u/{post.user.username} •
+                  {this.dateFormat(post)}
+                </div>
 
-                    <div class="card-title">
-                      <Link to={`/posts/${post.id}`}>{post.title}</Link>
-                    </div>
+                <div class="card-title">
+                  <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                </div>
 
-                    <div class="card-text">
-                      <Link to={`/posts/${post.id}`}>
-                        <p>{post.content}</p>
-                      </Link>
-                    </div>
+                <div class="card-text">
+                  <Link to={`/posts/${post.id}`}>
+                    <p>{post.content}</p>
+                  </Link>
+                </div>
 
-                    <div class="card-footer">
-                        <Link to={`/posts/${post.id}/comments`}>
-                            <Pluralize
-                            singular={"Comment"}
-                            count={post.comments.length}
-                            />
-                        </Link>
-                    </div>
-
+                <div class="card-footer">
+                  <Link to={`/posts/${post.id}/comments`}>
+                    <Pluralize
+                      singular={"Comment"}
+                      count={post.comments.length}
+                    />
+                  </Link>
+                </div>
               </div>
             </div>
           )

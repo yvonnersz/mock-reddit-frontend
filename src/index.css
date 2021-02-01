@@ -97,6 +97,30 @@ html body {
   display: block;
   margin-left: auto;
   margin-right: auto 
+  
+}
+
+.new-post {
+  padding: 1em;
+}
+
+.new-post input {
+  padding: 2em;
+  background: #f6f7f8;
+  border-radius: 0.5em;
+  font-size: 1em;
+}
+
+.new-post input:hover {
+  padding: 2em;
+  border: 1px solid blue;
+  background: white;
+  transition: 0s;
+}
+
+
+#avatar {
+  margin-right: 0.5em;
 }
 
 /* button:disabled,
