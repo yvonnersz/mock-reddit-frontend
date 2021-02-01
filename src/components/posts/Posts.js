@@ -75,17 +75,18 @@ class Posts extends React.Component {
       <div>
         <div class="card" onClick={() => this.props.history.push('/posts/new')}>
           <div class="input-group mb-3 new-post">
-            <span class="input-group-text" id="avatar">
+            <span class="input-group-text rounded-circle" id="avatar">
               Avatar
             </span>
 
             <input
               type="text"
-              class="form-control"
+              class="form-control rounded"
               placeholder="Create Post"
             />
           </div>
         </div>
+        
         {/* <button onClick={this.handleBySort}>Sort by Votes</button> */}
 
         {(this.state.sort === false ? this.props.posts : sortPosts).map(

@@ -107,20 +107,18 @@ html body {
 .new-post input {
   padding: 2em;
   background: #f6f7f8;
-  border-radius: 0.5em;
   font-size: 1em;
 }
 
 .new-post input:hover {
-  padding: 2em;
-  border: 1px solid blue;
+  border: 1px solid #0079d3;
   background: white;
   transition: 0s;
 }
 
 
 #avatar {
-  margin-right: 0.5em;
+  margin-right: 0.75em;
 }
 
 /* button:disabled,
