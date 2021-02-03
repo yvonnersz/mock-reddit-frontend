@@ -8,7 +8,6 @@ class NavBar extends React.Component {
     return (
       <nav class="navbar">
         <Link to="/">Home</Link>
-        <Link to="/posts">Posts</Link>
 
         {this.props.user ? <Link to="/logout" onClick={this.props.handleLogOut}>Logout</Link> : 
           <>

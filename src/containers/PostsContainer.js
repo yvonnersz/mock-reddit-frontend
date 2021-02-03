@@ -8,7 +8,6 @@ import PostInput from '../components/posts/PostInput';
 import Posts from '../components/posts/Posts';
 import CommentsContainer from './CommentsContainer';
 import CommentEdit from '../components/comments/CommentEdit.js';
-import Home from '../components/Home';
 import NavBar from '../components/NavBar';
 import UserInput from '../components/users/UserInput';
 import UserLogin from '../components/users/UserLogin';
@@ -25,7 +24,7 @@ class PostsContainer extends React.Component {
                 <NavBar user={this.props.user} handleLogOut={this.props.handleLogOut} />
 
                 <Switch>
-                    <Route exact path='/' component={Home} />
+                    <Route exact path='/' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} />} />
                     <Route path='/posts/new' render={(routerProps) => <PostInput {...routerProps} user={this.props.user} />} />
                     <Route path='/register' render={(routerProps) => <UserInput {...routerProps} />} />
                     <Route path='/login' render={(routerProps) => <UserLogin {...routerProps} handleLogin={this.props.handleLogin} />} />
@@ -33,7 +32,6 @@ class PostsContainer extends React.Component {
                     <Route path='/posts/:id/comments' render={(routerProps) => <><Post {...routerProps} posts={this.props.posts} /><CommentsContainer {...routerProps} posts={this.props.posts} /></>} />
                     <Route path='/posts/:id/edit' render={(routerProps) => <PostEdit {...routerProps} posts={this.props.posts} />} />
                     <Route path='/posts/:id' render={(routerProps) => <Post {...routerProps} posts={this.props.posts} />} />
-                    <Route exact path='/posts' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} />} />
                 </Switch>
             </div>
         )
