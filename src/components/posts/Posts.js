@@ -14,14 +14,24 @@ class Posts extends React.Component {
   }
 
   handleVote = (event, post) => {
-
-    let upvotePost = {
-      ...post,
-      upvote: true,
-      downvote: false
+    if (event.target.name === 'upvote') {
+      let upvotePost = {
+        ...post,
+        upvote: true,
+        downvote: false
+      }
+  
+      this.props.addVote(upvotePost, post.id)
+    } else {
+      let downvotePost = {
+        ...post,
+        upvote: false,
+        downvote: true
+      }
+  
+      this.props.addVote(downvotePost, post.id)
     }
 
-    this.props.addVote(upvotePost, post.id)
 
     
     // if (event.target.name === "upvote") {
@@ -114,7 +124,8 @@ class Posts extends React.Component {
                   </button>
                   <br />
                   <div class="upvotes">
-                    {post.votes ? post.votes.length:0}
+
+                    {post.votes ? post.votes.filter(vote => vote.upvote === true).length - post.votes.filter(vote => vote.downvote === true).length:0}
                     <br />
                   </div>
                   <button

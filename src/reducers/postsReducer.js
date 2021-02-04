@@ -3,7 +3,7 @@ export default function postsReducer(state = { posts: [] }, action) {
         case 'FETCH_POSTS':
             return {posts: action.payload}
         case 'ADD_POST':
-            let addPost = {...action.payload, comments: []}
+            let addPost = {...action.payload, comments: [], votes: []}
             return {...state, posts: [...state.posts, addPost]}
         case 'EDIT_POST':
             // console.log(action.payload)
