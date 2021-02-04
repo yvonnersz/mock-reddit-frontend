@@ -3,7 +3,7 @@ import Pluralize from "react-pluralize";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { editPost } from "../../actions/post/editPost";
+import { addVote } from "../../actions/vote/addVote";
 
 class Posts extends React.Component {
   constructor() {
@@ -14,43 +14,53 @@ class Posts extends React.Component {
   }
 
   handleVote = (event, post) => {
-    if (event.target.name === "upvote") {
-      if (post.toggle_downvote === true) {
-        let updatePost = {
-          ...post,
-          upvotes: post.upvotes + 1,
-          toggle_upvote: false,
-          toggle_downvote: false,
-        };
-        this.props.editPost(updatePost);
-      } else {
-        let updatePost = {
-          ...post,
-          upvotes: post.upvotes + 1,
-          toggle_upvote: true,
-          toggle_downvote: false,
-        };
-        this.props.editPost(updatePost);
-      }
-    } else if (event.target.name === "downvote") {
-      if (post.toggle_upvote === true) {
-        let updatePost = {
-          ...post,
-          upvotes: post.upvotes - 1,
-          toggle_upvote: false,
-          toggle_downvote: false,
-        };
-        this.props.editPost(updatePost);
-      } else {
-        let updatePost = {
-          ...post,
-          upvotes: post.upvotes - 1,
-          toggle_upvote: false,
-          toggle_downvote: true,
-        };
-        this.props.editPost(updatePost);
-      }
+
+    let upvotePost = {
+      ...post,
+      upvote: true,
+      downvote: false
     }
+
+    this.props.addVote(upvotePost, post.id)
+
+    
+    // if (event.target.name === "upvote") {
+    //   if (post.toggle_downvote === true) {
+    //     let updatePost = {
+    //       ...post,
+    //       upvotes: post.upvotes + 1,
+    //       toggle_upvote: false,
+    //       toggle_downvote: false,
+    //     };
+    //     this.props.editPost(updatePost);
+    //   } else {
+    //     let updatePost = {
+    //       ...post,
+    //       upvotes: post.upvotes + 1,
+    //       toggle_upvote: true,
+    //       toggle_downvote: false,
+    //     };
+    //     this.props.editPost(updatePost);
+    //   }
+    // } else if (event.target.name === "downvote") {
+    //   if (post.toggle_upvote === true) {
+    //     let updatePost = {
+    //       ...post,
+    //       upvotes: post.upvotes - 1,
+    //       toggle_upvote: false,
+    //       toggle_downvote: false,
+    //     };
+    //     this.props.editPost(updatePost);
+    //   } else {
+    //     let updatePost = {
+    //       ...post,
+    //       upvotes: post.upvotes - 1,
+    //       toggle_upvote: false,
+    //       toggle_downvote: true,
+    //     };
+    //     this.props.editPost(updatePost);
+    //   }
+    // }
   };
 
   dateFormat = (post) => {
@@ -73,7 +83,7 @@ class Posts extends React.Component {
     // if (this.state.sort === false) {
     return (
       <div>
-        <div class="card" onClick={() => this.props.history.push('/posts/new')}>
+        <div class="card">
           <div class="input-group mb-3 new-post">
             <span class="input-group-text rounded-circle" id="avatar">
               Avatar
@@ -83,6 +93,7 @@ class Posts extends React.Component {
               type="text"
               class="form-control rounded"
               placeholder="Create Post"
+              onClick={() => this.props.history.push('/posts/new')}
             />
           </div>
         </div>
@@ -97,19 +108,19 @@ class Posts extends React.Component {
                   <button
                     name="upvote"
                     onClick={(event) => this.handleVote(event, post)}
-                    disabled={post.toggle_upvote === true ? "true" : ""}
+                    // disabled={post.toggle_upvote === true ? "true" : ""}
                   >
                     ⇧
                   </button>
                   <br />
                   <div class="upvotes">
-                    {post.upvotes}
+                    {post.votes ? post.votes.length:0}
                     <br />
                   </div>
                   <button
                     name="downvote"
                     onClick={(event) => this.handleVote(event, post)}
-                    disabled={post.toggle_downvote === true ? "true" : ""}
+                    // disabled={post.toggle_downvote === true ? "true" : ""}
                   >
                     ⇩
                   </button>
@@ -150,4 +161,4 @@ class Posts extends React.Component {
   }
 }
 
-export default connect(null, { editPost })(Posts);
+export default connect(null, { addVote })(Posts);
