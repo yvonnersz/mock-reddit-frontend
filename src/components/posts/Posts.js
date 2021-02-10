@@ -10,6 +10,8 @@ class Posts extends React.Component {
     super();
     this.state = {
       sort: false,
+      upvotePress: false,
+      upvotePress: false
     };
   }
 
@@ -18,16 +20,28 @@ class Posts extends React.Component {
       let upvotePost = {
         ...post,
         upvote: true,
-        downvote: false
+        downvote: false,
+        user_id: this.props.user.id
       }
+
+      this.setState({
+        pressedUpvote: true,
+        pressDownvote: false
+      })
   
       this.props.addVote(upvotePost, post.id)
     } else {
       let downvotePost = {
         ...post,
         upvote: false,
-        downvote: true
+        downvote: true,
+        user_id: this.props.user.id
       }
+
+      this.setState({
+        pressedUpvote: false,
+        pressDownvote: true
+      })
   
       this.props.addVote(downvotePost, post.id)
     }
@@ -90,7 +104,7 @@ class Posts extends React.Component {
       .sort((a, b) => a.upvotes - b.upvotes)
       .reverse();
 
-    // if (this.state.sort === false) {
+      // if (this.state.sort === false) {
     return (
       <div>
         <div class="card">
@@ -116,9 +130,9 @@ class Posts extends React.Component {
               <div class="upvotes-column">
                 <div class="upvotes-buttons">
                   <button
+                  aria-pressed={this.state.upvotePress}
                     name="upvote"
                     onClick={(event) => this.handleVote(event, post)}
-                    // disabled={post.toggle_upvote === true ? "true" : ""}
                   >
                     ⇧
                   </button>
@@ -129,9 +143,9 @@ class Posts extends React.Component {
                     <br />
                   </div>
                   <button
+                  aria-pressed={this.state.downvotePress}
                     name="downvote"
                     onClick={(event) => this.handleVote(event, post)}
-                    // disabled={post.toggle_downvote === true ? "true" : ""}
                   >
                     ⇩
                   </button>
