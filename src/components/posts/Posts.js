@@ -118,6 +118,17 @@ class Posts extends React.Component {
             />
           </div>
         </div>
+
+        <div class='card sort-cards'>
+        <div class="d-grid gap-2 d-md-block">
+
+          <button type="button" class="btn btn-lg">Best</button>
+          <button type="button" class="btn btn-lg">Hot</button>
+          <button type="button" class="btn btn-lg">New</button>
+          <button type="button" class="btn btn-lg">Top</button>
+          <button type="button" class="btn btn-lg">Rising</button>
+          </div>
+        </div>
         
         {/* <button onClick={this.handleBySort}>Sort by Votes</button> */}
 
