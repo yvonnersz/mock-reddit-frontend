@@ -134,7 +134,7 @@ class Posts extends React.Component {
         {/* <button onClick={this.handleBySort}>Sort by Votes</button> */}
 
         {(this.state.sort === false ? this.props.posts : sortPosts).map(
-          post => <Post key={post.id} post={post} user={this.props.user} />)}
+          post => <Post key={post.id} post={post} user={this.props.user} posts={this.props.posts} />)}
            </div>
     )
   }

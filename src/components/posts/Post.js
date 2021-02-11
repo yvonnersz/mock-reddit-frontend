@@ -59,7 +59,14 @@ class Post extends React.Component {
   };
 
   render() {
-    let post = this.props.post;
+    let post;
+
+    if (this.props.match) {
+      let id = this.props.match.params.id;
+      post = this.props.posts.filter(post => post.id === parseInt(id))[0];
+    } else {
+      post = this.props.post
+    }
     
     return (
       <div class="card">
