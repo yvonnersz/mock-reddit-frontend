@@ -19,6 +19,11 @@ html body {
     margin: auto;
     margin-bottom: 2em;
     border-radius: 0.75em;
+    border: 1px solid #cdcece;
+  }
+
+  .card:hover {
+    border: 1px solid slategray;
   }
 
   .upvotes-column {
