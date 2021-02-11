@@ -5,45 +5,45 @@ import { Link } from "react-router-dom";
 
 import { editPost } from "../../actions/post/editPost";
 import { deletePost } from "../../actions/post/deletePost";
+import { addVote } from "../../actions/vote/addVote";
+import { deleteVote } from "../../actions/vote/deleteVote";
 
 class Post extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      upvotePress: false,
+      upvotePress: false
+    };
+  }
+
   handleVote = (event, post) => {
-    if (event.target.name === "upvote") {
-      if (post.toggle_downvote === true) {
-        let updatePost = {
-          ...post,
-          upvotes: post.upvotes + 1,
-          toggle_upvote: false,
-          toggle_downvote: false,
-        };
-        this.props.editPost(updatePost);
-      } else {
-        let updatePost = {
-          ...post,
-          upvotes: post.upvotes + 1,
-          toggle_upvote: true,
-          toggle_downvote: false,
-        };
-        this.props.editPost(updatePost);
+    let vote = post.votes.filter(vote => vote.user_id === this.props.user.id && (vote.upvote === true || vote.downvote === true))[0]
+
+    if (vote && event.target.getAttribute('aria-pressed') === 'true' || vote && event.target.getAttribute('aria-pressed') === 'false') {
+      let deleteVote = {
+        post_id: vote.post_id,
+        user_id: this.props.user ? this.props.user.id : null
       }
-    } else if (event.target.name === "downvote") {
-      if (post.toggle_upvote === true) {
-        let updatePost = {
-          ...post,
-          upvotes: post.upvotes - 1,
-          toggle_upvote: false,
-          toggle_downvote: false,
-        };
-        this.props.editPost(updatePost);
-      } else {
-        let updatePost = {
-          ...post,
-          upvotes: post.upvotes - 1,
-          toggle_upvote: false,
-          toggle_downvote: true,
-        };
-        this.props.editPost(updatePost);
+      this.props.deleteVote(vote)
+    } else if (event.target.name === 'upvote') {
+      let upvotePost = {
+        ...post,
+        upvote: true,
+        downvote: false,
+        user_id: this.props.user.id
       }
+  
+      this.props.addVote(upvotePost, post.id)
+    } else if (event.target.name === 'downvote') {
+      let downvotePost = {
+        ...post,
+        upvote: false,
+        downvote: true,
+        user_id: this.props.user.id
+      }
+  
+      this.props.addVote(downvotePost, post.id)
     }
   };
 
@@ -59,33 +59,33 @@ class Post extends React.Component {
   };
 
   render() {
-    let post = this.props.posts.filter(
-      (post) => post.id === parseInt(this.props.match.params.id)
-    )[0];
-
+    let post = this.props.post;
+    
     return (
       <div class="card">
         <div class="upvotes-column">
-          <button
-            name="upvote"
-            onClick={(event) => this.handleVote(event, post)}
-          >
-            ⇧
-          </button>
-          <br />{" "}
-          {post.votes
-            ? post.votes.filter((vote) => vote.upvote === true).length -
-              post.votes.filter((vote) => vote.downvote === true).length
-            : 0}
-          <br />
-          <button
-            name="downvote"
-            onClick={(event) => this.handleVote(event, post)}
-          >
-            ⇩
-          </button>
-          <br />
-        </div>
+          <div class="upvotes-buttons">
+            <button
+              aria-pressed={post.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)[0] ? true:false}
+              name="upvote"
+              onClick={(event) => this.handleVote(event, post)}
+            > 🡅
+            </button>
+            <br/>
+          
+              <div class="upvotes">
+                {post.votes ? post.votes.filter(vote => vote.upvote === true).length - post.votes.filter(vote => vote.downvote === true).length:0} <br/>
+              </div>
+
+            <button
+              aria-pressed={post.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true)[0] ? true:false}
+              name="downvote"
+              onClick={(event) => this.handleVote(event, post)}
+            > 🡇
+            </button>
+            <br/>
+          </div>
+        </div>   
 
         <div class="card-body">
           <div class="card-header">
@@ -105,13 +105,16 @@ class Post extends React.Component {
 
           <div class="card-footer">
             <Link to={`/posts/${post.id}/comments`}>
-              <Pluralize singular={"Comment"} count={post.comments.length} />
+              <Pluralize
+                singular={"Comment"}
+                count={post.comments.length}
+              />
             </Link>
           </div>
-        </div>        
+        </div>
       </div>
-    );
+    )
   }
 }
 
-export default connect(null, { editPost, deletePost })(Post);
+export default connect(null, { addVote, editPost, deletePost, deleteVote })(Post);

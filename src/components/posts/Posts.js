@@ -2,6 +2,7 @@ import React from "react";
 import Pluralize from "react-pluralize";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import Post from './Post';
 
 import { addVote } from "../../actions/vote/addVote";
 import { deleteVote } from "../../actions/vote/deleteVote";
@@ -133,67 +134,9 @@ class Posts extends React.Component {
         {/* <button onClick={this.handleBySort}>Sort by Votes</button> */}
 
         {(this.state.sort === false ? this.props.posts : sortPosts).map(
-          (post) => (
-            <div class="card" key={post.id}>
-              <div class="upvotes-column">
-                <div class="upvotes-buttons">
-                  {/* {console.log(post.votes.filter(vote => vote.user_id === this.props.user.id)[0])} */}
-
-                  <button
-                  // aria-pressed={this.state.upvotePress}
-                  aria-pressed={post.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)[0] ? true:false}
-                  name="upvote"
-                    onClick={(event) => this.handleVote(event, post)}
-                  >
-                    🡅
-                  </button>
-                  <br />
-                  <div class="upvotes">
-
-                    {post.votes ? post.votes.filter(vote => vote.upvote === true).length - post.votes.filter(vote => vote.downvote === true).length:0}
-                    <br />
-                  </div>
-                  <button
-                  aria-pressed={post.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true)[0] ? true:false}
-                  name="downvote"
-                    onClick={(event) => this.handleVote(event, post)}
-                  >
-                    🡇
-                  </button>
-                  <br />
-                </div>
-              </div>
-
-              <div class="card-body">
-                <div class="card-header">
-                  r/{post.subreddit} • Posted by u/{post.user.username} •
-                  {this.dateFormat(post)}
-                </div>
-
-                <div class="card-title">
-                  <Link to={`/posts/${post.id}`}>{post.title}</Link>
-                </div>
-
-                <div class="card-text">
-                  <Link to={`/posts/${post.id}`}>
-                    <p>{post.content}</p>
-                  </Link>
-                </div>
-
-                <div class="card-footer">
-                  <Link to={`/posts/${post.id}/comments`}>
-                    <Pluralize
-                      singular={"Comment"}
-                      count={post.comments.length}
-                    />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )
-        )}
-      </div>
-    );
+          post => <Post key={post.id} post={post} user={this.props.user} />)}
+           </div>
+    )
   }
 }
 
