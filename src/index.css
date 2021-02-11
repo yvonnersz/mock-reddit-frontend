@@ -48,6 +48,18 @@ html body {
     font-weight: 600;
   }
 
+  button[aria-pressed="true"] {
+    color: tomato;
+    background-color: #e2e2e4;
+    border-radius: 0.25em;
+}
+
+/* button:active, [aria-pressed="false"] {
+  border: 2px solid red;
+  background-color: red;
+} */
+
+
   .card-body {
     float: right;
     margin-left: 3.5em;
@@ -115,4 +127,10 @@ color: #666666;
 
 .card-body {
   text-align: center;
+} */
+
+/* button:active,
+[aria-pressed="true"] {
+    border: 2px solid red;
+    background-color: red;
 } */
