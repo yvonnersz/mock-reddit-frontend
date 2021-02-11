@@ -9,9 +9,7 @@ class Posts extends React.Component {
   constructor() {
     super();
     this.state = {
-      sort: false,
-      upvotePress: false,
-      upvotePress: false
+      sort: false
     };
   }
 
@@ -23,11 +21,6 @@ class Posts extends React.Component {
         downvote: false,
         user_id: this.props.user.id
       }
-
-      this.setState({
-        pressedUpvote: true,
-        pressDownvote: false
-      })
   
       this.props.addVote(upvotePost, post.id)
     } else {
@@ -37,11 +30,6 @@ class Posts extends React.Component {
         downvote: true,
         user_id: this.props.user.id
       }
-
-      this.setState({
-        pressedUpvote: false,
-        pressDownvote: true
-      })
   
       this.props.addVote(downvotePost, post.id)
     }
@@ -129,12 +117,15 @@ class Posts extends React.Component {
             <div class="card" key={post.id}>
               <div class="upvotes-column">
                 <div class="upvotes-buttons">
+                  {console.log(post.votes.filter(vote => vote.user_id === this.props.user.id)[0])}
+
                   <button
-                  aria-pressed={this.state.upvotePress}
-                    name="upvote"
+                  // aria-pressed={this.state.upvotePress}
+                  aria-pressed={post.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)[0] ? true:false}
+                  name="upvote"
                     onClick={(event) => this.handleVote(event, post)}
                   >
-                    ⇧
+                    🡅
                   </button>
                   <br />
                   <div class="upvotes">
@@ -143,11 +134,11 @@ class Posts extends React.Component {
                     <br />
                   </div>
                   <button
-                  aria-pressed={this.state.downvotePress}
-                    name="downvote"
+                  aria-pressed={post.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true)[0] ? true:false}
+                  name="downvote"
                     onClick={(event) => this.handleVote(event, post)}
                   >
-                    ⇩
+                    🡇
                   </button>
                   <br />
                 </div>
