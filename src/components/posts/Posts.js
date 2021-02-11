@@ -15,9 +15,9 @@ class Posts extends React.Component {
   }
 
   handleVote = (event, post) => {
-    let vote = post.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)[0]
+    let vote = post.votes.filter(vote => vote.user_id === this.props.user.id && (vote.upvote === true || vote.downvote === true))[0]
 
-    if (vote && event.target.getAttribute('aria-pressed') === 'true') {
+    if (vote && event.target.getAttribute('aria-pressed') === 'true' || vote && event.target.getAttribute('aria-pressed') === 'false') {
       let deleteVote = {
         post_id: vote.post_id,
         user_id: this.props.user ? this.props.user.id : null
