@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { addVote } from "../../actions/vote/addVote";
+import { deleteVote } from "../../actions/vote/deleteVote";
 
 class Posts extends React.Component {
   constructor() {
@@ -14,7 +15,15 @@ class Posts extends React.Component {
   }
 
   handleVote = (event, post) => {
-    if (event.target.name === 'upvote') {
+    let vote = post.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)[0]
+
+    if (vote && event.target.getAttribute('aria-pressed') === 'true') {
+      let deleteVote = {
+        post_id: vote.post_id,
+        user_id: this.props.user ? this.props.user.id : null
+      }
+      this.props.deleteVote(vote)
+    } else if (event.target.name === 'upvote') {
       let upvotePost = {
         ...post,
         upvote: true,
@@ -23,7 +32,7 @@ class Posts extends React.Component {
       }
   
       this.props.addVote(upvotePost, post.id)
-    } else {
+    } else if (event.target.name === 'downvote') {
       let downvotePost = {
         ...post,
         upvote: false,
@@ -117,7 +126,7 @@ class Posts extends React.Component {
             <div class="card" key={post.id}>
               <div class="upvotes-column">
                 <div class="upvotes-buttons">
-                  {console.log(post.votes.filter(vote => vote.user_id === this.props.user.id)[0])}
+                  {/* {console.log(post.votes.filter(vote => vote.user_id === this.props.user.id)[0])} */}
 
                   <button
                   // aria-pressed={this.state.upvotePress}
@@ -177,4 +186,4 @@ class Posts extends React.Component {
   }
 }
 
-export default connect(null, { addVote })(Posts);
+export default connect(null, { addVote, deleteVote })(Posts);

@@ -36,11 +36,21 @@ export default function postsReducer(state = { posts: [] }, action) {
             let deleteCommentUpdatedPosts = state.posts.slice(0, deleteCommentOriginalPostIndex).concat(deleteCommentUpdatedPost).concat(state.posts.slice(deleteCommentOriginalPostIndex + 1))
             return {...state, posts: deleteCommentUpdatedPosts}
         case 'ADD_VOTE':
+            console.log(action.payload)
             let selectPost = state.posts.filter(post => post.id === action.payload.post_id)[0]
             let updatePost = {...selectPost, votes: [...selectPost.votes, action.payload]}
             let addVotePost = state.posts.findIndex(post => post.id === action.payload.post_id)
             let updatedPostVote = state.posts.slice(0, addVotePost).concat(updatePost).concat(state.posts.slice(addVotePost + 1))
             return {...state, posts: updatedPostVote}
+            console.log(updatedPostVote)
+        case 'DELETE_VOTE':
+            console.log(action.payload)
+            let deleteVoteOriginalPost = state.posts.filter(post => post.id === action.payload.post_id)[0]
+            let deleteVote = deleteVoteOriginalPost.votes.filter(vote => vote.user_id !== action.payload.user_id) // return user id 3
+            let deleteVoteUpdatedPost = {...deleteVoteOriginalPost, votes: deleteVote}
+            let deleteVoteOriginalPostIndex = state.posts.findIndex(post => post.id === action.payload.post_id)
+            let deleteVoteUpdatedPosts = state.posts.slice(0, deleteVoteOriginalPostIndex).concat(deleteVoteUpdatedPost).concat(state.posts.slice(deleteVoteOriginalPostIndex + 1))
+            return {...state, posts: deleteVoteUpdatedPosts}
         default:
             return state
     }
