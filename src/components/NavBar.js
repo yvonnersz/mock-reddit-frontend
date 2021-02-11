@@ -6,7 +6,7 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <nav class="navbar">
+      <nav class="navbar sticky-top">
         <Link to="/">Home</Link>
 
         {this.props.user ? <Link to="/logout" onClick={this.props.handleLogOut}>Logout</Link> : 

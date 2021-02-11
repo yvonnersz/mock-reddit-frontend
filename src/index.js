@@ -21,5 +21,5 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>,
-  document.querySelector('.container-fluid')
+  document.querySelector('.root')
 );
