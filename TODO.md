@@ -9,5 +9,11 @@
 [x] Implement upvote/downvote for posts.
 
 02.03;
-[] Fix Post showpage CSS.
-[] Reroute so that /posts/{post.id} will show comments.
+[x] Fix Post showpage CSS.
+[x] Reroute so that /posts/{post.id} will show comments.
+
+02.09;
+[x] User can only vote once per post.
+[] Posts renders Post component.
+[x] Leave arrow red if user has upvote/downvote.
+[x] If voted already, clicking on it undos the vote.
