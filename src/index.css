@@ -23,7 +23,7 @@ html body {
     border: 1px solid #cdcece;
   }
 
-  .card:hover {
+  .post:hover {
     border: 1px solid slategray;
   }
 

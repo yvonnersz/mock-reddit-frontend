@@ -88,7 +88,7 @@ class Post extends React.Component {
     }
     
     return (
-      <div class="card">
+      <div class="card post">
         <div class="upvotes-column">
           <div class="upvotes-buttons">
             <button
