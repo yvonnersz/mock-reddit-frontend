@@ -43,46 +43,6 @@ class Posts extends React.Component {
   
       this.props.addVote(downvotePost, post.id)
     }
-
-
-    
-    // if (event.target.name === "upvote") {
-    //   if (post.toggle_downvote === true) {
-    //     let updatePost = {
-    //       ...post,
-    //       upvotes: post.upvotes + 1,
-    //       toggle_upvote: false,
-    //       toggle_downvote: false,
-    //     };
-    //     this.props.editPost(updatePost);
-    //   } else {
-    //     let updatePost = {
-    //       ...post,
-    //       upvotes: post.upvotes + 1,
-    //       toggle_upvote: true,
-    //       toggle_downvote: false,
-    //     };
-    //     this.props.editPost(updatePost);
-    //   }
-    // } else if (event.target.name === "downvote") {
-    //   if (post.toggle_upvote === true) {
-    //     let updatePost = {
-    //       ...post,
-    //       upvotes: post.upvotes - 1,
-    //       toggle_upvote: false,
-    //       toggle_downvote: false,
-    //     };
-    //     this.props.editPost(updatePost);
-    //   } else {
-    //     let updatePost = {
-    //       ...post,
-    //       upvotes: post.upvotes - 1,
-    //       toggle_upvote: false,
-    //       toggle_downvote: true,
-    //     };
-    //     this.props.editPost(updatePost);
-    //   }
-    // }
   };
 
   dateFormat = (post) => {
@@ -123,11 +83,11 @@ class Posts extends React.Component {
         <div class='card sort-cards'>
         <div class="d-grid gap-2 d-md-block">
 
-          <button type="button" class="btn btn-lg">Best</button>
-          <button type="button" class="btn btn-lg">Hot</button>
-          <button type="button" class="btn btn-lg">New</button>
-          <button type="button" class="btn btn-lg">Top</button>
-          <button type="button" class="btn btn-lg">Rising</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>Best</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>Hot</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>New</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>Top</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>Rising</button>
           </div>
         </div>
         
