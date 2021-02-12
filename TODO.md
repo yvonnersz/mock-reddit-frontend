@@ -14,6 +14,10 @@
 
 02.09;
 [x] User can only vote once per post.
-[] Posts renders Post component.
+[x] Posts renders Post component.
 [x] Leave arrow red if user has upvote/downvote.
 [x] If voted already, clicking on it undos the vote.
+[] Sort by Best, Hot, and New.
+[x] Post component rendering.
+[x] Render time difference.
+[] If user is logged in, add dropbar for user info.
