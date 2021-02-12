@@ -58,11 +58,8 @@ class Posts extends React.Component {
   };
 
   render() {
-    const sortPosts = [...this.props.posts]
-      .sort((a, b) => a.upvotes - b.upvotes)
-      .reverse();
+    const sortPosts = [...this.props.posts].sort((aPost, bPost) => (aPost.votes.filter(vote => vote.upvote === true).length - aPost.votes.filter(vote => vote.downvote === true).length) - (bPost.votes.filter(vote => vote.upvote === true).length - bPost.votes.filter(vote => vote.downvote === true).length)).reverse()
 
-      // if (this.state.sort === false) {
     return (
       <div>
         <div class="card">
