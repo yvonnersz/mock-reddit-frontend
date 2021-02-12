@@ -11,7 +11,11 @@ class Posts extends React.Component {
   constructor() {
     super();
     this.state = {
-      sort: false
+      best: false,
+      hot: false,
+      new: false,
+      top: false,
+      rising: false
     };
   }
 
@@ -51,9 +55,9 @@ class Posts extends React.Component {
     }
   };
 
-  handleBySort = () => {
+  handleBySort = (event) => {
     this.setState({
-      sort: !this.state.sort,
+      [event.target.name]: !this.state[event.target.name]
     });
   };
 
@@ -80,17 +84,17 @@ class Posts extends React.Component {
         <div class='card sort-cards'>
         <div class="d-grid gap-2 d-md-block">
 
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>Best</button>
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>Hot</button>
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>New</button>
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>Top</button>
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort}>Rising</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.best} name='best'>Best</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.hot} name='hot'>Hot</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.new} name='new'>New</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.top} name='top'>Top</button>
+          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.rising} name='rising'>Rising</button>
           </div>
         </div>
         
         {/* <button onClick={this.handleBySort}>Sort by Votes</button> */}
 
-        {(this.state.sort === false ? this.props.posts : sortPosts).map(
+        {(this.state.best === false ? this.props.posts : sortPosts).map(
           post => <Post key={post.id} post={post} user={this.props.user} posts={this.props.posts} />)}
            </div>
     )
