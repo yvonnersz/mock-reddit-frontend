@@ -8,16 +8,17 @@ html body {
   color: black;
 }
 
+.navbar {
+  background-color: white;
+}
+
 @media (min-width: 992px) {
-  .navbar {
-    background-color: white;
-  }
 
   .card {
     position: relative;
     width: 50%;
     margin: auto;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     border-radius: 0.75em;
     border: 1px solid #cdcece;
   }
@@ -140,3 +141,20 @@ color: #666666;
     border: 2px solid red;
     background-color: red;
 } */
+
+.sort-cards {
+  padding: 1em;
+}
+
+.sort-cards button {
+  margin-left: 1em;
+  font-weight: 600;
+  font-size: medium;
+  color: gray;
+}
+
+.sort-cards button[aria-pressed='true'] {
+  border-radius: 0.5em;
+  color: #0079d3;
+  background-color: #f6f7f8;
+}
