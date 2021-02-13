@@ -21,3 +21,8 @@
 [x] Post component rendering.
 [x] Render time difference.
 [] If user is logged in, add dropbar for user info.
+
+BUGS
+[] If user is not logged in, vote bugs out.
+[] Should only be able to sort by one flair.
+[] Fix time '24 hours ago...'
