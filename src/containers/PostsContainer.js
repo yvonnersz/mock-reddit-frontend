@@ -29,7 +29,7 @@ class PostsContainer extends React.Component {
                     <Route path='/register' render={(routerProps) => <UserInput {...routerProps} />} />
                     <Route path='/login' render={(routerProps) => <UserLogin {...routerProps} handleLogin={this.props.handleLogin} />} />
                     {/* <Route path='/posts/:id/comments/:id' render={(routerProps) => <CommentEdit {...routerProps} posts={this.props.posts}/>} /> */}
-                    {/* <Route path='/posts/:id/comments' render={(routerProps) => <><Post {...routerProps} posts={this.props.posts} /><CommentsContainer {...routerProps} posts={this.props.posts} /></>} /> */}
+                    <Route path='/posts/:id/comments' render={(routerProps) => <><Post {...routerProps} posts={this.props.posts} /><CommentsContainer {...routerProps} posts={this.props.posts} /></>} />
                     <Route path='/posts/:id/edit' render={(routerProps) => <PostEdit {...routerProps} posts={this.props.posts} />} />
                     <Route path='/posts/:id' render={(routerProps) => <><Post {...routerProps} posts={this.props.posts} user={this.props.user}/></>} />
                 </Switch>
