@@ -8,7 +8,6 @@ class PostInput extends React.Component {
     super(props);
     this.state = {
       title: "",
-      subreddit: "",
       user_id: "",
       content: "",
       upvotes: 0,
@@ -27,7 +26,6 @@ class PostInput extends React.Component {
     this.props.addPost(this.state, this.props);
     this.setState({
       title: "",
-      subreddit: "",
       content: "",
       user_id: this.props.user.id,
       toggle_upvote: false,
@@ -46,15 +44,6 @@ class PostInput extends React.Component {
               placeholder="Title"
               value={this.state.title}
               name="title"
-              onChange={this.handleOnChange}
-              class="form-control"
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Subreddit"
-              value={this.state.subreddit}
-              name="subreddit"
               onChange={this.handleOnChange}
               class="form-control"
             />

@@ -168,7 +168,7 @@ class Post extends React.Component {
 
         <div class="card-body">
           <div class="card-header">
-            r/{post.subreddit} • Posted by u/{post.user.username} •
+            Posted by u/{post.user.username} •
             {this.dateFormat(post)}
           </div>
 
