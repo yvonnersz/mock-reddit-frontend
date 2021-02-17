@@ -23,6 +23,6 @@
 [] If user is logged in, add dropbar for user info.
 
 BUGS
-[] If user is not logged in, vote bugs out.
+[x] If user is not logged in, vote bugs out. FIXED.
 [] Should only be able to sort by one flair.
 [] Fix time '24 hours ago...'
