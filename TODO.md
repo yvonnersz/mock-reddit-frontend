@@ -26,3 +26,15 @@ BUGS
 [x] If user is not logged in, vote bugs out. FIXED.
 [] Should only be able to sort by one flair.
 [] Fix time '24 hours ago...'
+
+02.17;
+[x] Remove subreddit thread.
+[x] View comments associated with post.
+[] Be able to view user details in NavBar.
+[] Registration validation error messages.
+[] Login validation error messages.
+[x] Reroute post click to /posts/:id/comments.
+[x] Remove name input for new comment.
+[x] View who posted comment.
+[] Fix comment CSS.
+[x] Fix comment form CSS.
