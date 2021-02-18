@@ -32,12 +32,29 @@ class Comment extends React.Component {
         this.props.deleteComment(this.props.comment)
     }
 
-    dateFormat = (comment) => {
-        if (comment) {
-            return new Date(comment.created_at).toDateString()
+    dateFormat = (post) => {
+        let date1 = new Date(post.created_at);
+        let date2 = new Date();
+    
+        let diffDate = date2.getTime() - date1.getTime();
+        let diffSecs = diffDate / 1000;
+    
+        if (diffSecs < 60) {
+          return Math.ceil(diffSecs) + " sec ago";
+        } else if (diffSecs / 60 < 60) {
+          return Math.ceil(diffSecs / 60) + " mins ago";
+        } else if (diffSecs / (60 * 60) < 24) {
+          return Math.ceil(diffSecs / (60 * 60)) + " hours ago";
+        } else if (diffSecs / (60 * 60 * 24) < 7) {
+          return Math.ceil(diffSecs / (60 * 60 * 24)) + " days ago";
+        } else if (diffSecs / (60 * 60 * 24 * 7) < 4) {
+          return Math.ceil(diffSecs / (60 * 60 * 24 * 7)) + " weeks ago";
+        } else if (diffSecs / (60 * 60 * 24 * 7 * 4) < 12) {
+          return Math.ceil(diffSecs / (60 * 60 * 24 * 7 * 4)) + " months ago";
+        } else {
+          return Math.ceil(diffSecs / (60 * 60 * 24 * 7 * 4 * 12)) + " years ago";
         }
-
-    }
+      };
 
     render() {
         console.log(this.props.comment)
