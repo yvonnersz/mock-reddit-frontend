@@ -42,22 +42,28 @@ class Comment extends React.Component {
     render() {
         console.log(this.props.comment)
         return (
-            <div class='container-fluid text-center'>
-                <div class='row content'>
+            <div class='card comment'>
 
-                        <div class='comment-upvote'>
-                            <button name='upvote' onClick={this.handleVote} disabled={this.props.comment.toggle_upvote === true ? 'true':''}>⇧</button><br/> {this.props.comment.upvotes}<br/>
-                            <button name='downvote' onClick={this.handleVote} disabled={this.props.comment.toggle_downvote === true ? 'true':''}>⇩</button><br/>
-                        </div>
-
-                        <div class='col-lg-8 text-left'>
+                        <div class='card-header'>
                             <span> {this.props.comment.user.username}• {this.dateFormat(this.props.comment)}</span>
-                            <p>{this.props.comment.content}</p>
-                            <span><Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link></span> &nbsp;
-                            <span onClick={this.handleDelete}><Link>Delete</Link></span> &nbsp;
                         </div>
 
-                </div>
+                        {/* <div class='card-body'> */}
+                            <div class='card-text'>
+                            {this.props.comment.content}
+
+                            </div>
+
+                        {/* </div> */}
+
+                        <div class='card-footer text-muted'>
+                            <span>🡅</span>&nbsp; 
+                            <span>Votes</span>&nbsp; 
+                            <span>🡇</span>&nbsp; 
+                            <span><Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link></span> &nbsp;
+                            <span onClick={this.handleDelete}><Link>Delete</Link></span> &nbsp;                        
+                        </div>
+
             </div>
         )
     }

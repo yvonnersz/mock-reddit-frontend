@@ -166,3 +166,7 @@ color: #666666;
 .comment-submit {
   float: right;
 }
+
+.comment {
+  padding: 0.5em;
+}
