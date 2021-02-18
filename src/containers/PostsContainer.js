@@ -31,7 +31,7 @@ class PostsContainer extends React.Component {
                     {/* <Route path='/posts/:id/comments/:id' render={(routerProps) => <CommentEdit {...routerProps} posts={this.props.posts}/>} /> */}
                     <Route path='/posts/:id/comments' render={(routerProps) => 
                         <>
-                            <Post {...routerProps} posts={this.props.posts} />
+                            <Post {...routerProps} posts={this.props.posts} user={this.props.user} />
                             <CommentsContainer {...routerProps} posts={this.props.posts} user={this.props.user}/>
                         </>
                     } />
