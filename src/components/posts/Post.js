@@ -97,32 +97,22 @@ class Post extends React.Component {
       <div class="card post">
         <div class="upvotes-column">
           <div class="upvotes-buttons">
-            {this.props.user ? (
+      
               <button
                 aria-pressed={
-                  post.votes.filter(
+                  this.props.user && post.votes.filter(
                     (vote) =>
                       vote.user_id === this.props.user.id &&
                       vote.upvote === true
-                  )[0]
+                  )[0] 
                     ? true
                     : false
                 }
                 name="upvote"
                 onClick={(event) => this.handleVote(event, post)}
               >
-                {" "}
                 🡅
               </button>
-            ) : (
-              <button
-                aria-pressed="false"
-                name="upvote"
-                onClick={(event) => this.handleVote(event, post)}
-              >
-                🡅
-              </button>
-            )}
 
             <br />
 
@@ -134,10 +124,10 @@ class Post extends React.Component {
               <br />
             </div>
 
-            {this.props.user ? (
-              <button
+          
+            <button
                 aria-pressed={
-                  post.votes.filter(
+                  this.props.user && post.votes.filter(
                     (vote) =>
                       vote.user_id === this.props.user.id &&
                       vote.downvote === true
@@ -151,16 +141,6 @@ class Post extends React.Component {
                 {" "}
                 🡇
               </button>
-            ) : (
-              <button
-                aria-pressed="false"
-                name="downvote"
-                onClick={(event) => this.handleVote(event, post)}
-              >
-                {" "}
-                🡇
-              </button>
-            )}
 
             <br />
           </div>
