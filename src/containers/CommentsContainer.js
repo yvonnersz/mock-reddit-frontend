@@ -6,7 +6,7 @@ import Comments from '../components/comments/Comments'
 const CommentsContainer = (props) => {
     return (
         <div>
-            <CommentInput posts={props.posts} id={props.match.params.id}/>
+            <CommentInput posts={props.posts} id={props.match.params.id} user={props.user}/>
             <Comments posts={props.posts} postRouterId={props.match.params.id}/>
         </div>
     )

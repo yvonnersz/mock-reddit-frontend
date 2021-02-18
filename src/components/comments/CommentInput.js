@@ -8,10 +8,7 @@ class CommentInput extends React.Component {
         super();
         this.state = {
             content: '',
-            user: '',
-            upvotes: 0,
-            toggle_upvote: false,
-            toggle_downvote: false
+            user_id: ''
         }
     }
 
@@ -21,23 +18,26 @@ class CommentInput extends React.Component {
         })
     }
 
+
     handleOnSubmit = event => {
         event.preventDefault();
-        let comment = {...this.state, post_id: this.props.id}
-        this.props.addComment(comment, this.props.id)
+        let idPost = parseInt(this.props.id);
+        
+        let comment = {...this.state, post_id: idPost, user_id: this.props.user ? this.props.user.id : null}
+        this.props.addComment(comment, idPost)
         this.setState({
             content: '',
-            user: ''
+            user_id: ''
         })
     }
 
     render() {
+
         return (
             <div class='container-fluid text-center'>
                 <div class='row content new-comment'>
                     <div class='col-lg-8 text-left'>
                         <form onSubmit={this.handleOnSubmit}>
-                            <input type='text' value={this.state.user} name='user' onChange={this.handleOnChange} placeholder='Name' class="form-control" /><br/>
                             <textarea value={this.state.content} name='content' onChange={this.handleOnChange} placeholder='What are your thoughts?' rows="5" class="form-control" /><br/>
                             <input type='submit' />
                         </form>
