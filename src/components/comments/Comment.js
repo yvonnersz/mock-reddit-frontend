@@ -58,6 +58,7 @@ class Comment extends React.Component {
 
     render() {
         console.log(this.props.comment)
+        console.log(this.props.user.id)
         return (
             <div class='card comment'>
 
@@ -77,8 +78,11 @@ class Comment extends React.Component {
                             <span>🡅</span>&nbsp; 
                             <span>Votes</span>&nbsp; 
                             <span>🡇</span>&nbsp; 
-                            <span><Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link></span> &nbsp;
-                            <span onClick={this.handleDelete}><Link>Delete</Link></span> &nbsp;                        
+                            {this.props.comment.user_id === this.props.user.id ? <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link> : null}
+
+                            {this.props.comment.user_id === this.props.user.id ? <span onClick={this.handleDelete}><Link>Delete</Link></span> : null}
+
+                                                    
                         </div>
 
             </div>

@@ -7,7 +7,7 @@ const CommentsContainer = (props) => {
     return (
         <div>
             <CommentInput posts={props.posts} id={props.match.params.id} user={props.user}/>
-            <Comments posts={props.posts} postRouterId={props.match.params.id}/>
+            <Comments posts={props.posts} postRouterId={props.match.params.id} user={props.user}/>
         </div>
     )
 }
