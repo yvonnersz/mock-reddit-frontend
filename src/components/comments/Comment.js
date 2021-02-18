@@ -40,6 +40,7 @@ class Comment extends React.Component {
     }
 
     render() {
+        console.log(this.props.comment)
         return (
             <div class='container-fluid text-center'>
                 <div class='row content'>
@@ -50,7 +51,7 @@ class Comment extends React.Component {
                         </div>
 
                         <div class='col-lg-8 text-left'>
-                            <span>{this.props.comment.user} • {this.dateFormat(this.props.comment)}</span>
+                            <span> {this.props.comment.user.username}• {this.dateFormat(this.props.comment)}</span>
                             <p>{this.props.comment.content}</p>
                             <span><Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link></span> &nbsp;
                             <span onClick={this.handleDelete}><Link>Delete</Link></span> &nbsp;
