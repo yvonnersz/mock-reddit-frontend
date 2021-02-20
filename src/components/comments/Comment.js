@@ -8,17 +8,28 @@ import {addCommentVote} from '../../actions/vote/addCommentVote';
 
 
 class Comment extends React.Component {
+  // handleCommentUpvote = (event, comment) => {
+  //   if (event.target.name === 'upvote') {
+  //     let vote = {
+  //       upvote: true,
+  //       downvote: false,
+  //       user_id: this.props.user.id,
+  //       post_id: comment.post_id
+  //     }
+  
+  //     this.props.addCommentVote(vote, comment.id)
+  //   } else {
+  //     let vote = {
+  //       upvote: false,
+  //       downvote: true,
+  //       user_id: this.props.user.id,
+  //       post_id: comment.post_id
+  //     }
+  
+  //     this.props.addCommentVote(vote, comment.id)
+  //   }
 
-  handleUpvote = (event, comment) => {
-    let vote = {
-      upvote: true,
-      downvote: false,
-      user_id: this.props.user.id,
-      post_id: comment.post_id
-    }
-
-    this.props.addCommentVote(vote, comment.id)
-  }
+  // }
   
 
     // handleVote = (event) => {
@@ -90,17 +101,17 @@ class Comment extends React.Component {
                             <button
                               aria-pressed='false'
                               name="upvote"
-                              onClick={(event) => this.handleUpvote(event, this.props.comment)}
+                              // onClick={(event) => this.handleCommentUpvote(event, this.props.comment)}
                             >
                               🡅
                             </button>
                             
-                            <span>{this.props.comment.votes.length}</span>&nbsp; 
+                            <span>{this.props.comment.votes ? this.props.comment.votes.filter((vote) => vote.upvote === true).length - this.props.comment.votes.filter((vote) => vote.downvote === true).length : 0}</span>&nbsp; 
 
                             <button
                               aria-pressed='false'
                               name="upvote"
-                              onClick={(event) => this.handleUpvote(event, this.props.comment)}
+                              // onClick={(event) => this.handleCommentUpvote(event, this.props.comment)}
                             >
                               🡇
                             </button>
