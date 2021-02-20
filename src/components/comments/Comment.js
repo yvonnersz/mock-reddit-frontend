@@ -87,9 +87,25 @@ class Comment extends React.Component {
                         {/* </div> */}
 
                         <div class='card-footer text-muted'>
-                            <span onClick={event => this.handleUpvote(event, this.props.comment)}>🡅</span>&nbsp; 
+                            <button
+                              aria-pressed='false'
+                              name="upvote"
+                              onClick={(event) => this.handleUpvote(event, this.props.comment)}
+                            >
+                              🡅
+                            </button>
+                            
                             <span>{this.props.comment.votes.length}</span>&nbsp; 
-                            <span>🡇</span>&nbsp; 
+
+                            <button
+                              aria-pressed='false'
+                              name="upvote"
+                              onClick={(event) => this.handleUpvote(event, this.props.comment)}
+                            >
+                              🡇
+                            </button>
+
+                            
                             {this.props.comment.user_id === this.props.user.id ? <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link> : null}
 
                             {this.props.comment.user_id === this.props.user.id ? <span onClick={this.handleDelete}><Link>Delete</Link></span> : null}
