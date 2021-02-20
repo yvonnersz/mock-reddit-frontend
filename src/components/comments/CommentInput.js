@@ -38,7 +38,7 @@ class CommentInput extends React.Component {
                 {/* <div class='form-control'> */}
                     <div class='mb-3'>
                         <form onSubmit={this.handleOnSubmit}>
-                        <label for="exampleFormControlTextarea1" class="form-label">Comment as {this.props.user.username}</label>
+                        <label for="exampleFormControlTextarea1" class="form-label">Comment as {this.props.user ? this.props.user.username : null}</label>
 
                             <textarea value={this.state.content} name='content' onChange={this.handleOnChange} placeholder='What are your thoughts?' rows="5" class="form-control" /><br/>
 

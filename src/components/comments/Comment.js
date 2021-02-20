@@ -4,29 +4,43 @@ import {Link} from 'react-router-dom';
 
 import {editComment} from '../../actions/comment/editComment';
 import {deleteComment} from '../../actions/comment/deleteComment';
+import {addCommentVote} from '../../actions/vote/addCommentVote';
+
 
 class Comment extends React.Component {
-    
-    handleVote = (event) => {
-        if (event.target.name === 'upvote') {
-            if (this.props.comment.toggle_downvote === true) {
-                let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1, toggle_upvote: false, toggle_downvote: false}
-                this.props.editComment(updatedComment, this.props.post)
-            } else {
-                let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1, toggle_upvote: true, toggle_downvote: false}
-                this.props.editComment(updatedComment, this.props.post) // 
-            }
-        } else if (event.target.name === 'downvote') {
-            if (this.props.comment.toggle_upvote === true) {
-                let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1, toggle_upvote: false, toggle_downvote: false}
-                this.props.editComment(updatedComment, this.props.post)
-                console.log(updatedComment) //
-            } else {
-                let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1, toggle_upvote: false, toggle_downvote: true}
-                this.props.editComment(updatedComment, this.props.post)
-            }
-        }
+
+  handleUpvote = (event, comment) => {
+    let vote = {
+      upvote: true,
+      downvote: false,
+      user_id: this.props.user.id,
+      post_id: comment.post_id
     }
+
+    this.props.addCommentVote(vote, comment.id)
+  }
+  
+
+    // handleVote = (event) => {
+    //     if (event.target.name === 'upvote') {
+    //         if (this.props.comment.toggle_downvote === true) {
+    //             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1, toggle_upvote: false, toggle_downvote: false}
+    //             this.props.editComment(updatedComment, this.props.post)
+    //         } else {
+    //             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1, toggle_upvote: true, toggle_downvote: false}
+    //             this.props.editComment(updatedComment, this.props.post) // 
+    //         }
+    //     } else if (event.target.name === 'downvote') {
+    //         if (this.props.comment.toggle_upvote === true) {
+    //             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1, toggle_upvote: false, toggle_downvote: false}
+    //             this.props.editComment(updatedComment, this.props.post)
+    //             console.log(updatedComment) //
+    //         } else {
+    //             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1, toggle_upvote: false, toggle_downvote: true}
+    //             this.props.editComment(updatedComment, this.props.post)
+    //         }
+    //     }
+    // }
 
     handleDelete = (event) => {
         this.props.deleteComment(this.props.comment)
@@ -57,8 +71,6 @@ class Comment extends React.Component {
       };
 
     render() {
-        console.log(this.props.comment)
-        console.log(this.props.user.id)
         return (
             <div class='card comment'>
 
@@ -75,8 +87,8 @@ class Comment extends React.Component {
                         {/* </div> */}
 
                         <div class='card-footer text-muted'>
-                            <span>🡅</span>&nbsp; 
-                            <span>Votes</span>&nbsp; 
+                            <span onClick={event => this.handleUpvote(event, this.props.comment)}>🡅</span>&nbsp; 
+                            <span>{this.props.comment.votes.length}</span>&nbsp; 
                             <span>🡇</span>&nbsp; 
                             {this.props.comment.user_id === this.props.user.id ? <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link> : null}
 
@@ -90,4 +102,4 @@ class Comment extends React.Component {
     }
 }
 
-export default connect (null, {editComment, deleteComment})(Comment)
+export default connect (null, {editComment, deleteComment, addCommentVote})(Comment)
