@@ -28,10 +28,19 @@ class Comment extends React.Component {
       }
   
       this.props.deleteCommentVote(deleteVote)
-    } else {
+    } else if (event.target.name === 'upvote'){
       let vote = {
         upvote: true,
         downvote: false,
+        user_id: this.props.user.id,
+        post_id: comment.post_id
+      }
+  
+      this.props.addCommentVote(vote, comment.id)
+    } else if (event.target.name === 'downvote') {
+      let vote = {
+        upvote: false,
+        downvote: true,
         user_id: this.props.user.id,
         post_id: comment.post_id
       }
