@@ -8,50 +8,28 @@ import {addCommentVote} from '../../actions/vote/addCommentVote';
 
 
 class Comment extends React.Component {
-  // handleCommentUpvote = (event, comment) => {
-  //   if (event.target.name === 'upvote') {
-  //     let vote = {
-  //       upvote: true,
-  //       downvote: false,
-  //       user_id: this.props.user.id,
-  //       post_id: comment.post_id
-  //     }
+  handleCommentUpvote = (event, comment) => {
+    if (event.target.name === 'upvote') {
+      let vote = {
+        upvote: true,
+        downvote: false,
+        user_id: this.props.user.id,
+        post_id: comment.post_id
+      }
   
-  //     this.props.addCommentVote(vote, comment.id)
-  //   } else {
-  //     let vote = {
-  //       upvote: false,
-  //       downvote: true,
-  //       user_id: this.props.user.id,
-  //       post_id: comment.post_id
-  //     }
+      this.props.addCommentVote(vote, comment.id)
+    } else {
+      let vote = {
+        upvote: false,
+        downvote: true,
+        user_id: this.props.user.id,
+        post_id: comment.post_id
+      }
   
-  //     this.props.addCommentVote(vote, comment.id)
-  //   }
+      this.props.addCommentVote(vote, comment.id)
+    }
 
-  // }
-  
-
-    // handleVote = (event) => {
-    //     if (event.target.name === 'upvote') {
-    //         if (this.props.comment.toggle_downvote === true) {
-    //             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1, toggle_upvote: false, toggle_downvote: false}
-    //             this.props.editComment(updatedComment, this.props.post)
-    //         } else {
-    //             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes + 1, toggle_upvote: true, toggle_downvote: false}
-    //             this.props.editComment(updatedComment, this.props.post) // 
-    //         }
-    //     } else if (event.target.name === 'downvote') {
-    //         if (this.props.comment.toggle_upvote === true) {
-    //             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1, toggle_upvote: false, toggle_downvote: false}
-    //             this.props.editComment(updatedComment, this.props.post)
-    //             console.log(updatedComment) //
-    //         } else {
-    //             let updatedComment = {...this.props.comment, upvotes: this.props.comment.upvotes - 1, toggle_upvote: false, toggle_downvote: true}
-    //             this.props.editComment(updatedComment, this.props.post)
-    //         }
-    //     }
-    // }
+  }
 
     handleDelete = (event) => {
         this.props.deleteComment(this.props.comment)
@@ -89,13 +67,10 @@ class Comment extends React.Component {
                             <span> {this.props.comment.user.username}• {this.dateFormat(this.props.comment)}</span>
                         </div>
 
-                        {/* <div class='card-body'> */}
-                            <div class='card-text'>
-                            {this.props.comment.content}
+                        <div class='card-text'>
+                          {this.props.comment.content}
+                        </div>
 
-                            </div>
-
-                        {/* </div> */}
 
                         <div class='card-footer text-muted'>
                             <button
