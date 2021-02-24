@@ -84,7 +84,7 @@ class Post extends React.Component {
   };
 
   render() {
-    let posts = JSON.parse(localStorage.getItem('posts'))
+    let posts = JSON.parse(sessionStorage.getItem('posts'))
 
     let post;
 

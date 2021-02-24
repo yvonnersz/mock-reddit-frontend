@@ -60,6 +60,8 @@ class Comment extends React.Component {
       };
 
     render() {
+      let vote = this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)
+
         return (
             <div class='card comment'>
 
@@ -74,7 +76,7 @@ class Comment extends React.Component {
 
                         <div class='card-footer text-muted'>
                             <button
-                              aria-pressed='false'
+                              aria-pressed={vote ? true : false}
                               name="upvote"
                               onClick={(event) => this.handleCommentUpvote(event, this.props.comment)}
                             >

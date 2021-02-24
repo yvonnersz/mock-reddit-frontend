@@ -170,3 +170,16 @@ color: #666666;
 .comment {
   padding: 0.5em;
 }
+
+.comment button {
+  border: none;
+  font-size: 2em;
+  background-color: transparent;
+  color: #878a8c;
+}
+
+.comment button[aria-pressed="true"] {
+  color: tomato;
+  /* background-color: #e2e2e4; */
+  border-radius: 0.25em;
+}
