@@ -1,3 +1,5 @@
+import { addCommentVote } from "../actions/vote/addCommentVote"
+
 export default function postsReducer(state = { posts: [] }, action) {
     switch(action.type) {
         case 'FETCH_POSTS':
@@ -48,6 +50,30 @@ export default function postsReducer(state = { posts: [] }, action) {
             let deleteVoteOriginalPostIndex = state.posts.findIndex(post => post.id === action.payload.post_id)
             let deleteVoteUpdatedPosts = state.posts.slice(0, deleteVoteOriginalPostIndex).concat(deleteVoteUpdatedPost).concat(state.posts.slice(deleteVoteOriginalPostIndex + 1))
             return {...state, posts: deleteVoteUpdatedPosts}
+        case 'ADD_COMMENT_VOTE':
+            let post = state.posts.filter(post => post.id === action.payload.post_id)[0];
+
+            // ACCESS COMMENT VOTES
+            
+            let postComment = post.comments.filter(comment => comment.id === action.payload.comment_id)[0]
+
+            // ADD VOTE FOR COMMENT
+
+            let addCommentVote = {...postComment, votes: [...postComment.votes, action.payload]}
+
+            // FIND COMMENT ID & SLICE
+
+            let filteredComments = post.comments.filter(comment => comment.id !== action.payload.comment_id)
+
+            let updatedCommentVote = {...post, comments: [...filteredComments, addCommentVote]}
+            
+            let updatedPostsCommentVote = state.posts.slice(0, action.payload.post_id - 1).concat(updatedCommentVote).concat(state.posts.slice(action.payload.post_id + 1))
+
+
+            return {...state, posts: updatedPostsCommentVote}
+
+
+
         default:
             return state
     }

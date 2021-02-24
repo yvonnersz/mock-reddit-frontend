@@ -38,3 +38,6 @@ BUGS
 [x] View who posted comment.
 [] Fix comment CSS.
 [x] Fix comment form CSS.
+
+02.23;
+[x] Persist props upon page refresh.

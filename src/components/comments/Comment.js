@@ -76,7 +76,7 @@ class Comment extends React.Component {
                             <button
                               aria-pressed='false'
                               name="upvote"
-                              // onClick={(event) => this.handleCommentUpvote(event, this.props.comment)}
+                              onClick={(event) => this.handleCommentUpvote(event, this.props.comment)}
                             >
                               🡅
                             </button>
@@ -86,7 +86,7 @@ class Comment extends React.Component {
                             <button
                               aria-pressed='false'
                               name="upvote"
-                              // onClick={(event) => this.handleCommentUpvote(event, this.props.comment)}
+                              onClick={(event) => this.handleCommentUpvote(event, this.props.comment)}
                             >
                               🡇
                             </button>
