@@ -84,11 +84,13 @@ class Post extends React.Component {
   };
 
   render() {
+    let posts = JSON.parse(localStorage.getItem('posts'))
+
     let post;
 
     if (this.props.match) {
       let id = this.props.match.params.id;
-      post = this.props.posts.filter((post) => post.id === parseInt(id))[0];
+      post = posts.filter((post) => post.id === parseInt(id))[0];
     } else {
       post = this.props.post;
     }

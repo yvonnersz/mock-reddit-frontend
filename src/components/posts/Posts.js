@@ -19,6 +19,10 @@ class Posts extends React.Component {
     };
   }
 
+  setData() {
+    sessionStorage.setItem('posts', JSON.stringify(this.props.posts))
+  }
+
   handleVote = (event, post) => {
     let vote = post.votes.filter(vote => vote.user_id === this.props.user.id && (vote.upvote === true || vote.downvote === true))[0]
 
@@ -62,6 +66,8 @@ class Posts extends React.Component {
   };
 
   render() {
+    this.setData();
+
     const sortPosts = [...this.props.posts].sort((aPost, bPost) => (aPost.votes.filter(vote => vote.upvote === true).length - aPost.votes.filter(vote => vote.downvote === true).length) - (bPost.votes.filter(vote => vote.upvote === true).length - bPost.votes.filter(vote => vote.downvote === true).length)).reverse()
 
     return (
