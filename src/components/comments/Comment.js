@@ -11,11 +11,11 @@ import {deleteCommentVote} from '../../actions/vote/deleteCommentVote';
 class Comment extends React.Component {
   handleCommentUpvote = (event, comment) => {
 
-    let vote = comment.votes.filter(
+    let vote = comment.votes ? comment.votes.filter(
       (vote) =>
         vote.user_id === this.props.user.id &&
         (vote.upvote === true || vote.downvote === true)
-    )[0];
+    )[0] : null;
 
     if (vote && (event.target.getAttribute("aria-pressed") === "true" || event.target.getAttribute("aria-pressed") === "false")) {
       let deleteVote = {
