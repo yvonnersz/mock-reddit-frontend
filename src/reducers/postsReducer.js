@@ -44,7 +44,6 @@ export default function postsReducer(state = { posts: [] }, action) {
             let updatedPostVote = state.posts.slice(0, addVotePost).concat(updatePost).concat(state.posts.slice(addVotePost + 1))
             return {...state, posts: updatedPostVote}
         case 'DELETE_VOTE':
-            console.log(action.payload)
             let deleteVoteOriginalPost = state.posts.filter(post => post.id === action.payload.post_id)[0]
             let deleteVote = deleteVoteOriginalPost.votes.filter(vote => vote.user_id !== action.payload.user_id) // return user id 3
             let deleteVoteUpdatedPost = {...deleteVoteOriginalPost, votes: deleteVote}

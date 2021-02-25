@@ -90,10 +90,11 @@ class Post extends React.Component {
 
     if (this.props.match) {
       let id = this.props.match.params.id;
-      post = posts.filter((post) => post.id === parseInt(id))[0];
+      this.props.location.new ? post = this.props.posts.filter(post => post.id === parseInt(id))[0] : post = posts.filter((post) => post.id === parseInt(id))[0];
     } else {
       post = this.props.post;
     }
+
 
     return (
       <div class="card post">

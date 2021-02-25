@@ -15,7 +15,10 @@ export const addPost = (post, props) => {
             } else {
                 let newPost = {...json, user: props.user}
                 dispatch({ type: 'ADD_POST', payload: newPost })
-                props.history.push(`/posts/${json.id}`)
+                props.history.push({
+                    pathname: `/posts/${json.id}/comments`,
+                    new: true
+                })
             }
         })
     }

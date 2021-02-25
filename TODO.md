@@ -41,3 +41,4 @@ BUGS
 
 02.23;
 [x] Persist props upon page refresh.
+[] Fix new post + comment page.
