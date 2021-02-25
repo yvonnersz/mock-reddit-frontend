@@ -11,54 +11,65 @@ class Posts extends React.Component {
   constructor() {
     super();
     this.state = {
-      best: false,
-      hot: false,
-      new: false,
-      top: false,
-      rising: false
+      radio: ''
     };
+    
+    this.handlePosts = this.handlePosts.bind(this)
   }
 
   handleBySort = (event) => {
     this.setState({
-      [event.target.name]: !this.state[event.target.name]
+      radio: event.target.id
     });
   };
 
-  render() {
-    const sortPosts = [...this.props.posts].sort((aPost, bPost) => (aPost.votes.filter(vote => vote.upvote === true).length - aPost.votes.filter(vote => vote.downvote === true).length) - (bPost.votes.filter(vote => vote.upvote === true).length - bPost.votes.filter(vote => vote.downvote === true).length)).reverse()
+  handlePosts = () => {
+    switch (this.state.radio) {
+      case 'best':
+        const sortPosts = [...this.props.posts].sort((aPost, bPost) => (aPost.votes.filter(vote => vote.upvote === true).length - aPost.votes.filter(vote => vote.downvote === true).length) - (bPost.votes.filter(vote => vote.upvote === true).length - bPost.votes.filter(vote => vote.downvote === true).length)).reverse()
+        return sortPosts
+      default:
+        let posts = this.props.posts
+        return posts
+    }
+  }
 
+  render() {
     return (
-      <div>
+      <>
         <div class="card">
           <div class="input-group mb-3 new-post">
-            <span class="input-group-text rounded-circle" id="avatar">
-              Avatar
-            </span>
 
-            <input
-              type="text"
-              class="form-control rounded"
-              placeholder="Create Post"
-              onClick={() => this.props.history.push('/posts/new')}
-            />
+            <input type="text" class="form-control rounded" placeholder="Create Post" onClick={() => this.props.history.push('/posts/new')} />
+
           </div>
         </div>
 
         <div class='card sort-cards'>
-        <div class="d-grid gap-2 d-md-block">
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.best} name='best'>Best</button>
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.hot} name='hot'>Hot</button>
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.new} name='new'>New</button>
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.top} name='top'>Top</button>
-          <button type="button" class="btn btn-lg" onClick={this.handleBySort} aria-pressed={this.state.rising} name='rising'>Rising</button>
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" />
+            <label class="btn btn-outline-primary" for="btnradio1" id="best" onClick={this.handleBySort}>Best</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+            <label class="btn btn-outline-primary" for="btnradio2">Hot</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+            <label class="btn btn-outline-primary" for="btnradio3">New</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
+            <label class="btn btn-outline-primary" for="btnradio4">Top</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" />
+            <label class="btn btn-outline-primary" for="btnradio5">Rising</label>
+
           </div>
         </div>
         
-        {(this.state.best === false ? this.props.posts : sortPosts).map(
+        {this.handlePosts().map(
           post => <Post key={post.id} post={post} user={this.props.user} posts={this.props.posts} />)}
-           </div>
+
+      </>
     )
   }
 }
