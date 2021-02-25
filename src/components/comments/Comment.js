@@ -78,8 +78,8 @@ class Comment extends React.Component {
       };
 
     render() {
-      let upvote = this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)
-      let downvote = this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true)
+      let upvote = this.props.comment.votes ? this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true) : null
+      let downvote = this.props.comment.votes ? this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true) : null
 
         return (
             <div class='card comment'>
