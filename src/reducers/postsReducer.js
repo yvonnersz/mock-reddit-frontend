@@ -53,17 +53,16 @@ export default function postsReducer(state = { posts: [] }, action) {
         case 'ADD_COMMENT_VOTE':
             let post = state.posts.filter(post => post.id === action.payload.post_id)[0];            
             let postComment = post.comments.filter(comment => comment.id === action.payload.comment_id)[0]
-            // let addCommentVote = {...postComment, votes: [...postComment.votes, action.payload]} // {COMMENT votes}
-            // let indexUpvote = post.comments.findIndex(comment => comment.id === action.payload.comment_id)
-            // // slice post comments GIVES UPDATED COMMENTS {post comments}
-            // let sliceUpvote = post.comments.slice(0, indexUpvote).concat(addCommentVote).concat(post.comments.slice(indexUpvote + 1))
-            // // update post
-            // let updatedUpvotePost = {...post, comments: sliceUpvote}
-            // // slice all posts and replace with updated post
-            // let indexofAllPosts = state.posts.findIndex(post => post.id === action.payload.post_id);
-            // let updatedPostsUpvote = state.posts.slice(0, indexofAllPosts).concat(updatedUpvotePost).concat(state.posts.slice(indexofAllPosts + 1))
-            // // return {...state, posts: updatedPostsUpvote}
-            console.log(postComment)
+            let addCommentVote = {...postComment, votes: [...postComment.votes, action.payload]} // {COMMENT votes}
+            let indexUpvote = post.comments.findIndex(comment => comment.id === action.payload.comment_id)
+            // slice post comments GIVES UPDATED COMMENTS {post comments}
+            let sliceUpvote = post.comments.slice(0, indexUpvote).concat(addCommentVote).concat(post.comments.slice(indexUpvote + 1))
+            // update post
+            let updatedUpvotePost = {...post, comments: sliceUpvote}
+            // slice all posts and replace with updated post
+            let indexofAllPosts = state.posts.findIndex(post => post.id === action.payload.post_id);
+            let updatedPostsUpvote = state.posts.slice(0, indexofAllPosts).concat(updatedUpvotePost).concat(state.posts.slice(indexofAllPosts + 1))
+            return {...state, posts: updatedPostsUpvote}
 
         case 'DELETE_COMMENT_VOTE':
             let deletePost = state.posts.filter(post => post.id === action.payload.post_id)[0];  
