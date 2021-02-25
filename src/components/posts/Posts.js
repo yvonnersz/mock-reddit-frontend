@@ -1,9 +1,7 @@
 import React from "react";
-import Pluralize from "react-pluralize";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Post from './Post';
 
+import Post from './Post';
 import { addVote } from "../../actions/vote/addVote";
 import { deleteVote } from "../../actions/vote/deleteVote";
 
@@ -66,9 +64,7 @@ class Posts extends React.Component {
           </div>
         </div>
         
-        {this.handlePosts().map(
-          post => <Post key={post.id} post={post} user={this.props.user} posts={this.props.posts} />)}
-
+        {this.handlePosts().map(post => <Post key={post.id} post={post} user={this.props.user} posts={this.props.posts} />)}
       </>
     )
   }
