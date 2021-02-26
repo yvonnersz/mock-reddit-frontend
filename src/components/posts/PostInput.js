@@ -1,16 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { addPost } from "../../actions/post/addPost";
+import { addPost } from '../../actions/post/addPost';
 
 class PostInput extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      title: "",
-      user_id: "",
-      content: "",
-      upvotes: 0,
+      title: '',
+      content: ''
     };
   }
 
@@ -22,44 +20,35 @@ class PostInput extends React.Component {
 
   handleOnSubmit = (event) => {
     event.preventDefault();
-    this.state.user_id = this.props.user.id;
-    this.props.addPost(this.state, this.props);
+    
+    let post = {
+      title: this.state.title,
+      content: this.state.content,
+      user_id: this.props.user.id
+    }
+
+    this.props.addPost(post, this.props);
+
     this.setState({
-      title: "",
-      content: "",
-      user_id: this.props.user.id,
-      toggle_upvote: false,
-      toggle_downvote: false,
+      title: '',
+      content: ''
     });
   };
 
   render() {
     return (
-      <div class="card container-fluid text-center">
+      <div class='card container-fluid text-center'>
+
         <h2>Create a Post</h2>
-        <div class="form-group">
+
+        <div class='form-group'>
+
           <form onSubmit={this.handleOnSubmit}>
-            <input
-              type="text"
-              placeholder="Title"
-              value={this.state.title}
-              name="title"
-              onChange={this.handleOnChange}
-              class="form-control"
-            />
-            <br />
-            <textarea
-              rows="7"
-              placeholder="Content"
-              value={this.state.content}
-              name="content"
-              onChange={this.handleOnChange}
-              class="form-control"
-            />
-            <br />
-            <input type="submit" value="Create Post" />
-            <br />
+            <input type='text' placeholder='Title' value={this.state.title} name='title' onChange={this.handleOnChange} class='form-control' /> <br />
+            <textarea rows='7' placeholder='Content' value={this.state.content} name='content' onChange={this.handleOnChange} class='form-control' /> <br />
+            <input type='submit' value='Create Post' /> <br />
           </form>
+
         </div>
       </div>
     );
