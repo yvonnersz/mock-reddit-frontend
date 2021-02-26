@@ -22,53 +22,44 @@ class Posts extends React.Component {
   };
 
   handlePosts = () => {
-    let posts = this.props.posts.map(post => post);
+    let posts = this.props.posts.map(post => post).sort((a,b) => {
 
-    switch (this.state.radio) {
-      case 'best':
-        posts = posts.sort((a,b) => {
-          let aRatioVotes = a.votes.length !== 0 ? (a.votes.filter(vote => vote.upvote === true).length / a.votes.length) : 0;
-          let bRatioVotes = b.votes.length !== 0 ? (b.votes.filter(vote => vote.upvote === true).length / b.votes.length) : 0;
-          return aRatioVotes - bRatioVotes;
-        }).reverse();
-        return posts
-      case 'hot':
-        posts = posts.sort((a,b) => {
-          let dateNow = new Date().getTime();
-          let aDateCreated = new Date(a.created_at).getTime();
-          let bDateCreated = new Date(b.created_at).getTime();
-          let aDateDifference = dateNow - aDateCreated;
-          let bDateDifference = dateNow - bDateCreated;
-          let aHot = a.votes.filter(vote => vote.upvote === true).length / aDateDifference;
-          let bHot = b.votes.filter(vote => vote.upvote === true).length / bDateDifference;
-          return aHot - bHot
-        }).reverse();
-        return posts
-      case 'new':
-        posts = posts.sort((a,b) => a.created_at - b.created_at).reverse();
-        return posts
-      case 'top':
-        posts = posts.sort((a,b) => {
-          let aTotalVotes = a.votes.filter(vote => vote.upvote === true).length - a.votes.filter(vote => vote.downvote === true).length;
-          let bTotalVotes = b.votes.filter(vote => vote.upvote === true).length - b.votes.filter(vote => vote.downvote === true).length;
-          return aTotalVotes - bTotalVotes;
-        }).reverse();
-        return posts
-      case 'rising':
-        posts = posts.sort((a,b) => {
-          let dateRisingNow = new Date().getTime();
-          let aRisingDateCreated = new Date(a.created_at).getTime();
-          let bRisingDateCreated = new Date(b.created_at).getTime();
-          let aRisingDate = dateRisingNow - aRisingDateCreated;
-          let bRisingDate = dateRisingNow - bRisingDateCreated;
-          let aRising = (a.votes.filter(vote => vote.upvote === true).length + a.comments.length) / (aRisingDate);
-          let bRising = (b.votes.filter(vote => vote.upvote === true).length + b.comments.length) / (bRisingDate);
-          return aRising - bRising
-        }).reverse();
-        return posts
-      default:
-        return posts
-    }
+      let aTotalUpvotes = a.votes.filter(vote => vote.upvote === true).length;
+      let bTotalUpvotes = b.votes.filter(vote => vote.upvote === true).length;
+
+      let dateNow = new Date().getTime();
+      let aDateCreated = new Date(a.created_at).getTime();
+      let bDateCreated = new Date(b.created_at).getTime();
+
+      let aDateDifference = dateNow - aDateCreated;
+      let bDateDifference = dateNow - bDateCreated;
+
+      switch (this.state.radio) {
+        case 'best':
+            let aBestAlgorithm = a.votes.length !== 0 ? (aTotalUpvotes / a.votes.length) : 0;
+            let bBestAlgorithm = b.votes.length !== 0 ? (bTotalUpvotes / b.votes.length) : 0;
+            return aBestAlgorithm - bBestAlgorithm;
+        case 'hot':
+            let aHotAlgorithm = aTotalUpvotes / aDateDifference;
+            let bHotAlgorithm = bTotalUpvotes / bDateDifference;
+            return aHotAlgorithm - bHotAlgorithm;
+        case 'new':
+          return a.created_at - b.created_at;
+        case 'top':
+            let aTopAlgorithm = aTotalUpvotes - a.votes.filter(vote => vote.downvote === true).length;
+            let bTopAlgorithm = bTotalUpvotes - b.votes.filter(vote => vote.downvote === true).length;
+            return aTopAlgorithm - bTopAlgorithm;
+        case 'rising':
+            let aRisingAlgorithm = (aTotalUpvotes + a.comments.length) / aDateDifference;
+            let bRisingAlgorithm = (bTotalUpvotes + b.comments.length) / bDateDifference;
+            return aRisingAlgorithm - bRisingAlgorithm;
+        default:
+          return this.props.posts;
+      }
+
+    }).reverse();
+
+    return posts;
   }
 
   render() {
