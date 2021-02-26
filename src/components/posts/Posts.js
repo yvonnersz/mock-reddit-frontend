@@ -22,18 +22,18 @@ class Posts extends React.Component {
   };
 
   handlePosts = () => {
-    let posts;
+    let posts = this.props.posts.map(post => post);
 
     switch (this.state.radio) {
       case 'best':
-        posts = this.props.posts.map(post => post).sort((a,b) => {
+        posts = posts.sort((a,b) => {
           let aRatioVotes = a.votes.length !== 0 ? (a.votes.filter(vote => vote.upvote === true).length / a.votes.length) : 0;
           let bRatioVotes = b.votes.length !== 0 ? (b.votes.filter(vote => vote.upvote === true).length / b.votes.length) : 0;
           return aRatioVotes - bRatioVotes;
         }).reverse();
         return posts
       case 'hot':
-        posts = this.props.posts.map(post => post).sort((a,b) => {
+        posts = posts.sort((a,b) => {
           let dateNow = new Date().getTime();
           let aDateCreated = new Date(a.created_at).getTime();
           let bDateCreated = new Date(b.created_at).getTime();
@@ -45,17 +45,17 @@ class Posts extends React.Component {
         }).reverse();
         return posts
       case 'new':
-        posts = this.props.posts.map(post => post).sort((a,b) => a.created_at - b.created_at).reverse();
+        posts = posts.sort((a,b) => a.created_at - b.created_at).reverse();
         return posts
       case 'top':
-        posts = this.props.posts.map(post => post).sort((a,b) => {
+        posts = posts.sort((a,b) => {
           let aTotalVotes = a.votes.filter(vote => vote.upvote === true).length - a.votes.filter(vote => vote.downvote === true).length;
           let bTotalVotes = b.votes.filter(vote => vote.upvote === true).length - b.votes.filter(vote => vote.downvote === true).length;
           return aTotalVotes - bTotalVotes;
         }).reverse();
         return posts
       case 'rising':
-        posts = this.props.posts.map(post => post).sort((a,b) => {
+        posts = posts.sort((a,b) => {
           let dateRisingNow = new Date().getTime();
           let aRisingDateCreated = new Date(a.created_at).getTime();
           let bRisingDateCreated = new Date(b.created_at).getTime();
@@ -67,7 +67,6 @@ class Posts extends React.Component {
         }).reverse();
         return posts
       default:
-        posts = this.props.posts
         return posts
     }
   }
