@@ -22,12 +22,52 @@ class Posts extends React.Component {
   };
 
   handlePosts = () => {
+    let posts;
+
     switch (this.state.radio) {
       case 'best':
-        const sortPosts = [...this.props.posts].sort((aPost, bPost) => (aPost.votes.filter(vote => vote.upvote === true).length - aPost.votes.filter(vote => vote.downvote === true).length) - (bPost.votes.filter(vote => vote.upvote === true).length - bPost.votes.filter(vote => vote.downvote === true).length)).reverse()
-        return sortPosts
+        posts = this.props.posts.map(post => post).sort((a,b) => {
+          let aRatioVotes = a.votes.length !== 0 ? (a.votes.filter(vote => vote.upvote === true).length / a.votes.length) : 0;
+          let bRatioVotes = b.votes.length !== 0 ? (b.votes.filter(vote => vote.upvote === true).length / b.votes.length) : 0;
+          return aRatioVotes - bRatioVotes;
+        }).reverse();
+        return posts
+      case 'hot':
+        posts = this.props.posts.map(post => post).sort((a,b) => {
+          let dateNow = new Date().getTime();
+          let aDateCreated = new Date(a.created_at).getTime();
+          let bDateCreated = new Date(b.created_at).getTime();
+          let aDateDifference = dateNow - aDateCreated;
+          let bDateDifference = dateNow - bDateCreated;
+          let aHot = a.votes.filter(vote => vote.upvote === true).length / aDateDifference;
+          let bHot = b.votes.filter(vote => vote.upvote === true).length / bDateDifference;
+          return aHot - bHot
+        }).reverse();
+        return posts
+      case 'new':
+        posts = this.props.posts.map(post => post).sort((a,b) => a.created_at - b.created_at).reverse();
+        return posts
+      case 'top':
+        posts = this.props.posts.map(post => post).sort((a,b) => {
+          let aTotalVotes = a.votes.filter(vote => vote.upvote === true).length - a.votes.filter(vote => vote.downvote === true).length;
+          let bTotalVotes = b.votes.filter(vote => vote.upvote === true).length - b.votes.filter(vote => vote.downvote === true).length;
+          return aTotalVotes - bTotalVotes;
+        }).reverse();
+        return posts
+      case 'rising':
+        posts = this.props.posts.map(post => post).sort((a,b) => {
+          let dateRisingNow = new Date().getTime();
+          let aRisingDateCreated = new Date(a.created_at).getTime();
+          let bRisingDateCreated = new Date(b.created_at).getTime();
+          let aRisingDate = dateRisingNow - aRisingDateCreated;
+          let bRisingDate = dateRisingNow - bRisingDateCreated;
+          let aRising = (a.votes.filter(vote => vote.upvote === true).length + a.comments.length) / (aRisingDate);
+          let bRising = (b.votes.filter(vote => vote.upvote === true).length + b.comments.length) / (bRisingDate);
+          return aRising - bRising
+        }).reverse();
+        return posts
       default:
-        let posts = this.props.posts
+        posts = this.props.posts
         return posts
     }
   }
@@ -50,16 +90,16 @@ class Posts extends React.Component {
             <label class="btn btn-outline-primary" for="btnradio1" id="best" onClick={this.handleBySort}>Best</label>
 
             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
-            <label class="btn btn-outline-primary" for="btnradio2">Hot</label>
+            <label class="btn btn-outline-primary" for="btnradio2" id="hot" onClick={this.handleBySort}>Hot</label>
 
             <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
-            <label class="btn btn-outline-primary" for="btnradio3">New</label>
+            <label class="btn btn-outline-primary" for="btnradio3" id="new" onClick={this.handleBySort}>New</label>
 
             <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
-            <label class="btn btn-outline-primary" for="btnradio4">Top</label>
+            <label class="btn btn-outline-primary" for="btnradio4" id="top" onClick={this.handleBySort}>Top</label>
 
             <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" />
-            <label class="btn btn-outline-primary" for="btnradio5">Rising</label>
+            <label class="btn btn-outline-primary" for="btnradio5" id="rising" onClick={this.handleBySort}>Rising</label>
 
           </div>
         </div>
