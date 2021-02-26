@@ -1,6 +1,5 @@
 html body {
   background-color:  #dae0e6;
-  /* text-align: center; */
 }
 
 .card-text a {
@@ -13,6 +12,9 @@ html body {
 }
 
 @media (min-width: 992px) {
+  .container-fluid {
+    width: 50%;
+  }
 
   .card {
     position: relative;
@@ -60,12 +62,6 @@ html body {
     background-color: #e2e2e4;
     border-radius: 0.25em;
 }
-
-/* button:active, [aria-pressed="false"] {
-  border: 2px solid red;
-  background-color: red;
-} */
-
 
   .card-body {
     float: right;
@@ -120,45 +116,6 @@ html body {
   transition: 0s;
 }
 
-
-#avatar {
-  margin-right: 0.75em;
-}
-
-/* button:disabled,
-button[disabled]{
-border: 1px solid #999999;
-background-color: #922B21;
-color: #666666;
-}
-
-.card-body {
-  text-align: center;
-} */
-
-/* button:active,
-[aria-pressed="true"] {
-    border: 2px solid red;
-    background-color: red;
-} */
-
-.sort-cards {
-  padding: 1em;
-}
-
-.sort-cards button {
-  margin-left: 1em;
-  font-weight: 600;
-  font-size: medium;
-  color: gray;
-}
-
-.sort-cards button[aria-pressed='true'] {
-  border-radius: 0.5em;
-  color: #0079d3;
-  background-color: #f6f7f8;
-}
-
 .comment-form {
   padding: 1em;
 }
@@ -182,4 +139,18 @@ color: #666666;
   color: tomato;
   /* background-color: #e2e2e4; */
   border-radius: 0.25em;
+}
+
+/* FINALIZED BELOW */
+
+.btn {
+  margin: 0.25em;
+  border: none;
+  font-weight: bold;
+  color: lightslategray;
+}
+
+.btn:hover {
+  background-color: whitesmoke;
+  color: lightslategray;
 }
