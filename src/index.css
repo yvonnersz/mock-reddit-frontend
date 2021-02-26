@@ -100,22 +100,6 @@ html body {
   }
 }
 
-/* .new-post {
-  padding: 1em;
-}
-
-.new-post input {
-  padding: 2em;
-  background: #f6f7f8;
-  font-size: 1em;
-}
-
-.new-post input:hover {
-  border: 1px solid #0079d3;
-  background: white;
-  transition: 0s;
-} */
-
 .comment-form {
   padding: 1em;
 }
