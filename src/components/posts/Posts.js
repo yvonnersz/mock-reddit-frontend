@@ -65,15 +65,15 @@ class Posts extends React.Component {
   render() {
     return (
       <>
-        <div class='card'>
-          <div class='input-group mb-3 new-post'>
+        <div class='container-fluid bg-white rounded m-3 p-3 mx-auto'>
+          <div class='input-group'>
 
-            <input type='text' class='form-control rounded' placeholder='Create Post' onClick={() => this.props.history.push('/posts/new')} />
+            <input type='text' class='form-control p-3' id='new-post-input' placeholder='Create Post' onClick={() => this.props.history.push('/posts/new')} />
 
           </div>
         </div>
 
-        <div class='container-fluid bg-white rounded p-2'>
+        <div class='container-fluid bg-white rounded m-3 p-2 mx-auto'>
           <div class='btn-group w-100' role='sort-selection' aria-label='Radio toggle for Posts'>
 
             <input type='radio' class='btn-check' name='btnradio' id='btnradio1' autocomplete='off' />
