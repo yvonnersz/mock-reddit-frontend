@@ -14,20 +14,15 @@ class Post extends React.Component {
   }
 
   handleVote = (event, post) => {
-    let vote = post.votes.filter(
-      (vote) =>
-        vote.user_id === this.props.user.id &&
-        (vote.upvote === true || vote.downvote === true)
-    )[0];
+    let user = this.props.user ? this.props.user.id : null;
+    let vote = post.votes.filter(vote => vote.user_id === this.props.user.id && (vote.upvote === true || vote.downvote === true))[0];
 
-    if (
-      (vote && event.target.getAttribute("aria-pressed") === "true") ||
-      (vote && event.target.getAttribute("aria-pressed") === "false")
-    ) {
+    if (vote) {
       let deleteVote = {
         post_id: vote.post_id,
-        user_id: this.props.user ? this.props.user.id : null,
+        user_id: user
       };
+
       this.props.deleteVote(vote);
     } else if (event.target.name === "upvote") {
       let upvotePost = {
@@ -89,64 +84,33 @@ class Post extends React.Component {
       post = this.props.post;
     }
 
-
     return (
       <div class="card post">
         <div class="upvotes-column">
           <div class="upvotes-buttons">
       
-              <button
-                aria-pressed={
-                  this.props.user && post.votes.filter(
-                    (vote) =>
-                      vote.user_id === this.props.user.id &&
-                      vote.upvote === true
-                  )[0] 
-                    ? true
-                    : false
-                }
-                name="upvote"
-                onClick={(event) => this.handleVote(event, post)}
-              >
-                🡅
-              </button>
-
-            <br />
+            <button 
+              aria-pressed={this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.upvote === true)[0] ? true : false}
+              name="upvote"
+              onClick={(event) => this.handleVote(event, post)}
+            > 🡅 </button>
 
             <div class="upvotes">
-              {post.votes
-                ? post.votes.filter((vote) => vote.upvote === true).length -
-                  post.votes.filter((vote) => vote.downvote === true).length
-                : 0}{" "}
-              <br />
+              {post.votes ? post.votes.filter((vote) => vote.upvote === true).length - post.votes.filter((vote) => vote.downvote === true).length : 0}
             </div>
 
           
-            <button
-                aria-pressed={
-                  this.props.user && post.votes.filter(
-                    (vote) =>
-                      vote.user_id === this.props.user.id &&
-                      vote.downvote === true
-                  )[0]
-                    ? true
-                    : false
-                }
+            <button aria-pressed={ this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.downvote === true)[0] ? true : false}
                 name="downvote"
                 onClick={(event) => this.handleVote(event, post)}
-              >
-                {" "}
-                🡇
-              </button>
+            > 🡇 </button>
 
-            <br />
           </div>
         </div>
 
         <div class="card-body">
           <div class="card-header">
-            Posted by u/{post.user.username} •
-            {this.dateFormat(post)}
+            Posted by u/{post.user.username} • {this.dateFormat(post)}
           </div>
 
           <div class="card-title">
@@ -170,6 +134,4 @@ class Post extends React.Component {
   }
 }
 
-export default connect(null, { addVote, editPost, deletePost, deleteVote })(
-  Post
-);
+export default connect(null, { addVote, editPost, deletePost, deleteVote })(Post);
