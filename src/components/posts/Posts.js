@@ -77,19 +77,19 @@ class Posts extends React.Component {
           <div class='btn-group w-100' role='sort-selection' aria-label='Radio toggle for Posts'>
 
             <input type='radio' class='btn-check' name='btnradio' id='btnradio1' autocomplete='off' />
-            <label class='btn btn-outline-primary rounded-pill' for='btnradio1' id='best' onClick={this.handleBySort}>Best</label>
+            <label class='btn btn-outline-primary rounded-pill sort-btn' for='btnradio1' id='best' onClick={this.handleBySort}>Best</label>
 
             <input type='radio' class='btn-check' name='btnradio' id='btnradio2' autocomplete='off' />
-            <label class='btn btn-outline-primary rounded-pill' for='btnradio2' id='hot' onClick={this.handleBySort}>Hot</label>
+            <label class='btn btn-outline-primary rounded-pill sort-btn' for='btnradio2' id='hot' onClick={this.handleBySort}>Hot</label>
 
             <input type='radio' class='btn-check' name='btnradio' id='btnradio3' autocomplete='off' />
-            <label class='btn btn-outline-primary rounded-pill' for='btnradio3' id='new' onClick={this.handleBySort}>New</label>
+            <label class='btn btn-outline-primary rounded-pill sort-btn' for='btnradio3' id='new' onClick={this.handleBySort}>New</label>
 
             <input type='radio' class='btn-check' name='btnradio' id='btnradio4' autocomplete='off' />
-            <label class='btn btn-outline-primary rounded-pill' for='btnradio4' id='top' onClick={this.handleBySort}>Top</label>
+            <label class='btn btn-outline-primary rounded-pill sort-btn' for='btnradio4' id='top' onClick={this.handleBySort}>Top</label>
 
             <input type='radio' class='btn-check' name='btnradio' id='btnradio5' autocomplete='off' />
-            <label class='btn btn-outline-primary rounded-pill' for='btnradio5' id='rising' onClick={this.handleBySort}>Rising</label>
+            <label class='btn btn-outline-primary rounded-pill sort-btn' for='btnradio5' id='rising' onClick={this.handleBySort}>Rising</label>
 
           </div>
         </div>

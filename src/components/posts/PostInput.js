@@ -37,16 +37,21 @@ class PostInput extends React.Component {
 
   render() {
     return (
-      <div class='card container-fluid text-center'>
+      <div class='container-fluid bg-white rounded m-3 p-3 mx-auto text-center'>
 
-        <h2>Create a Post</h2>
+        <h4>Create a Post</h4>
 
         <div class='form-group'>
 
           <form onSubmit={this.handleOnSubmit}>
-            <input type='text' placeholder='Title' value={this.state.title} name='title' onChange={this.handleOnChange} class='form-control' /> <br />
-            <textarea rows='7' placeholder='Content' value={this.state.content} name='content' onChange={this.handleOnChange} class='form-control' /> <br />
-            <input type='submit' value='Create Post' /> <br />
+            <input type='text' class='form-control mb-1' placeholder='Title' value={this.state.title} name='title' onChange={this.handleOnChange} />
+            <textarea rows='7' class='form-control' placeholder='Content' value={this.state.content} name='content' onChange={this.handleOnChange} />
+            
+            <div class="d-grid mt-1">
+
+              <input type='submit' class='btn btn-primary' value='Create Post' />
+
+              </div>
           </form>
 
         </div>

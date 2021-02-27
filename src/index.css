@@ -130,14 +130,14 @@ html body {
   border: 0.05em solid #cdcece;
 }
 
-.btn {
+.sort-btn {
   margin: 0.25em;
   border: none;
   font-weight: bold;
   color: lightslategray;
 }
 
-.btn:hover {
+.sort-btn:hover {
   background-color: whitesmoke;
   color: lightslategray;
   transition: 0.25s;
