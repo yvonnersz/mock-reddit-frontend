@@ -84,8 +84,8 @@ class Post extends React.Component {
     }
 
     return (
-      <div class="card post">
-        <div class="upvotes-column">
+      <div class="card mt-3">
+        {/* <div class="upvotes-column">
           <div class="upvotes-buttons">
       
             <button 
@@ -105,15 +105,15 @@ class Post extends React.Component {
             > 🡇 </button>
 
           </div>
-        </div>
+        </div> */}
 
-        <div class="card-body">
-          <div class="card-header">
-            Posted by u/{post.user.username} • {this.dateFormat(post)}
+        <div class="card-body post-body">
+          <div class="card-header p-1">
+            <span class='text-muted'>Posted by u/{post.user.username} {this.dateFormat(post)}</span>
           </div>
 
           <div class="card-title">
-            <Link to={`/posts/${post.id}/comments`}>{post.title}</Link>
+            <span><Link to={`/posts/${post.id}/comments`}>{post.title}</Link></span>
           </div>
 
           <div class="card-text">
@@ -122,9 +122,9 @@ class Post extends React.Component {
             </Link>
           </div>
 
-          <div class="card-footer">
+          <div class="card-footer p-1">
             <Link to={`/posts/${post.id}/comments`}>
-              {post.comments.length === 1 ? `${post.comments.length}` + ' Comment' : `${post.comments.length}` + ' Comments'}
+            <span class='text-muted'> {post.comments.length === 1 ? `${post.comments.length}` + ' Comment' : `${post.comments.length}` + ' Comments'}</span>
             </Link>
           </div>
         </div>
