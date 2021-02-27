@@ -125,7 +125,8 @@ class Post extends React.Component {
 
           <div class="card-footer">
             <Link to={`/posts/${post.id}/comments`}>
-              <Pluralize singular={"Comment"} count={post.comments.length} />
+              {/* <Pluralize singular={"Comment"} count={post.comments.length} /> */}
+              {post.comments.length === 1 ? `${post.comments.length}` + ' Comment' : `${post.comments.length}` + ' Comments'}
             </Link>
           </div>
         </div>
