@@ -48,10 +48,8 @@ class PostInput extends React.Component {
             <textarea rows='7' class='form-control' placeholder='Content' value={this.state.content} name='content' onChange={this.handleOnChange} />
             
             <div class="d-grid mt-1">
-
               <input type='submit' class='btn btn-primary' value='Create Post' />
-
-              </div>
+            </div>
           </form>
 
         </div>
