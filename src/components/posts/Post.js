@@ -11,10 +11,6 @@ import { deleteVote } from "../../actions/vote/deleteVote";
 class Post extends React.Component {
   constructor() {
     super();
-    this.state = {
-      upvotePress: false,
-      upvotePress: false,
-    };
   }
 
   handleVote = (event, post) => {
@@ -84,8 +80,6 @@ class Post extends React.Component {
   };
 
   render() {
-    let posts = JSON.parse(sessionStorage.getItem('posts'))
-
     let post;
 
     if (this.props.match) {
