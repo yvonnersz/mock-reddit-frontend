@@ -8,9 +8,6 @@ import { addVote } from "../../actions/vote/addVote";
 import { deleteVote } from "../../actions/vote/deleteVote";
 
 class Post extends React.Component {
-  constructor() {
-    super();
-  }
 
   handleVote = (event, post) => {
     let user = this.props.user ? this.props.user.id : null;
@@ -44,10 +41,10 @@ class Post extends React.Component {
     }
   };
 
-  handleDelete = (post) => {
-    this.props.deletePost(post);
-    this.props.history.push("/posts");
-  };
+  // handleDelete = (post) => {
+  //   this.props.deletePost(post);
+  //   this.props.history.push("/posts");
+  // };
 
   dateFormat = (post) => {
     let date1 = new Date(post.created_at);
@@ -75,55 +72,57 @@ class Post extends React.Component {
 
   render() {
     let post;
+    let id = this.props.match ? this.props.match.params.id : null;
+    this.props.match ? post = this.props.posts.filter(post => post.id === parseInt(id))[0] : post = this.props.post;
 
-    if (this.props.match) {
-      let id = this.props.match.params.id;
-      post = this.props.posts.filter(post => post.id === parseInt(id))[0];
-    } else {
-      post = this.props.post;
-    }
+    let postUpvotes = post.votes ? post.votes.filter(vote => vote.upvote === true).length : 0;
+    let postDownvotes = post.votes ? post.votes.filter(vote => vote.downvote === true).length : 0;
+    let upvotesDifference = postUpvotes - postDownvotes;
 
+    let postComments = post.comments.length === 1 ? `${post.comments.length}` + ' Comment': `${post.comments.length}` + ' Comments';
+    
     return (
       <div class="container-fluid bg-white rounded mt-3">
         <div class="row">
           <div class="col-1 rounded vote-buttons text-center">
       
             <button 
-              aria-pressed={this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.upvote === true)[0] ? true : false}
-              name="upvote"
-              onClick={(event) => this.handleVote(event, post)}
               class='mt-2'
-            > 🡅 </button>
+              name="upvote"
+              onClick={ event => this.handleVote(event, post) }
+              // aria-pressed={this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.upvote === true)[0] ? true : false}
+            > 🡅 
+            </button>
 
-            <span>{post.votes ? post.votes.filter((vote) => vote.upvote === true).length - post.votes.filter((vote) => vote.downvote === true).length : 0}</span>
+            <span>{upvotesDifference}</span>
           
-            <button aria-pressed={ this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.downvote === true)[0] ? true : false}
-                name="downvote"
-                onClick={(event) => this.handleVote(event, post)}
-            > 🡇 </button>
+            <button 
+              name="downvote"
+              onClick={ event => this.handleVote(event, post) }
+              // aria-pressed={ this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.downvote === true)[0] ? true : false}
+            > 🡇 
+            </button>
 
           </div>
 
-        <div class="col-11 card-body post-body">
-          <div class="card-header p-1">
-            <span class='text-muted'>Posted by u/{post.user.username} {this.dateFormat(post)}</span>
-          </div>
+          <div class="col-11 card-body post-body">
+            <div class="card-header p-1">
+              <span class='text-muted'>Posted by u/{post.user.username} {this.dateFormat(post)}</span>
+            </div>
 
-          <div class="card-title">
-            <span><Link to={`/posts/${post.id}/comments`}>{post.title}</Link></span>
-          </div>
+            <div class="card-title">
+              <span><Link to={`/posts/${post.id}/comments`}>{post.title}</Link></span>
+            </div>
 
-          <div class="card-text">
-            <Link to={`/posts/${post.id}`}>
-              <p>{post.content}</p>
-            </Link>
-          </div>
+            <div class="card-text">
+                <p>{post.content}</p>
+            </div>
 
-          <div class="card-footer p-1">
-            <Link to={`/posts/${post.id}/comments`}>
-            <span class='text-muted'> {post.comments.length === 1 ? `${post.comments.length}` + ' Comment' : `${post.comments.length}` + ' Comments'}</span>
-            </Link>
-          </div>
+            <div class="card-footer p-1">
+              <Link to={`/posts/${post.id}/comments`}>
+                <span class='text-muted'>{postComments}</span>
+              </Link>
+            </div>
 
           </div>
         </div>
