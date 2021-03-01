@@ -84,20 +84,18 @@ class Post extends React.Component {
     }
 
     return (
-      <div class="card mt-3">
-        {/* <div class="upvotes-column">
-          <div class="upvotes-buttons">
+      <div class="container-fluid bg-white rounded mt-3">
+        <div class="row">
+          <div class="col-1 rounded vote-buttons text-center">
       
             <button 
               aria-pressed={this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.upvote === true)[0] ? true : false}
               name="upvote"
               onClick={(event) => this.handleVote(event, post)}
+              class='mt-2'
             > 🡅 </button>
 
-            <div class="upvotes">
-              {post.votes ? post.votes.filter((vote) => vote.upvote === true).length - post.votes.filter((vote) => vote.downvote === true).length : 0}
-            </div>
-
+            <span>{post.votes ? post.votes.filter((vote) => vote.upvote === true).length - post.votes.filter((vote) => vote.downvote === true).length : 0}</span>
           
             <button aria-pressed={ this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.downvote === true)[0] ? true : false}
                 name="downvote"
@@ -105,9 +103,8 @@ class Post extends React.Component {
             > 🡇 </button>
 
           </div>
-        </div> */}
 
-        <div class="card-body post-body">
+        <div class="col-11 card-body post-body">
           <div class="card-header p-1">
             <span class='text-muted'>Posted by u/{post.user.username} {this.dateFormat(post)}</span>
           </div>
@@ -126,6 +123,8 @@ class Post extends React.Component {
             <Link to={`/posts/${post.id}/comments`}>
             <span class='text-muted'> {post.comments.length === 1 ? `${post.comments.length}` + ' Comment' : `${post.comments.length}` + ' Comments'}</span>
             </Link>
+          </div>
+
           </div>
         </div>
       </div>

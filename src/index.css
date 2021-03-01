@@ -27,62 +27,11 @@ html body {
     border: 1px solid slategray;
   }
 
-  /* .upvotes-column {
-    margin: 0.1em;
-    position: absolute;
-    background-color: #f8f9fa;
-    float: left;
-    width: 6.5%;
-    top: 0;
-    bottom: 0;
-    border-radius: 0.5em;
-    text-align: center;
-  }
-
-  .upvotes-buttons {
-    margin-top: 1em;
-  }
-
-  .upvotes-column button {
-    border: none;
-    font-size: 2em;
-    background-color: transparent;
-    color: #878a8c;
-  }
-
-  .upvotes {
-    font-size: 1.5em;
-    font-weight: 600;
-  }
-
-  button[aria-pressed="true"] {
+  /* button[aria-pressed="true"] {
     color: tomato;
     background-color: #e2e2e4;
     border-radius: 0.25em;
 } */
-
-  /* .card-body {
-    float: right;
-    margin-left: 3.5em;
-    text-align: left;
-    height: auto;
-  }
-
-  .card-title {
-    font-size: 2em;
-    font-weight: 600;
-    margin-left: 0.5em;
-  }
-
-  .card-text {
-    font-size: 1.5em;
-    margin-left: 0.5em;
-    max-height: 10em;
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0));
-
-  } */
 }
 
 .comment-form {
@@ -152,4 +101,16 @@ html body {
   font-size: 0.75em;
   font-weight: 500;
   font-color: gray;
+}
+
+.vote-buttons {
+  background-color: #f8f9fa;
+}
+
+.vote-buttons button {
+  border: none;
+  background-color: transparent;
+  color: #878a8c;
+  font-size: 1.3em;
+  margin-left: -0.17em;
 }
