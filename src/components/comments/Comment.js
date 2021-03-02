@@ -7,49 +7,45 @@ import {addCommentVote} from '../../actions/vote/addCommentVote';
 import {deleteCommentVote} from '../../actions/vote/deleteCommentVote';
 
 class Comment extends React.Component {
-  // handleCommentUpvote = (event, comment) => {
 
-  //   let vote = comment.votes ? comment.votes.filter(
-  //     (vote) =>
-  //       vote.user_id === this.props.user.id &&
-  //       (vote.upvote === true || vote.downvote === true)
-  //   )[0] : null;
+  handleUpvote = (event, comment) => {
+    let vote = comment.votes.filter(vote => vote.user_id === this.props.user.id && (vote.upvote === true || vote.downvote === true))[0];
 
-  //   if (vote && (event.target.getAttribute("aria-pressed") === "true" || event.target.getAttribute("aria-pressed") === "false")) {
-  //     let deleteVote = {
-  //       id: vote.id,
-  //       upvote: false,
-  //       downvote: true,
-  //       user_id: this.props.user.id,
-  //       post_id: vote.post_id,
-  //       comment_id: vote.comment_id
-  //     }
+    if (vote) {
+      let deleteVote = {
+        id: vote.id,
+        upvote: false,
+        downvote: true,
+        user_id: this.props.user.id,
+        post_id: vote.post_id,
+        comment_id: vote.comment_id
+      }
   
-  //     this.props.deleteCommentVote(deleteVote)
-  //   } else if (event.target.name === 'upvote'){
-  //     let vote = {
-  //       upvote: true,
-  //       downvote: false,
-  //       user_id: this.props.user.id,
-  //       post_id: comment.post_id
-  //     }
+      this.props.deleteCommentVote(deleteVote)
+    } else if (event.target.name === 'upvote'){
+      let vote = {
+        upvote: true,
+        downvote: false,
+        user_id: this.props.user.id,
+        post_id: comment.post_id
+      }
   
-  //     this.props.addCommentVote(vote, comment.id)
-  //   } else if (event.target.name === 'downvote') {
-  //     let vote = {
-  //       upvote: false,
-  //       downvote: true,
-  //       user_id: this.props.user.id,
-  //       post_id: comment.post_id
-  //     }
+      this.props.addCommentVote(vote, comment.id)
+    } else if (event.target.name === 'downvote') {
+      let vote = {
+        upvote: false,
+        downvote: true,
+        user_id: this.props.user.id,
+        post_id: comment.post_id
+      }
   
-  //     this.props.addCommentVote(vote, comment.id)
-  //   }
-  //   }
+      this.props.addCommentVote(vote, comment.id)
+    }
+  }
     
-  //   handleDelete = (event) => {
-  //       this.props.deleteComment(this.props.comment)
-  //   }
+    // handleDelete = (event) => {
+    //     this.props.deleteComment(this.props.comment)
+    // }
 
   dateFormat = comment => {
     let dateDifferenceSeconds = (new Date().getTime() - new Date(comment.created_at).getTime()) / 1000;
@@ -101,7 +97,7 @@ class Comment extends React.Component {
           <button
             name="upvote"
             aria-pressed={ userUpvote > 0 ? true : false }
-            onClick={(event) => this.handleCommentUpvote(event, comment)}
+            onClick={(event) => this.handleUpvote(event, comment)}
           > 🡅
           </button>
                   
@@ -110,7 +106,7 @@ class Comment extends React.Component {
           <button
             name="downvote"
             aria-pressed={ userDownvote > 0 ? true : false }
-            onClick={(event) => this.handleCommentUpvote(event, comment)}
+            onClick={(event) => this.handleUpvote(event, comment)}
           > 🡇
           </button>
 
