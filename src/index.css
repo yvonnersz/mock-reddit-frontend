@@ -26,12 +26,6 @@ html body {
   .card:hover {
     border: 1px solid slategray;
   }
-
-  /* button[aria-pressed="true"] {
-    color: tomato;
-    background-color: #e2e2e4;
-    border-radius: 0.25em;
-} */
 }
 
 .comment-form {
@@ -114,3 +108,9 @@ html body {
   font-size: 1.3em;
   margin-left: -0.17em;
 }
+
+/* button[aria-pressed="true"] {
+  color: tomato;
+  background-color: #e2e2e4;
+  border-radius: 0.25em;
+} */
