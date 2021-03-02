@@ -2,26 +2,6 @@ html body {
   background-color:  #dae0e6;
 }
 
-.navbar {
-  background-color: white;
-}
-
-@media (min-width: 992px) {
-  .container-fluid {
-    width: 50%;
-  }
-
-  .card {
-    width: 50%;
-    margin: auto;
-    border: 1px solid #cdcece;
-  }
-
-  .post:hover {
-    border: 1px solid slategray;
-  }
-}
-
 .container-fluid {
   border: 0.05em solid #cdcece;
 }
@@ -86,4 +66,20 @@ button[aria-pressed="true"] {
 .comment-body {
   margin-top: -1.5em;
   margin-bottom: -1.5em;
+}
+
+@media (min-width: 992px) {
+  .container-fluid {
+    width: 50%;
+  }
+
+  .card {
+    width: 50%;
+    margin: auto;
+    border: 1px solid #cdcece;
+  }
+
+  .post:hover {
+    border: 1px solid slategray;
+  }
 }
