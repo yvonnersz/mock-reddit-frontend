@@ -81,6 +81,8 @@ class Post extends React.Component {
     let userUpvote = post.votes ? post.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)[0] : null;
     let userDownvote = post.votes ? post.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true)[0] : null;
 
+    let editLink = post.user_id === this.props.user.id ? 'Edit' : null;
+
     return (
       <div class="container-fluid bg-white rounded mt-3 post">
         <div class="row">
@@ -121,6 +123,10 @@ class Post extends React.Component {
             <div class="card-footer p-1">
               <Link to={`/posts/${post.id}/comments`}>
                 <span class='text-muted'>{postComments}</span>
+              </Link> &nbsp;
+
+              <Link to={`/posts/${post.id}/edit`}>
+                <span class='text-muted'>{editLink}</span>
               </Link>
             </div>
 
