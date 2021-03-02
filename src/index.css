@@ -82,3 +82,8 @@ button[aria-pressed="true"] {
   background-color: #e2e2e4;
   border-radius: 0.25em;
 }
+
+.comment-body {
+  margin-top: -1.5em;
+  margin-bottom: -1.5em;
+}

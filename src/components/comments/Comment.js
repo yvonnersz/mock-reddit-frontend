@@ -53,73 +53,74 @@ class Comment extends React.Component {
   //       this.props.deleteComment(this.props.comment)
   //   }
 
-    dateFormat = (post) => {
-        let date1 = new Date(post.created_at);
-        let date2 = new Date();
-    
-        let diffDate = date2.getTime() - date1.getTime();
-        let diffSecs = diffDate / 1000;
-    
-        if (diffSecs < 60) {
-          return Math.ceil(diffSecs) + " sec ago";
-        } else if (diffSecs / 60 < 60) {
-          return Math.ceil(diffSecs / 60) + " mins ago";
-        } else if (diffSecs / (60 * 60) < 24) {
-          return Math.ceil(diffSecs / (60 * 60)) + " hours ago";
-        } else if (diffSecs / (60 * 60 * 24) < 7) {
-          return Math.ceil(diffSecs / (60 * 60 * 24)) + " days ago";
-        } else if (diffSecs / (60 * 60 * 24 * 7) < 4) {
-          return Math.ceil(diffSecs / (60 * 60 * 24 * 7)) + " weeks ago";
-        } else if (diffSecs / (60 * 60 * 24 * 7 * 4) < 12) {
-          return Math.ceil(diffSecs / (60 * 60 * 24 * 7 * 4)) + " months ago";
-        } else {
-          return Math.ceil(diffSecs / (60 * 60 * 24 * 7 * 4 * 12)) + " years ago";
-        }
-      };
+  dateFormat = comment => {
+    let dateDifferenceSeconds = (new Date().getTime() - new Date(comment.created_at).getTime()) / 1000;
 
-    render() {
-      let upvote = this.props.comment.votes ? this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true) : null;
-      let downvote = this.props.comment.votes ? this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true) : null;
+    if (dateDifferenceSeconds < 60) {
+      return 'just now';
+    } else if (dateDifferenceSeconds < 3600) {
+      let dateDifferenceMinutes = Math.ceil(dateDifferenceSeconds / 60);
+      return dateDifferenceMinutes + " mins ago";
+    } else if (dateDifferenceSeconds < 86400) {
+      let dateDifferenceHours = Math.ceil(dateDifferenceSeconds / 3600);
+      return dateDifferenceHours + " hours ago";
+    } else if (dateDifferenceSeconds < 604800) {
+      let dateDifferenceDays = Math.ceil(dateDifferenceSeconds / 86400);
+      return  dateDifferenceDays + " days ago";
+    } else if (dateDifferenceSeconds < 29030400) {
+      let dateDifferenceMonths = Math.ceil(dateDifferenceSeconds / 2419200);
+      return dateDifferenceMonths + " months ago";
+    } else {
+      let dateDifferenceYears = Math.ceil(dateDifferenceSeconds / 29030400);
+      return dateDifferenceYears + " years ago";
+    }
+  };
 
-      return (
-        <div class='card mt-3'>
-          <div class='card-header'>
-              <span> {this.props.comment.user.username} </span>
-              <span class='text-muted'>{this.dateFormat(this.props.comment)}</span>
-          </div>
+  render() {
+    let comment = this.props.comment;
+    let upvote = this.props.comment.votes ? this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true) : null;
+    let downvote = this.props.comment.votes ? this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true) : null;
 
+    return (
+      <div class='card mt-3 p-1'>
+        <div class='card-header'>
+            <span> {comment.user.username} </span>
+            <span class='text-muted'>{this.dateFormat(comment)}</span>
+        </div>
+
+        <div class='card-body comment-body'>
           <div class='card-text'>
-            {this.props.comment.content}
-          </div>
-
-
-          <div class='card-footer text-muted'>
-
-            <button
-              aria-pressed={upvote && upvote.length > 0 ? true : false}
-              name="upvote"
-              onClick={(event) => this.handleCommentUpvote(event, this.props.comment)}
-            > 🡅
-            </button>
-                    
-            <span>{this.props.comment.votes ? this.props.comment.votes.filter((vote) => vote.upvote === true).length - this.props.comment.votes.filter((vote) => vote.downvote === true).length : 0}</span>&nbsp; 
-
-            <button
-              aria-pressed={downvote && downvote.length > 0 ? true : false}
-              name="downvote"
-              onClick={(event) => this.handleCommentUpvote(event, this.props.comment)}
-            > 🡇
-            </button>
-
-                    
-            {this.props.comment.user_id === this.props.user.id ? <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link> : null}
-
-            {this.props.comment.user_id === this.props.user.id ? <span onClick={this.handleDelete}><Link>Delete</Link></span> : null}
-            
+            {comment.content}
           </div>
         </div>
-        )
-    }
+
+        <div class='card-footer text-muted'>
+
+          <button
+            aria-pressed={upvote && upvote.length > 0 ? true : false}
+            name="upvote"
+            onClick={(event) => this.handleCommentUpvote(event, comment)}
+          > 🡅
+          </button>
+                  
+          <span>{this.props.comment.votes ? this.props.comment.votes.filter((vote) => vote.upvote === true).length - this.props.comment.votes.filter((vote) => vote.downvote === true).length : 0}</span>&nbsp; 
+
+          <button
+            aria-pressed={downvote && downvote.length > 0 ? true : false}
+            name="downvote"
+            onClick={(event) => this.handleCommentUpvote(event, comment)}
+          > 🡇
+          </button>
+
+                  
+          {this.props.comment.user_id === this.props.user.id ? <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link> : null}
+
+          {this.props.comment.user_id === this.props.user.id ? <span onClick={this.handleDelete}><Link>Delete</Link></span> : null}
+          
+        </div>
+      </div>
+    )
+  }
 }
 
 export default connect (null, { editComment, deleteComment, addCommentVote, deleteCommentVote })(Comment)
