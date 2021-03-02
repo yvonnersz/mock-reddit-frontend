@@ -82,7 +82,7 @@ class Post extends React.Component {
     let userDownvote = post.votes ? post.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true)[0] : null;
 
     return (
-      <div class="container-fluid bg-white rounded mt-3">
+      <div class="container-fluid bg-white rounded mt-3 post">
         <div class="row">
           <div class="col-1 rounded vote-buttons text-center">
       
@@ -105,7 +105,7 @@ class Post extends React.Component {
 
           </div>
 
-          <div class="col-11 card-body post-body">
+          <div class="col-11 card-body">
             <div class="card-header p-1">
               <span class='text-muted'>Posted by u/{post.user.username} {this.dateFormat(post)}</span>
             </div>

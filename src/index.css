@@ -17,12 +17,11 @@ html body {
     border: 1px solid #cdcece;
   }
 
-  /* .card:hover {
+  .post:hover {
     border: 1px solid slategray;
-  } */
+  }
 }
 
-/* FINALIZED BELOW */
 .container-fluid {
   border: 0.05em solid #cdcece;
 }
