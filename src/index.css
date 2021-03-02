@@ -2,11 +2,6 @@ html body {
   background-color:  #dae0e6;
 }
 
-/* .card-text a {
-  text-decoration: none;
-  color: black;
-} */
-
 .navbar {
   background-color: white;
 }
@@ -17,40 +12,14 @@ html body {
   }
 
   .card {
-    /* position: relative; */
     width: 50%;
     margin: auto;
     border: 1px solid #cdcece;
   }
 
-  .card:hover {
+  /* .card:hover {
     border: 1px solid slategray;
-  }
-}
-
-.comment-form {
-  padding: 1em;
-}
-
-.comment-submit {
-  float: right;
-}
-
-.comment {
-  padding: 0.5em;
-}
-
-.comment button {
-  border: none;
-  font-size: 2em;
-  background-color: transparent;
-  color: #878a8c;
-}
-
-.comment button[aria-pressed="true"] {
-  color: tomato;
-  /* background-color: #e2e2e4; */
-  border-radius: 0.25em;
+  } */
 }
 
 /* FINALIZED BELOW */
