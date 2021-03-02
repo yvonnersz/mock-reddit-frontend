@@ -32,17 +32,12 @@ class PostInput extends React.Component {
     };
 
     this.props.editPost(post);
-
-    this.setState({
-      content: ''
-    });
-    
     this.props.history.push(`/posts/${this.props.match.params.id}`);
   }
 
-  handlePostDelete = (post) => {
-    this.props.deletePost(post)
-    this.props.history.push('/')
+  handlePostDelete = post => {
+    this.props.deletePost(post);
+    this.props.history.push('/');
   }
 
   render() {
