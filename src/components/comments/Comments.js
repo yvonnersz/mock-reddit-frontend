@@ -1,17 +1,14 @@
-import React from 'react';
+import React from "react";
+import Comment from "./Comment";
 
-import Comment from './Comment';
+const Comments = ({ user, posts, idPost }) => {
+  let post = idPost ? posts.filter((post) => post.id === parseInt(idPost))[0] : null;
 
-const Comments = ({posts, postRouterId, user}) => {
+  return (
+    <>
+      { post.comments.map(comment => <Comment key={comment.id} user={user} post={post} comment={comment} />) }
+    </>
+  );
+};
 
-    let postId = parseInt(postRouterId)
-    let post = posts.filter(post => post.id === postId)[0]
-
-    return (
-        <div>
-            {post ? post.comments.map(comment => <Comment key={comment.id} comment={comment} post={post} user={user}/>):null}
-       </div>
-    )
-}
-
-export default Comments
+export default Comments;
