@@ -1,12 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-
 import {editComment} from '../../actions/comment/editComment';
 import {deleteComment} from '../../actions/comment/deleteComment';
 import {addCommentVote} from '../../actions/vote/addCommentVote';
 import {deleteCommentVote} from '../../actions/vote/deleteCommentVote';
-
 
 class Comment extends React.Component {
   // handleCommentUpvote = (event, comment) => {
@@ -77,9 +75,13 @@ class Comment extends React.Component {
   };
 
   render() {
-    let comment = this.props.comment;
-    let upvote = this.props.comment.votes ? this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true) : null;
-    let downvote = this.props.comment.votes ? this.props.comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true) : null;
+    let comment = this.props.comment ? this.props.comment : null;
+    let commentUpvotes = comment ? comment.votes.filter(vote => vote.upvote === true).length : 0;
+    let commentDownvotes = comment ? comment.votes.filter(vote => vote.downvote === true).length : 0;
+    let commentVoteDifference = commentUpvotes - commentDownvotes;
+    let userUpvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true) : null;
+    let userDownvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true) : null;
+    let editLink = this.props.comment.user_id === this.props.user.id ? <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link> : null;
 
     return (
       <div class='card mt-3 p-1'>
@@ -97,25 +99,22 @@ class Comment extends React.Component {
         <div class='card-footer text-muted'>
 
           <button
-            aria-pressed={upvote && upvote.length > 0 ? true : false}
             name="upvote"
+            aria-pressed={ userUpvote > 0 ? true : false }
             onClick={(event) => this.handleCommentUpvote(event, comment)}
           > 🡅
           </button>
                   
-          <span>{this.props.comment.votes ? this.props.comment.votes.filter((vote) => vote.upvote === true).length - this.props.comment.votes.filter((vote) => vote.downvote === true).length : 0}</span>&nbsp; 
+          <span> {commentVoteDifference} </span>
 
           <button
-            aria-pressed={downvote && downvote.length > 0 ? true : false}
             name="downvote"
+            aria-pressed={ userDownvote > 0 ? true : false }
             onClick={(event) => this.handleCommentUpvote(event, comment)}
           > 🡇
           </button>
 
-                  
-          {this.props.comment.user_id === this.props.user.id ? <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link> : null}
-
-          {this.props.comment.user_id === this.props.user.id ? <span onClick={this.handleDelete}><Link>Delete</Link></span> : null}
+          {editLink}
           
         </div>
       </div>
