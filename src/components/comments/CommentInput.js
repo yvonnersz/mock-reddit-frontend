@@ -1,57 +1,57 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import {addComment} from '../../actions/comment/addComment';
+import { addComment } from '../../actions/comment/addComment';
 
 class CommentInput extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            content: '',
-            user_id: ''
-        }
-    }
+  constructor() {
+    super();
+    this.state = {
+      content: ''
+    };
+  }
 
-    handleOnChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
+  handleOnChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
 
+  handleOnSubmit = event => {
+    event.preventDefault();
 
-    handleOnSubmit = event => {
-        event.preventDefault();
-        let idPost = parseInt(this.props.id);
-        
-        let comment = {...this.state, post_id: idPost, user_id: this.props.user ? this.props.user.id : null}
-        this.props.addComment(comment, idPost)
-        this.setState({
-            content: '',
-            user_id: ''
-        })
-    }
+    let comment = {
+      ...this.state,
+      post_id: parseInt(this.props.id),
+      user_id: this.props.user ? this.props.user.id : null
+    };
 
-    render() {
+    this.props.addComment(comment);
 
-        return (
-            <div class='card comment-form'>
-                {/* <div class='form-control'> */}
-                    <div class='mb-3'>
-                        <form onSubmit={this.handleOnSubmit}>
-                        <label for="exampleFormControlTextarea1" class="form-label">Comment as {this.props.user ? this.props.user.username : null}</label>
+    this.setState({
+      content: ''
+    });
+  };
 
-                            <textarea value={this.state.content} name='content' onChange={this.handleOnChange} placeholder='What are your thoughts?' rows="5" class="form-control" /><br/>
+  render() {
+    return (
+      <div class='container-fluid bg-white rounded m-3 p-3 mx-auto'>
+        <form onSubmit={this.handleOnSubmit}>
 
-                            <div class='comment-submit'>
-                            <input type='submit' value='Comment'/>
+          <label for='exampleFormControlTextarea1' class='form-label text-muted'>
+            Comment as {this.props.user ? this.props.user.username : null}
+          </label>
 
-                            </div>
-                        </form>
-                    </div>
-                {/* </div> */}
-            </div>
-        )
-    }
+          <textarea class='form-control' placeholder='What are your thoughts?' name='content' rows='5' value={this.state.content} onChange={this.handleOnChange} />
+
+          <div class='d-grid mt-1'>
+            <input type='submit' class='btn btn-primary' value='Comment' />
+          </div>
+
+        </form>
+      </div>
+    );
+  }
 }
 
-export default connect(null, {addComment})(CommentInput)
+export default connect(null, { addComment })(CommentInput);

@@ -1,6 +1,6 @@
-export const addComment = (comment, postId) => {
+export const addComment = (comment) => {
     return(dispatch) => {
-        fetch(`http://localhost:3000/api/v1/posts/${postId}/comments`, {
+        fetch(`http://localhost:3000/api/v1/posts/${comment.post_id}/comments`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
