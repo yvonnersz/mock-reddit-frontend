@@ -1,26 +1,19 @@
-import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 
-class NavBar extends React.Component {
+const NavBar = props => {
+  let loginLinks = props.user ? <Link to="/logout" onClick={props.handleLogOut}>Logout</Link> : <><Link to="/register">Register</Link><Link to="/login">Login</Link></>;
 
-  render() {
-    return (
-      <nav class="navbar sticky-top">
-        <Link to="/">Home</Link>
+  return (
+    <nav class="navbar sticky-top bg-light">
 
-        {this.props.user ? <Link to="/logout" onClick={this.props.handleLogOut}>Logout</Link> : 
-          <>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link> 
-          </>
-        }
+      <Link to="/">Home</Link>
 
+      { loginLinks }
 
-        
-      </nav>
-    );
-  }
+    </nav>
+  )
 }
+
 
 export default NavBar;
