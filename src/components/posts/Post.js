@@ -41,11 +41,6 @@ class Post extends React.Component {
     }
   };
 
-  // handleDelete = (post) => {
-  //   this.props.deletePost(post);
-  //   this.props.history.push("/posts");
-  // };
-
   dateFormat = (post) => {
     let dateDifferenceSeconds = (new Date().getTime() - new Date(post.created_at).getTime()) / 1000;
 
@@ -72,22 +67,19 @@ class Post extends React.Component {
   render() {
     let post;
     this.props.match ? post = this.props.posts.filter(post => post.id === parseInt(this.props.match.params.id))[0] : post = this.props.post;
-
     let postUpvotes = post.votes ? post.votes.filter(vote => vote.upvote === true).length : 0;
     let postDownvotes = post.votes ? post.votes.filter(vote => vote.downvote === true).length : 0;
     let upvotesDifference = postUpvotes - postDownvotes;
     let postComments = post.comments.length === 1 ? `${post.comments.length}` + ' Comment': `${post.comments.length}` + ' Comments';
-
     let userUpvote = post.votes ? post.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)[0] : null;
     let userDownvote = post.votes ? post.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true)[0] : null;
-
     let editLink = post.user_id === this.props.user.id ? 'Edit' : null;
 
     return (
       <div class="container-fluid bg-white rounded mt-3 post">
         <div class="row">
+          
           <div class="col-1 rounded vote-buttons text-center">
-      
             <button 
               class='mt-2'
               name="upvote"
@@ -104,7 +96,6 @@ class Post extends React.Component {
               aria-pressed={ this.props.user && userDownvote ? true : false}
             > 🡇 
             </button>
-
           </div>
 
           <div class="col-11 card-body">
@@ -129,8 +120,8 @@ class Post extends React.Component {
                 <span class='text-muted'>{editLink}</span>
               </Link>
             </div>
-
           </div>
+
         </div>
       </div>
     );
