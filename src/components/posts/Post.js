@@ -71,13 +71,11 @@ class Post extends React.Component {
 
   render() {
     let post;
-    let id = this.props.match ? this.props.match.params.id : null;
-    this.props.match ? post = this.props.posts.filter(post => post.id === parseInt(id))[0] : post = this.props.post;
+    this.props.match ? post = this.props.posts.filter(post => post.id === parseInt(this.props.match.params.id))[0] : post = this.props.post;
 
     let postUpvotes = post.votes ? post.votes.filter(vote => vote.upvote === true).length : 0;
     let postDownvotes = post.votes ? post.votes.filter(vote => vote.downvote === true).length : 0;
     let upvotesDifference = postUpvotes - postDownvotes;
-
     let postComments = post.comments.length === 1 ? `${post.comments.length}` + ' Comment': `${post.comments.length}` + ' Comments';
 
     let userUpvote = post.votes ? post.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)[0] : null;
