@@ -109,8 +109,8 @@ html body {
   margin-left: -0.17em;
 }
 
-/* button[aria-pressed="true"] {
+button[aria-pressed="true"] {
   color: tomato;
   background-color: #e2e2e4;
   border-radius: 0.25em;
-} */
+}

@@ -79,7 +79,10 @@ class Post extends React.Component {
     let upvotesDifference = postUpvotes - postDownvotes;
 
     let postComments = post.comments.length === 1 ? `${post.comments.length}` + ' Comment': `${post.comments.length}` + ' Comments';
-    
+
+    let userUpvote = post.votes ? post.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true)[0] : null;
+    let userDownvote = post.votes ? post.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true)[0] : null;
+
     return (
       <div class="container-fluid bg-white rounded mt-3">
         <div class="row">
@@ -89,7 +92,7 @@ class Post extends React.Component {
               class='mt-2'
               name="upvote"
               onClick={ event => this.handleVote(event, post) }
-              // aria-pressed={this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.upvote === true)[0] ? true : false}
+              aria-pressed={this.props.user && userUpvote ? true : false}
             > 🡅 
             </button>
 
@@ -98,7 +101,7 @@ class Post extends React.Component {
             <button 
               name="downvote"
               onClick={ event => this.handleVote(event, post) }
-              // aria-pressed={ this.props.user && post.votes.filter((vote) => vote.user_id === this.props.user.id && vote.downvote === true)[0] ? true : false}
+              aria-pressed={ this.props.user && userDownvote ? true : false}
             > 🡇 
             </button>
 
