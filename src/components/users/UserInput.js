@@ -39,14 +39,28 @@ class UserInput extends React.Component {
 
   render() {
     return (
-      <div class="card">
-        <div class="card-body">
+      <div class='modal fade' id='signup-modal' tabindex='-1' aria-hidden='true'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+
+          <div class='modal-header'>
+            <h5 class='modal-title'>
+              Register
+            </h5>
+
+            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+          </div>
+
+          <div class='modal-body'>
+          <div class='form-group'>
+
           <form onSubmit={this.handleSubmit}>
-            <input
+             <input
               type="text"
               name="username"
               placeholder="Enter in a username"
               onChange={this.handleOnChange}
+              class='form-control mb-1'
             ></input>
 
             <input
@@ -54,6 +68,7 @@ class UserInput extends React.Component {
               name="password"
               placeholder="Enter password"
               onChange={this.handleOnChange}
+              class='form-control mb-1'
             ></input>
 
             <input
@@ -61,12 +76,22 @@ class UserInput extends React.Component {
               name="password_confirmation"
               placeholder="Enter password"
               onChange={this.handleOnChange}
+              class='form-control mb-1'
             ></input>
 
-            <input type="submit" value="Register"></input>
           </form>
+          </div>
+          </div>
+
+          <div class='modal-footer'>
+            <button type='submit' class='btn btn-primary' data-bs-dismiss='modal'>
+              Register
+            </button>
+          </div>
+
         </div>
       </div>
+    </div>
     );
   }
 }

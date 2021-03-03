@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import UserLogin from './users/UserLogin';
+import UserInput from './users/UserInput';
 
 const NavBar = props => {
   let register = !props.user ? 'Register' : null;
@@ -21,6 +22,10 @@ const NavBar = props => {
         Log In
       </button>
 
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup-modal">
+        Sign Up
+      </button>
+
       {/* <Link to='/register'>
         <span>{register}</span>
       </Link>
@@ -31,6 +36,7 @@ const NavBar = props => {
 
     </nav>
     <UserLogin />
+    <UserInput />
     </>
   )
 }
