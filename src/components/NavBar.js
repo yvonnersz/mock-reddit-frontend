@@ -2,18 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = props => {
-  let logoutLink = props.user ? <Link to="/logout" onClick={props.handleLogOut}>Logout</Link> : null;
-  let registerLink = !props.user ? <Link to="/register">Register</Link> : null;
-  let loginLink = !props.user ? <Link to="/login">Login</Link> : null;
+  let register = !props.user ? 'Register' : null;
+  let login = !props.user ? 'Login' : null;
+  let logout = props.user ? 'Logout' : null;
 
   return (
     <nav class="navbar sticky-top bg-light">
 
       <Link to="/">Home</Link>
 
-      { logoutLink }
-      { registerLink }
-      { loginLink }
+      <Link to='/register'>
+        <span>{register}</span>
+      </Link>
+
+      <Link to='/login'>
+        <span>{login}</span>
+      </Link>
+
+      <Link to='/login' onClick={props.handleLogOut}>
+        <span>{logout}</span>
+      </Link>
 
     </nav>
   )
