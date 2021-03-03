@@ -33,8 +33,6 @@ class UserInput extends React.Component {
       },
       { withCredentials: true }
     );
-
-    this.props.history.push("/");
   };
 
   render() {
@@ -79,15 +77,19 @@ class UserInput extends React.Component {
               class='form-control mb-1'
             ></input>
 
+<div class="d-grid mt-1">
+              <input type='submit' class='btn btn-primary' value='Register' />
+            </div>
+
           </form>
           </div>
           </div>
 
-          <div class='modal-footer'>
+          {/* <div class='modal-footer'>
             <button type='submit' class='btn btn-primary' data-bs-dismiss='modal'>
               Register
             </button>
-          </div>
+          </div> */}
 
         </div>
       </div>
