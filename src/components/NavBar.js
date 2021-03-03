@@ -18,17 +18,21 @@ const NavBar = props => {
         <span>{login}</span>
       </Link> */}
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login-modal">
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+
+      <button type="button" class="btn btn-outline-primary rounded-pill pl-5 pr-5" data-bs-toggle="modal" data-bs-target="#login-modal">
         Log In
       </button>
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup-modal">
+      <button type="button" class="btn btn-primary rounded-pill pl-5 pr-5" data-bs-toggle="modal" data-bs-target="#signup-modal">
         Sign Up
       </button>
 
-      <button type="button" class="btn btn-primary" onClick={props.handleLogOut}>
+      <button type="button" class="btn btn-outline-primary rounded-pill pl-5 pr-5" onClick={props.handleLogOut}>
         Log Out
       </button>
+      </div>
 
       {/* <Link to='/register'>
         <span>{register}</span>
