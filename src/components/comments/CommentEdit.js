@@ -1,51 +1,62 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import {editComment} from '../../actions/comment/editComment';
+import { editComment } from "../../actions/comment/editComment";
 
 class CommentEdit extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            content: '',
-        }
-    }
+  constructor(props) {
+    super(props);
 
-    handleOnChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
+    let idPost = parseInt(props.match.url.split("/")[2]);
+    let post = props.posts.filter(post => post.id === idPost)[0];
+    let comment = post.comments.filter(comment => comment.id === parseInt(props.match.params.id))[0];
 
-    handleOnSubmit = event => {
-        event.preventDefault();
+    this.state = {
+      content: comment.content
+    };
+  }
 
-        let commentId = parseInt(this.props.match.params.id)
-        let post = this.props.posts.filter(post => post.comments.find(comment => comment.id === commentId))[0]
-        let comment = {...this.state, post_id: post.id, id: commentId}
+  handleOnChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
 
-        this.props.editComment(comment, post)
-        this.setState({
-            content: '',
-        })
-        
-        this.props.history.push(`/posts/${post.id}/comments`)
-    }
+  handleOnSubmit = (event) => {
+    event.preventDefault();
 
-    render() {
-        return (
-            <div class='container-fluid text-center'>
-                <div class='row content new-comment'>
-                    <div class='col-lg-8 text-left'>
-                        <form onSubmit={this.handleOnSubmit}>
-                            <textarea value={this.state.content} name='content' onChange={this.handleOnChange} placeholder='What are your thoughts?' rows="5" class="form-control" /><br/>
-                            <input type='submit' />
-                        </form>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+    let commentId = parseInt(this.props.match.params.id);
+    let post = this.props.posts.filter(post => post.comments.find(comment => comment.id === commentId))[0];
+    
+    let comment = { 
+        ...this.state, 
+        post_id: post.id, 
+        id: commentId 
+    };
+
+    this.props.editComment(comment, post);
+    this.props.history.push(`/posts/${post.id}/comments`);
+  };
+
+  render() {
+    return (
+      <div class="container-fluid bg-white rounded m-3 p-3 mx-auto">
+        <form onSubmit={this.handleOnSubmit}>
+
+          <label for="exampleFormControlTextarea1" class="form-label text-muted">
+            Edit Comment as {this.props.user ? this.props.user.username : null}
+          </label>
+
+          <textarea class="form-control" placeholder="What are your thoughts?" name="content" rows="5" value={this.state.content} onChange={this.handleOnChange} />
+
+          <div class="d-grid mt-1">
+            <input type="submit" class="btn btn-primary" value="Comment" />
+          </div>
+          
+        </form>
+      </div>
+    );
+  }
 }
 
-export default connect(null, {editComment})(CommentEdit)
+export default connect(null, { editComment })(CommentEdit);
