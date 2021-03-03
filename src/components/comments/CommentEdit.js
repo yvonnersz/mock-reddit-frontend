@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { editComment } from "../../actions/comment/editComment";
+import { deleteComment } from "../../actions/comment/deleteComment";
 
 class CommentEdit extends React.Component {
   constructor(props) {
@@ -38,7 +39,16 @@ class CommentEdit extends React.Component {
     this.props.history.push(`/posts/${post.id}/comments`);
   };
 
+  handleCommentDelete = comment => {
+    this.props.deleteComment(comment);
+    this.props.history.push(`/posts/${comment.post_id}/comments`);
+  }
+
   render() {
+    let idPost = parseInt(this.props.match.url.split("/")[2]);
+    let post = this.props.posts.filter(post => post.id === idPost)[0];
+    let comment = post.comments.filter(comment => comment.id === parseInt(this.props.match.params.id))[0];
+
     return (
       <div class="container-fluid bg-white rounded m-3 p-3 mx-auto">
         <form onSubmit={this.handleOnSubmit}>
@@ -51,6 +61,7 @@ class CommentEdit extends React.Component {
 
           <div class="d-grid mt-1">
             <input type="submit" class="btn btn-primary" value="Comment" />
+            <input type='delete' class='btn btn-primary mt-1' value='Delete Comment' onClick={event => this.handleCommentDelete(comment)} />
           </div>
           
         </form>
@@ -59,4 +70,4 @@ class CommentEdit extends React.Component {
   }
 }
 
-export default connect(null, { editComment })(CommentEdit);
+export default connect(null, { editComment, deleteComment })(CommentEdit);

@@ -42,11 +42,7 @@ class Comment extends React.Component {
       this.props.addCommentVote(vote, comment.id)
     }
   }
-    
-    // handleDelete = (event) => {
-    //     this.props.deleteComment(this.props.comment)
-    // }
-
+  
   dateFormat = comment => {
     let dateDifferenceSeconds = (new Date().getTime() - new Date(comment.created_at).getTime()) / 1000;
 
