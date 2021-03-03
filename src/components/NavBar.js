@@ -26,6 +26,10 @@ const NavBar = props => {
         Sign Up
       </button>
 
+      <button type="button" class="btn btn-primary" onClick={props.handleLogOut}>
+        Log Out
+      </button>
+
       {/* <Link to='/register'>
         <span>{register}</span>
       </Link>
@@ -35,7 +39,7 @@ const NavBar = props => {
       </Link> */}
 
     </nav>
-    <UserLogin />
+    <UserLogin handleLogin={props.handleLogin} />
     <UserInput />
     </>
   )

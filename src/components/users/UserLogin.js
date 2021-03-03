@@ -19,7 +19,6 @@ class UserLogin extends React.Component {
     event.preventDefault();
     const { username, password } = this.state;
     this.props.handleLogin(username, password);
-    this.props.history.push('/');
   };
 
   render() {
@@ -42,16 +41,18 @@ class UserLogin extends React.Component {
 
                   <input type='text' class='form-control mb-1' name='username' placeholder='Enter username' onChange={this.handleOnChange} />
                   <input type='password' class='form-control mb-1' name='password' placeholder='Enter password' onChange={this.handleOnChange} />
-                  
+                  <div class="d-grid mt-1">
+              <input type='submit' class='btn btn-primary' value='Login' data-bs-dismiss='modal' />
+            </div>
                 </form>
               </div>
             </div>
-
+{/* 
             <div class='modal-footer'>
               <button type='submit' class='btn btn-primary' data-bs-dismiss='modal'>
                 Login
               </button>
-            </div>
+            </div> */}
 
           </div>
         </div>

@@ -21,7 +21,7 @@ class PostsContainer extends React.Component {
     render() {
         return (
             <div>
-                <NavBar user={this.props.user} handleLogOut={this.props.handleLogOut} />
+                <NavBar user={this.props.user} handleLogin={this.props.handleLogin} handleLogOut={this.props.handleLogOut} />
 
                 <Switch>
                     <Route exact path='/' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} user={this.props.user} />} />
