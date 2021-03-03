@@ -77,8 +77,8 @@ class Comment extends React.Component {
     let commentVoteDifference = commentUpvotes - commentDownvotes;
     let userUpvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true && vote.comment_id === comment.id)[0] : null;
     let userDownvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true && vote.comment_id === comment.id)[0] : null;
-    let editLink = this.props.comment.user_id === this.props.user.id ? <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link> : null;
-    console.log(userUpvote)
+    let editLink = this.props.comment.user_id === this.props.user.id ? 'Edit' : null;
+
     return (
       <div class='card mt-3 p-1'>
         <div class='card-header'>
@@ -110,8 +110,10 @@ class Comment extends React.Component {
           > 🡇
           </button>
 
-          {editLink}
-          
+          <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>
+            <span class='text-muted'>{editLink}</span>
+          </Link> &nbsp;
+      
         </div>
       </div>
     )
