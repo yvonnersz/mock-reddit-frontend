@@ -72,13 +72,13 @@ class Comment extends React.Component {
 
   render() {
     let comment = this.props.comment ? this.props.comment : null;
-    let commentUpvotes = comment ? comment.votes.filter(vote => vote.upvote === true).length : 0;
-    let commentDownvotes = comment ? comment.votes.filter(vote => vote.downvote === true).length : 0;
+    let commentUpvotes = comment ? comment.votes.filter(vote => vote.upvote === true && vote.comment_id === comment.id).length : 0;
+    let commentDownvotes = comment ? comment.votes.filter(vote => vote.downvote === true && vote.comment_id === comment.id).length : 0;
     let commentVoteDifference = commentUpvotes - commentDownvotes;
-    let userUpvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true) : null;
-    let userDownvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true) : null;
+    let userUpvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true && vote.comment_id === comment.id)[0] : null;
+    let userDownvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true && vote.comment_id === comment.id)[0] : null;
     let editLink = this.props.comment.user_id === this.props.user.id ? <Link to={`/posts/${this.props.comment.post_id}/comments/${this.props.comment.id}/edit`}>Edit</Link> : null;
-
+    console.log(userUpvote)
     return (
       <div class='card mt-3 p-1'>
         <div class='card-header'>
@@ -96,7 +96,7 @@ class Comment extends React.Component {
 
           <button
             name="upvote"
-            aria-pressed={ userUpvote > 0 ? true : false }
+            aria-pressed={ userUpvote ? true : false }
             onClick={(event) => this.handleUpvote(event, comment)}
           > 🡅
           </button>
@@ -105,7 +105,7 @@ class Comment extends React.Component {
 
           <button
             name="downvote"
-            aria-pressed={ userDownvote > 0 ? true : false }
+            aria-pressed={ userDownvote ? true : false }
             onClick={(event) => this.handleUpvote(event, comment)}
           > 🡇
           </button>
