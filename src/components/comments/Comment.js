@@ -71,9 +71,9 @@ class Comment extends React.Component {
     let commentUpvotes = comment ? comment.votes.filter(vote => vote.upvote === true && vote.comment_id === comment.id).length : 0;
     let commentDownvotes = comment ? comment.votes.filter(vote => vote.downvote === true && vote.comment_id === comment.id).length : 0;
     let commentVoteDifference = commentUpvotes - commentDownvotes;
-    let userUpvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true && vote.comment_id === comment.id)[0] : null;
-    let userDownvote = comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true && vote.comment_id === comment.id)[0] : null;
-    let editLink = this.props.comment.user_id === this.props.user.id ? 'Edit' : null;
+    let userUpvote = this.props.user && comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true && vote.comment_id === comment.id)[0] : null;
+    let userDownvote = this.props.user && comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true && vote.comment_id === comment.id)[0] : null;
+    let editLink = this.props.user && this.props.comment.user_id === this.props.user.id ? 'Edit' : null;
 
     return (
       <div class='card mt-3 p-1'>
