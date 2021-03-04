@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 
 import Post from '../components/posts/Post';
 import PostEdit from '../components/posts/PostEdit';
@@ -37,6 +37,9 @@ class PostsContainer extends React.Component {
                     } />
                     <Route path='/posts/:id/edit' render={(routerProps) => <PostEdit {...routerProps} posts={this.props.posts} />} />
                     <Route path='/posts/:id' render={(routerProps) => <><Post {...routerProps} posts={this.props.posts} user={this.props.user}/></>} />
+                    <Route exact path='/logout'>
+                        <Redirect to='/' />
+                    </Route>
                 </Switch>
             </div>
         )
