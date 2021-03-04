@@ -68,7 +68,10 @@ class Posts extends React.Component {
         <div class='container-fluid bg-white rounded m-3 p-3 mx-auto'>
           <div class='input-group'>
 
-            <input type='text' class='form-control p-3' id='new-post-input' placeholder='Create Post' onClick={() => this.props.history.push('/posts/new')} />
+            <input type='text' class='form-control p-3' id='new-post-input' placeholder='Create Post' onClick={this.props.user ? () => this.props.history.push('/posts/new') : null} 
+                          data-bs-toggle={!this.props.user ? 'modal' : null}
+                          data-bs-target={!this.props.user ? '#login-modal' : null}
+            />
 
           </div>
         </div>

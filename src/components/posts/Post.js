@@ -9,6 +9,7 @@ import { deleteVote } from "../../actions/vote/deleteVote";
 
 class Post extends React.Component {
 
+
   handleVote = (event, post) => {
     let user = this.props.user ? this.props.user.id : null;
     let vote = post.votes.filter(vote => vote.user_id === this.props.user.id && (vote.upvote === true || vote.downvote === true))[0];
@@ -83,8 +84,10 @@ class Post extends React.Component {
             <button 
               class='mt-2'
               name="upvote"
-              onClick={ event => this.handleVote(event, post) }
+              onClick={ this.props.user ? event => this.handleVote(event, post) : null }
               aria-pressed={this.props.user && userUpvote ? true : false}
+              data-bs-toggle={!this.props.user ? 'modal' : null}
+              data-bs-target={!this.props.user ? '#login-modal' : null}
             > 🡅 
             </button>
 
@@ -92,8 +95,10 @@ class Post extends React.Component {
           
             <button 
               name="downvote"
-              onClick={ event => this.handleVote(event, post) }
+              onClick={ this.props.user ? event => this.handleVote(event, post) : null }
               aria-pressed={ this.props.user && userDownvote ? true : false}
+              data-bs-toggle={!this.props.user ? 'modal' : null}
+              data-bs-target={!this.props.user ? '#login-modal' : null}
             > 🡇 
             </button>
           </div>

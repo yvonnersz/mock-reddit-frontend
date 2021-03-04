@@ -93,7 +93,9 @@ class Comment extends React.Component {
           <button
             name="upvote"
             aria-pressed={ userUpvote ? true : false }
-            onClick={(event) => this.handleUpvote(event, comment)}
+            onClick={this.props.user ? (event) => this.handleUpvote(event, comment) : null }
+            data-bs-toggle={!this.props.user ? 'modal' : null}
+            data-bs-target={!this.props.user ? '#login-modal' : null}
           > 🡅
           </button>
                   
@@ -102,7 +104,9 @@ class Comment extends React.Component {
           <button
             name="downvote"
             aria-pressed={ userDownvote ? true : false }
-            onClick={(event) => this.handleUpvote(event, comment)}
+            onClick={this.props.user ? (event) => this.handleUpvote(event, comment) : null}
+            data-bs-toggle={!this.props.user ? 'modal' : null}
+            data-bs-target={!this.props.user ? '#login-modal' : null}
           > 🡇
           </button>
 

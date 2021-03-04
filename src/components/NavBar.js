@@ -21,9 +21,6 @@ const NavBar = props => {
         </div>
 
       </nav>
-
-      <UserLogin handleLogin={props.handleLogin} user={props.user}/>
-      <UserInput />
     </>
   )
 }

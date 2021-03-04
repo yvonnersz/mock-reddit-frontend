@@ -37,10 +37,14 @@ class PostsContainer extends React.Component {
                     } />
                     <Route path='/posts/:id/edit' render={(routerProps) => <PostEdit {...routerProps} posts={this.props.posts} />} />
                     <Route path='/posts/:id' render={(routerProps) => <><Post {...routerProps} posts={this.props.posts} user={this.props.user}/></>} />
-                    <Route exact path='/logout'>
+                    {/* <Route exact path='/logout'>
                         <Redirect to='/' />
-                    </Route>
+                    </Route> */}
                 </Switch>
+
+                <UserLogin handleLogin={this.props.handleLogin} user={this.props.user}/>
+                <UserInput />
+                
             </div>
         )
     }

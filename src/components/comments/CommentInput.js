@@ -36,7 +36,21 @@ class CommentInput extends React.Component {
   render() {
     return (
       <div class='container-fluid bg-white rounded m-3 p-3 mx-auto'>
-        <form onSubmit={this.handleOnSubmit}>
+        {this.props.user ? <> <form onSubmit={this.handleOnSubmit}>
+
+<label for='exampleFormControlTextarea1' class='form-label text-muted'>
+  Comment as {this.props.user ? this.props.user.username : null}
+</label>
+
+<textarea class='form-control' placeholder='What are your thoughts?' name='content' rows='5' value={this.state.content} onChange={this.handleOnChange} />
+
+<div class='d-grid mt-1'>
+  <input type='submit' class='btn btn-primary' value='Comment'
+  />
+</div>
+
+</form></> : 'LOG IN OR SIGN UP TO LEAVE A COMMENT'}
+        {/* <form onSubmit={this.handleOnSubmit}>
 
           <label for='exampleFormControlTextarea1' class='form-label text-muted'>
             Comment as {this.props.user ? this.props.user.username : null}
@@ -45,10 +59,11 @@ class CommentInput extends React.Component {
           <textarea class='form-control' placeholder='What are your thoughts?' name='content' rows='5' value={this.state.content} onChange={this.handleOnChange} />
 
           <div class='d-grid mt-1'>
-            <input type='submit' class='btn btn-primary' value='Comment' />
+            <input type='submit' class='btn btn-primary' value='Comment'
+            />
           </div>
 
-        </form>
+        </form> */}
       </div>
     );
   }
