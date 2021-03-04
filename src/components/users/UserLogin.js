@@ -20,6 +20,7 @@ class UserLogin extends React.Component {
     console.log('madeit')
     const { username, password } = this.state;
     this.props.handleLogin(username, password);
+    event.target.reset();
   };
 
   render() {
@@ -44,13 +45,16 @@ class UserLogin extends React.Component {
                   <input type='password' class='form-control mb-1' name='password' placeholder='Enter password' onChange={this.handleOnChange} />
 
                   {this.props.user ? 
-                  <div class="alert alert-success" role="alert">
-                    Successfully logged in.
+                  <div class="alert alert-success mt-2 mb-2" role="alert">
+                    Successfully logged in as {this.props.user.username}
                   </div> : null}
 
-                  <div class="d-grid mt-1">
+
+                  <div class="d-grid">
                     <input type='submit' class='btn btn-primary' value='Login' />
                   </div>
+
+
                 </form>
               </div>
             </div>
