@@ -42,9 +42,15 @@ class UserLogin extends React.Component {
 
                   <input type='text' class='form-control mb-1' name='username' placeholder='Enter username' onChange={this.handleOnChange} />
                   <input type='password' class='form-control mb-1' name='password' placeholder='Enter password' onChange={this.handleOnChange} />
+
+                  {this.props.user ? 
+                  <div class="alert alert-success" role="alert">
+                    Successfully logged in.
+                  </div> : null}
+
                   <div class="d-grid mt-1">
-              <input type='submit' class='btn btn-primary' value='Login' />
-            </div>
+                    <input type='submit' class='btn btn-primary' value='Login' />
+                  </div>
                 </form>
               </div>
             </div>

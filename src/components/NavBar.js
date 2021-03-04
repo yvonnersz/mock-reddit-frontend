@@ -22,7 +22,7 @@ const NavBar = props => {
 
       </nav>
 
-      <UserLogin handleLogin={props.handleLogin} />
+      <UserLogin handleLogin={props.handleLogin} user={props.user}/>
       <UserInput />
     </>
   )
