@@ -49,3 +49,4 @@ BUGS
 [x] Fix upvote/downvote column for bigger screens.
 [x] New comments will be on top.
 [x] Fix edit screen comment link.
+[x] Fix upvote/downvote comments so containers will not move around.
