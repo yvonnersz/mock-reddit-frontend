@@ -6,7 +6,7 @@ const Comments = ({ user, posts, idPost }) => {
 
   return (
     <>
-      { post.comments.map(comment => <Comment key={comment.id} user={user} post={post} comment={comment} />) }
+      { post.comments.reverse().map(comment => <Comment key={comment.id} user={user} post={post} comment={comment} />) }
     </>
   );
 };
