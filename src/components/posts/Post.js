@@ -109,7 +109,9 @@ class Post extends React.Component {
             </div>
 
             <div class="card-title">
-              <span><Link to={`/posts/${post.id}/comments`}>{post.title}</Link></span>
+              <span>
+                <Link to={`/posts/${post.id}/comments`}>{post.title}</Link>
+              </span>
             </div>
 
             <div class="card-text">
