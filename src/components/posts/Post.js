@@ -91,7 +91,7 @@ class Post extends React.Component {
             > 🡅 
             </button>
 
-            <span>{upvotesDifference}</span>
+            <span class="col-1">{upvotesDifference}</span>
           
             <button 
               name="downvote"
