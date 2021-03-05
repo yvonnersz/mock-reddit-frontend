@@ -58,7 +58,7 @@ export default function postsReducer(state = { posts: [] }, action) {
             // slice post comments GIVES UPDATED COMMENTS {post comments}
             let sliceUpvote = post.comments.slice(0, indexUpvote).concat(addCommentVote).concat(post.comments.slice(indexUpvote + 1))
             // update post
-            let updatedUpvotePost = {...post, comments: sliceUpvote}
+            let updatedUpvotePost = {...post, comments: sliceUpvote.reverse()}
             // slice all posts and replace with updated post
             let indexofAllPosts = state.posts.findIndex(post => post.id === action.payload.post_id);
             let updatedPostsUpvote = state.posts.slice(0, indexofAllPosts).concat(updatedUpvotePost).concat(state.posts.slice(indexofAllPosts + 1))
@@ -72,7 +72,7 @@ export default function postsReducer(state = { posts: [] }, action) {
             let commentVotes = {...deletePostComment, votes: sliceDeleteVotes}
             let indexCommentDownvote = deletePost.comments.findIndex(comment => comment.id === action.payload.comment_id)
             let downvotePostComments = deletePost.comments.slice(0, indexCommentDownvote).concat(commentVotes).concat(deletePost.comments.slice(indexCommentDownvote + 1))
-            let downvotePostCommentsVotes = {...deletePost, comments: downvotePostComments}
+            let downvotePostCommentsVotes = {...deletePost, comments: downvotePostComments.reverse()}
             let indexDownvoteAllPosts = state.posts.findIndex(post => post.id === action.payload.post_id)
             let combinationDownvotePosts = state.posts.slice(0, indexDownvoteAllPosts).concat(downvotePostCommentsVotes).concat(state.posts.slice(indexDownvoteAllPosts + 1))
             return {...state, posts: combinationDownvotePosts}
