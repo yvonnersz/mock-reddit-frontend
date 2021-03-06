@@ -43,7 +43,7 @@ BUGS
 
 03.04;
 [] Registration validation error messages.
-[] Login validation error messages.
+[x] Login validation error messages.
 [x] Persist props upon page refresh.
 [] Change 'home' logo to something more professional.
 [x] Fix upvote/downvote column for bigger screens.
