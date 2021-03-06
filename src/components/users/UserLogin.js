@@ -17,10 +17,14 @@ class UserLogin extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log('madeit')
     const { username, password } = this.state;
     this.props.handleLogin(username, password);
     event.target.reset();
+
+    this.setState({
+      username: '',
+      password: ''
+    })
   };
 
   render() {
@@ -49,7 +53,12 @@ class UserLogin extends React.Component {
                     Successfully logged in as {this.props.user.username}
                   </div> : null}
 
-
+                  
+                  {this.props.loginError ? 
+                  <div class="alert alert-danger" role="alert">
+                    Invalid credentials. Please try again.
+                  </div> : null}
+                
                   <div class="d-grid">
                     <input type='submit' class='btn btn-primary' value='Login' />
                   </div>

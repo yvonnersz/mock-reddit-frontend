@@ -42,7 +42,7 @@ class PostsContainer extends React.Component {
                     </Route> */}
                 </Switch>
 
-                <UserLogin handleLogin={this.props.handleLogin} user={this.props.user}/>
+                <UserLogin handleLogin={this.props.handleLogin} user={this.props.user} loginError={this.props.loginError}/>
                 <UserInput />
                 
             </div>

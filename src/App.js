@@ -7,7 +7,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: ''
+      user: '',
+      loginError: ''
     }
 
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -37,9 +38,16 @@ class App extends React.Component {
       { withCredentials: true }
     )
     .then(response => {
-      this.setState({
-        user: response.data.user
-      })
+      if (response.data.error) {
+        this.setState({
+          loginError: response.data.error
+        })
+      } else {
+        this.setState({
+          user: response.data.user,
+          loginError: ''
+        })
+      }
     })
     // .then(response => console.log(response))
   }
@@ -60,7 +68,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <PostsContainer user={this.state.user} handleLogOut={this.handleLogOut} handleLogin={this.handleLogin} />
+        <PostsContainer user={this.state.user} loginError={this.state.loginError} handleLogOut={this.handleLogOut} handleLogin={this.handleLogin} />
       </div>
     );
   }
