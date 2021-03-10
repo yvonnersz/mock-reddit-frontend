@@ -33,6 +33,14 @@ class UserInput extends React.Component {
       },
       { withCredentials: true }
     );
+
+    event.target.reset();
+
+    this.setState({
+      username: '',
+      password: '',
+      password_confirmation: ''
+    })
   };
 
   render() {
@@ -84,12 +92,6 @@ class UserInput extends React.Component {
           </form>
           </div>
           </div>
-
-          {/* <div class='modal-footer'>
-            <button type='submit' class='btn btn-primary' data-bs-dismiss='modal'>
-              Register
-            </button>
-          </div> */}
 
         </div>
       </div>
