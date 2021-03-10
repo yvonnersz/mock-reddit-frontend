@@ -67,13 +67,6 @@ class UserLogin extends React.Component {
                 </form>
               </div>
             </div>
-
-            {/* <div class='modal-footer'>
-              <button type='submit' class='btn btn-primary' data-bs-dismiss='modal'>
-                Login
-              </button>
-            </div> */}
-
           </div>
         </div>
       </div>
