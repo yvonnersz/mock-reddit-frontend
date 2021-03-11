@@ -41,7 +41,7 @@ export default function postsReducer(state = { posts: [] }, action) {
             return {...state, posts: updatedPostVote}
         case 'DELETE_VOTE':
             let deleteVoteOriginalPost = state.posts.filter(post => post.id === action.payload.post_id)[0]
-            let deleteVote = deleteVoteOriginalPost.votes.filter(vote => vote.user_id !== action.payload.user_id) // return user id 3
+            let deleteVote = deleteVoteOriginalPost.votes.filter(vote => vote.user_id !== action.payload.user_id)
             let deleteVoteUpdatedPost = {...deleteVoteOriginalPost, votes: deleteVote}
             let deleteVoteOriginalPostIndex = state.posts.findIndex(post => post.id === action.payload.post_id)
             let deleteVoteUpdatedPosts = state.posts.slice(0, deleteVoteOriginalPostIndex).concat(deleteVoteUpdatedPost).concat(state.posts.slice(deleteVoteOriginalPostIndex + 1))
@@ -49,7 +49,7 @@ export default function postsReducer(state = { posts: [] }, action) {
         case 'ADD_COMMENT_VOTE':
             let post = state.posts.filter(post => post.id === action.payload.post_id)[0];            
             let postComment = post.comments.filter(comment => comment.id === action.payload.comment_id)[0]
-            let addCommentVote = {...postComment, votes: [...postComment.votes, action.payload]} // {COMMENT votes}
+            let addCommentVote = {...postComment, votes: [...postComment.votes, action.payload]}
             let indexUpvote = post.comments.findIndex(comment => comment.id === action.payload.comment_id)
             let sliceUpvote = post.comments.slice(0, indexUpvote).concat(addCommentVote).concat(post.comments.slice(indexUpvote + 1))
             let updatedUpvotePost = {...post, comments: sliceUpvote}
