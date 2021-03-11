@@ -19,27 +19,24 @@ class Comment extends React.Component {
         user_id: this.props.user.id,
         post_id: vote.post_id,
         comment_id: vote.comment_id
-      }
-  
-      this.props.deleteCommentVote(deleteVote)
-    } else if (event.target.name === 'upvote'){
+      };
+      this.props.deleteCommentVote(deleteVote);
+    } else if (event.target.name === 'upvote') {
       let vote = {
         upvote: true,
         downvote: false,
         user_id: this.props.user.id,
         post_id: comment.post_id
-      }
-  
-      this.props.addCommentVote(vote, comment.id)
+      };
+      this.props.addCommentVote(vote, comment.id);
     } else if (event.target.name === 'downvote') {
       let vote = {
         upvote: false,
         downvote: true,
         user_id: this.props.user.id,
         post_id: comment.post_id
-      }
-  
-      this.props.addCommentVote(vote, comment.id)
+      };
+      this.props.addCommentVote(vote, comment.id);
     }
   }
   
@@ -64,7 +61,7 @@ class Comment extends React.Component {
       let dateDifferenceYears = Math.ceil(dateDifferenceSeconds / 29030400);
       return dateDifferenceYears + " years ago";
     }
-  };
+  }
 
   render() {
     let comment = this.props.comment ? this.props.comment : null;
@@ -79,7 +76,7 @@ class Comment extends React.Component {
       <div class='card mt-3 p-1'>
         <div class='card-header'>
             <span> {comment.user.username} </span>
-            <span class='text-muted'>{this.dateFormat(comment)}</span>
+            <span class='text-muted'> {this.dateFormat(comment)} </span>
         </div>
 
         <div class='card-body comment-body'>
