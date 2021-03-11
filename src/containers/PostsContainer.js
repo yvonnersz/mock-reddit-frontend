@@ -1,7 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Redirect, Route, Switch} from 'react-router-dom';
-
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import Post from '../components/posts/Post';
 import PostEdit from '../components/posts/PostEdit';
 import PostInput from '../components/posts/PostInput';
@@ -11,7 +10,7 @@ import CommentEdit from '../components/comments/CommentEdit.js';
 import NavBar from '../components/NavBar';
 import UserInput from '../components/users/UserInput';
 import UserLogin from '../components/users/UserLogin';
-import {fetchPosts} from '../actions/post/fetchPosts';
+import { fetchPosts } from '../actions/post/fetchPosts';
 
 class PostsContainer extends React.Component {
   render() {
