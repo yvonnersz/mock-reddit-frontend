@@ -1,102 +1,79 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
 class UserInput extends React.Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: "",
-      password_confirmation: "",
+      username: '',
+      password: '',
+      password_confirmation: ''
     };
   }
 
-  handleOnChange = (event) => {
+  handleOnChange = event => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
-  };
+  }
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
-
-    const { username, password, password_confirmation } = this.state;
+    event.target.reset();
 
     axios.post(
-      "http://localhost:3000/users",
+      'http://localhost:3000/users',
       {
         user: {
-          username: username,
-          password: password,
-          password_confirmation: password_confirmation,
-        },
-      },
-      { withCredentials: true }
+          username: this.state.username,
+          password: this.state.password,
+          password_confirmation: this.state.password_confirmation
+        }
+      }, { withCredentials: true }
     );
-
-    event.target.reset();
 
     this.setState({
       username: '',
       password: '',
       password_confirmation: ''
-    })
-  };
+    });
+  }
 
   render() {
     return (
       <div class='modal fade' id='signup-modal' tabindex='-1' aria-hidden='true'>
-      <div class='modal-dialog'>
-        <div class='modal-content'>
+        <div class='modal-dialog'>
+          <div class='modal-content'>
 
-          <div class='modal-header'>
-            <h5 class='modal-title'>
-              Register
-            </h5>
+            <div class='modal-header'>
+              <h5 class='modal-title'>
+                Register
+              </h5>
 
-            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-          </div>
-
-          <div class='modal-body'>
-          <div class='form-group'>
-
-          <form onSubmit={this.handleSubmit}>
-             <input
-              type="text"
-              name="username"
-              placeholder="Enter in a username"
-              onChange={this.handleOnChange}
-              class='form-control mb-1'
-            ></input>
-
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              onChange={this.handleOnChange}
-              class='form-control mb-1'
-            ></input>
-
-            <input
-              type="password"
-              name="password_confirmation"
-              placeholder="Enter password"
-              onChange={this.handleOnChange}
-              class='form-control mb-1'
-            ></input>
-
-<div class="d-grid mt-1">
-              <input type='submit' class='btn btn-primary' value='Register' />
+              <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
             </div>
 
-          </form>
-          </div>
-          </div>
+            <div class='modal-body'>
+              <div class='form-group'>
 
+                <form onSubmit={this.handleSubmit}>
+
+                  <input type='text' name='username' placeholder='Enter in a username' onChange={this.handleOnChange} class='form-control mb-1'></input>
+                  <input type='password' name='password' placeholder='Enter password' onChange={this.handleOnChange} class='form-control mb-1'></input>
+                  <input type='password' name='password_confirmation' placeholder='Enter password' onChange={this.handleOnChange} class='form-control mb-1'></input>
+
+                  <div class='d-grid mt-1'>
+                    <input type='submit' class='btn btn-primary' value='Register' />
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
-    );
+    )
   }
 }
 
