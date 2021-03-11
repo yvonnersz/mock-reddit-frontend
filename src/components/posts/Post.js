@@ -1,14 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
 import { editPost } from "../../actions/post/editPost";
 import { deletePost } from "../../actions/post/deletePost";
 import { addVote } from "../../actions/vote/addVote";
 import { deleteVote } from "../../actions/vote/deleteVote";
 
 class Post extends React.Component {
-
 
   handleVote = (event, post) => {
     let user = this.props.user ? this.props.user.id : null;
@@ -19,30 +17,27 @@ class Post extends React.Component {
         post_id: vote.post_id,
         user_id: user
       };
-
       this.props.deleteVote(vote);
     } else if (event.target.name === "upvote") {
       let upvotePost = {
         ...post,
         upvote: true,
         downvote: false,
-        user_id: this.props.user.id,
+        user_id: this.props.user.id
       };
-
       this.props.addVote(upvotePost, post.id);
     } else if (event.target.name === "downvote") {
       let downvotePost = {
         ...post,
         upvote: false,
         downvote: true,
-        user_id: this.props.user.id,
+        user_id: this.props.user.id
       };
-
       this.props.addVote(downvotePost, post.id);
     }
-  };
+  }
 
-  dateFormat = (post) => {
+  dateFormat = post => {
     let dateDifferenceSeconds = (new Date().getTime() - new Date(post.created_at).getTime()) / 1000;
 
     if (dateDifferenceSeconds < 60) {
@@ -63,7 +58,7 @@ class Post extends React.Component {
       let dateDifferenceYears = Math.ceil(dateDifferenceSeconds / 29030400);
       return dateDifferenceYears + " years ago";
     }
-  };
+  }
 
   render() {
     let post;
@@ -90,9 +85,11 @@ class Post extends React.Component {
               data-bs-target={!this.props.user ? '#login-modal' : null}
             > 🡅 
             </button>
-<div class='row'>
-            <span>{upvotesDifference}</span>
-          </div>
+
+            <div class='row'>
+              <span>{upvotesDifference}</span>
+            </div>
+            
             <button 
               name="downvote"
               onClick={ this.props.user ? event => this.handleVote(event, post) : null }
