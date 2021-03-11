@@ -13,51 +13,38 @@ import UserInput from '../components/users/UserInput';
 import UserLogin from '../components/users/UserLogin';
 import {fetchPosts} from '../actions/post/fetchPosts';
 
-class PostsContainer extends React.Component {    
-    constructor(props) {
-        super(props);
-    }
+class PostsContainer extends React.Component {
+  render() {
+    return (
+      <div>
+          <NavBar user={this.props.user} handleLogin={this.props.handleLogin} handleLogOut={this.props.handleLogOut} />
 
-    render() {
-        return (
-            <div>
-                <NavBar user={this.props.user} handleLogin={this.props.handleLogin} handleLogOut={this.props.handleLogOut} />
+          <Switch>
+            <Route exact path='/' render= {routerProps => <Posts {...routerProps} posts={this.props.posts} user={this.props.user} />} />
+            <Route exact path='/posts/new' render={routerProps => <PostInput {...routerProps} user={this.props.user} />} />
+            <Route path='/register' render={routerProps => <UserInput {...routerProps} />} />
+            <Route path='/login' render={routerProps => <UserLogin {...routerProps} handleLogin={this.props.handleLogin} />} />
+            <Route path='/posts/:id/comments/:id' render={routerProps => <CommentEdit {...routerProps} posts={this.props.posts}/>} />
+            <Route path='/posts/:id/comments' render={routerProps => <> <Post {...routerProps} posts={this.props.posts} user={this.props.user} /> <CommentsContainer {...routerProps} posts={this.props.posts} user={this.props.user}/> </> } />
+            <Route path='/posts/:id/edit' render={routerProps => <PostEdit {...routerProps} posts={this.props.posts} />} />
+            <Route path='/posts/:id' render={routerProps => <><Post {...routerProps} posts={this.props.posts} user={this.props.user}/></>} />
+          </Switch>
 
-                <Switch>
-                    <Route exact path='/' render= {(routerProps) => <Posts {...routerProps} posts={this.props.posts} user={this.props.user} />} />
-                    <Route exact path='/posts/new' render={(routerProps) => <PostInput {...routerProps} user={this.props.user} />} />
-                    <Route path='/register' render={(routerProps) => <UserInput {...routerProps} />} />
-                    <Route path='/login' render={(routerProps) => <UserLogin {...routerProps} handleLogin={this.props.handleLogin} />} />
-                    <Route path='/posts/:id/comments/:id' render={(routerProps) => <CommentEdit {...routerProps} posts={this.props.posts}/>} />
-                    <Route path='/posts/:id/comments' render={(routerProps) => 
-                        <>
-                            <Post {...routerProps} posts={this.props.posts} user={this.props.user} />
-                            <CommentsContainer {...routerProps} posts={this.props.posts} user={this.props.user}/>
-                        </>
-                    } />
-                    <Route path='/posts/:id/edit' render={(routerProps) => <PostEdit {...routerProps} posts={this.props.posts} />} />
-                    <Route path='/posts/:id' render={(routerProps) => <><Post {...routerProps} posts={this.props.posts} user={this.props.user}/></>} />
-                    {/* <Route exact path='/logout'>
-                        <Redirect to='/' />
-                    </Route> */}
-                </Switch>
+          <UserLogin handleLogin={this.props.handleLogin} user={this.props.user} loginError={this.props.loginError}/>
+          <UserInput />
+      </div>
+    )
+  }
 
-                <UserLogin handleLogin={this.props.handleLogin} user={this.props.user} loginError={this.props.loginError}/>
-                <UserInput />
-                
-            </div>
-        )
-    }
-
-    componentDidMount() {
-        this.props.fetchPosts();
-    }
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
 }
 
 const mapStateToProps = state => {
-    return {
-        posts: state.posts
-    }
+  return {
+    posts: state.posts
+  }
 }
 
-export default connect(mapStateToProps, {fetchPosts})(PostsContainer);
+export default connect(mapStateToProps, { fetchPosts })(PostsContainer);
