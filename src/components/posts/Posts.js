@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import Post from './Post';
 import { addVote } from '../../actions/vote/addVote';
 import { deleteVote } from '../../actions/vote/deleteVote';
@@ -15,11 +14,11 @@ class Posts extends React.Component {
     this.handlePosts = this.handlePosts.bind(this)
   }
 
-  handleBySort = (event) => {
+  handleBySort = event => {
     this.setState({
       radio: event.target.id
     });
-  };
+  }
 
   handlePosts = () => {
     let posts = this.props.posts.map(post => post).sort((a,b) => {
@@ -69,8 +68,8 @@ class Posts extends React.Component {
           <div class='input-group'>
 
             <input type='text' class='form-control p-3' id='new-post-input' placeholder='Create Post' onClick={this.props.user ? () => this.props.history.push('/posts/new') : null} 
-                          data-bs-toggle={!this.props.user ? 'modal' : null}
-                          data-bs-target={!this.props.user ? '#login-modal' : null}
+              data-bs-toggle={!this.props.user ? 'modal' : null}
+              data-bs-target={!this.props.user ? '#login-modal' : null}
             />
 
           </div>
