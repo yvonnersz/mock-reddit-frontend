@@ -15,12 +15,12 @@ class App extends React.Component {
   }
 
   checkLogin() {
-    axios.get('http://localhost:3000/logged_in', { withCredentials: true})
+    axios.get('http://localhost:3000/logged_in', { withCredentials: true })
     .then(response => {
       this.setState({
         user: response.data.user
       })
-    })
+    });
   }
 
   handleLogin(username, password) {
@@ -29,13 +29,9 @@ class App extends React.Component {
       password: password
     }
 
-    axios.post(
-      "http://localhost:3000/sessions",
-      {
-        user: user,
-      },
-      { withCredentials: true }
-    )
+    axios.post("http://localhost:3000/sessions", {
+      user: user,
+    }, { withCredentials: true })
     .then(response => {
       if (response.data.error) {
         this.setState({
@@ -47,7 +43,7 @@ class App extends React.Component {
           loginError: ''
         })
       }
-    })
+    });
   }
 
   handleLogOut() {
@@ -56,7 +52,7 @@ class App extends React.Component {
       this.setState({
         user: ''
       })
-    })
+    });
   }
 
   componentDidMount() {
