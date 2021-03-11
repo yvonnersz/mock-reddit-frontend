@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { editPost } from '../../actions/post/editPost';
 import { deletePost } from '../../actions/post/deletePost';
 
@@ -12,17 +11,17 @@ class PostInput extends React.Component {
 
     this.state = {
       title: post.title,
-      content: post.content,
+      content: post.content
     };
   }
 
-  handleOnChange = (event) => {
+  handleOnChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
-  handleOnSubmit = (event) => {
+  handleOnSubmit = event => {
     event.preventDefault();
 
     let post = {
