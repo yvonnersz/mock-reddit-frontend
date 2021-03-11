@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { addPost } from '../../actions/post/addPost';
 
 class PostInput extends React.Component {
@@ -12,13 +11,13 @@ class PostInput extends React.Component {
     };
   }
 
-  handleOnChange = (event) => {
+  handleOnChange = event => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
-  };
+  }
 
-  handleOnSubmit = (event) => {
+  handleOnSubmit = event => {
     event.preventDefault();
     
     let post = {
@@ -33,7 +32,7 @@ class PostInput extends React.Component {
       title: '',
       content: ''
     });
-  };
+  }
 
   render() {
     return (
