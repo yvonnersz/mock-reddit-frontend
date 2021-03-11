@@ -90,9 +90,9 @@ class Post extends React.Component {
               data-bs-target={!this.props.user ? '#login-modal' : null}
             > 🡅 
             </button>
-
-            <span class="col-1">{upvotesDifference}</span>
-          
+<div class='row'>
+            <span>{upvotesDifference}</span>
+          </div>
             <button 
               name="downvote"
               onClick={ this.props.user ? event => this.handleVote(event, post) : null }
