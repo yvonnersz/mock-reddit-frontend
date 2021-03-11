@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { addComment } from '../../actions/comment/addComment';
 
 class CommentInput extends React.Component {
@@ -15,7 +14,7 @@ class CommentInput extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-  };
+  }
 
   handleOnSubmit = event => {
     event.preventDefault();
@@ -31,39 +30,26 @@ class CommentInput extends React.Component {
     this.setState({
       content: ''
     });
-  };
+  }
 
   render() {
     return (
       <div class='container-fluid bg-white rounded m-3 p-3 mx-auto'>
-        {this.props.user ? <> <form onSubmit={this.handleOnSubmit}>
+        { this.props.user ? 
+          <> 
+            <form onSubmit={this.handleOnSubmit}>
+              <label for='exampleFormControlTextarea1' class='form-label text-muted'>
+                Comment as { this.props.user ? this.props.user.username : null }
+              </label>
 
-<label for='exampleFormControlTextarea1' class='form-label text-muted'>
-  Comment as {this.props.user ? this.props.user.username : null}
-</label>
+              <textarea class='form-control' placeholder='What are your thoughts?' name='content' rows='5' value={this.state.content} onChange={this.handleOnChange} />
 
-<textarea class='form-control' placeholder='What are your thoughts?' name='content' rows='5' value={this.state.content} onChange={this.handleOnChange} />
-
-<div class='d-grid mt-1'>
-  <input type='submit' class='btn btn-primary' value='Comment'
-  />
-</div>
-
-</form></> : 'LOG IN OR SIGN UP TO LEAVE A COMMENT'}
-        {/* <form onSubmit={this.handleOnSubmit}>
-
-          <label for='exampleFormControlTextarea1' class='form-label text-muted'>
-            Comment as {this.props.user ? this.props.user.username : null}
-          </label>
-
-          <textarea class='form-control' placeholder='What are your thoughts?' name='content' rows='5' value={this.state.content} onChange={this.handleOnChange} />
-
-          <div class='d-grid mt-1'>
-            <input type='submit' class='btn btn-primary' value='Comment'
-            />
-          </div>
-
-        </form> */}
+              <div class='d-grid mt-1'>
+                <input type='submit' class='btn btn-primary' value='Comment' />
+              </div>
+            </form>
+          </> 
+        : 'Log in or sign up to leave a comment.' }
       </div>
     );
   }
