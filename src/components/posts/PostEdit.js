@@ -50,7 +50,7 @@ class PostInput extends React.Component {
         <div class='form-group'>
           <form onSubmit={this.handleOnSubmit}>
 
-            <input type='text' class='form-control mb-1' value={this.state.title} name='title' onChange={this.handleOnChange} aria-label="Disabled input example" disabled />
+            <input type='text' class='form-control mb-1' value={this.state.title} name='title' onChange={this.handleOnChange} aria-label='Disabled input example' disabled />
             <textarea rows='7' class='form-control' value={this.state.content} name='content' onChange={this.handleOnChange} />
 
             <div class='d-grid mt-1'>
