@@ -112,7 +112,7 @@ class Post extends React.Component {
             </div>
 
             <div class='card-text'>
-                <p>{post.content}</p>
+                <p class='text-justify'>{post.content}</p>
             </div>
 
             <div class='card-footer p-1'>

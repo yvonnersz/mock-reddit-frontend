@@ -80,7 +80,7 @@ class Comment extends React.Component {
         </div>
 
         <div class='card-body comment-body'>
-          <div class='card-text'>
+          <div class='card-text text-justify'>
             {comment.content}
           </div>
         </div>
