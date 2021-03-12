@@ -1,7 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![ScreenShot](https://github.com/yvonnersz/mock-reddit-frontend/blob/main/mock-reddit-home.png)
-![ScreenShot](https://github.com/yvonnersz/mock-reddit-frontend/blob/main/public/mock-reddit-posts.png)
+![ScreenShot](https://github.com/yvonnersz/mock-reddit-frontend/blob/main/public/mock-reddit-home.png)
 
 # Installation
 NOTE: This project runs in conjection with mock-reddit-backend. Please follow instructions to start the backend server before continuing.
