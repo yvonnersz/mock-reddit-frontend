@@ -10,7 +10,7 @@ const NavBar = props => {
     <>
       <nav class='navbar sticky-top bg-light'>
 
-        <Link to='/'>Home</Link>
+        <Link to='/'>Mock Reddit</Link>
 
         <div class='d-grid gap-2 d-md-flex justify-content-md-end'>
           {login}
