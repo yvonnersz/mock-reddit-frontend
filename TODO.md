@@ -50,3 +50,9 @@ BUGS
 [x] New comments will be on top.
 [x] Fix edit screen comment link.
 [x] Fix upvote/downvote comments so containers will not move around.
+
+NOTES
+- Will eventually want to implement registration success/failure messages.
+- Have modal eventually timeout and close by itself after successful login/registration.
+- Sort comments by best, hot, new, top, or rising.
+- Have backend validations for upvoting posts and comments.
