@@ -11,13 +11,12 @@ NOTE: This project runs in conjection with mock-reddit-backend. Please follow in
 
 # User Story
 
-This is a clone of the popular social news website, Reddit. A User would be able to create a post, leave comments, upvote, downvote, edit, and/or delete content.
+This is a clone of the popular social news website, Reddit. A User would be able to login with a username and password created during registration. A User would be able to create posts, leave comments, upvote/downvote content, and edit/delete their own content.
 
 # Built With
 
 - JavaScript
-- React
-- Redux
+- React & Redux
 - BootStrap
 - VSCode
 

@@ -56,3 +56,4 @@ NOTES
 - Have modal eventually timeout and close by itself after successful login/registration.
 - Sort comments by best, hot, new, top, or rising.
 - Have backend validations for upvoting posts and comments.
+- Second login attempt will not register if input is auto-completed.
