@@ -59,7 +59,7 @@ class CommentEdit extends React.Component {
           <textarea class='form-control' placeholder='What are your thoughts?' name='content' rows='5' value={this.state.content} onChange={this.handleOnChange} />
 
           <div class='d-grid mt-1'>
-            <input type='submit' class='btn btn-primary' value='Comment' />
+            <input type='submit' class='btn btn-primary' value='Edit Comment' />
             <input type='delete' class='btn btn-primary mt-1' value='Delete Comment' onClick={event => this.handleCommentDelete(comment)} />
           </div>
           
