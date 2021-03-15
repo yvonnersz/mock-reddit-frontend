@@ -65,8 +65,8 @@ class Comment extends React.Component {
 
   render() {
     let comment = this.props.comment ? this.props.comment : null;
-    let commentUpvotes = comment ? comment.votes.filter(vote => vote.upvote === true && vote.comment_id === comment.id).length : 0;
-    let commentDownvotes = comment ? comment.votes.filter(vote => vote.downvote === true && vote.comment_id === comment.id).length : 0;
+    let commentUpvotes = comment && comment.votes ? comment.votes.filter(vote => vote.upvote === true && vote.comment_id === comment.id).length : 0;
+    let commentDownvotes = comment && comment.votes ? comment.votes.filter(vote => vote.downvote === true && vote.comment_id === comment.id).length : 0;
     let commentVoteDifference = commentUpvotes - commentDownvotes;
     let userUpvote = this.props.user && comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.upvote === true && vote.comment_id === comment.id)[0] : null;
     let userDownvote = this.props.user && comment.votes ? comment.votes.filter(vote => vote.user_id === this.props.user.id && vote.downvote === true && vote.comment_id === comment.id)[0] : null;
