@@ -1,6 +1,6 @@
 export const editPost = post => {
   return dispatch => {
-    fetch(`http://localhost:3000/api/v1/posts/${post.id}`, {
+    fetch(`https://mock-reddit-backend.herokuapp.com/api/v1/posts/${post.id}`, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'

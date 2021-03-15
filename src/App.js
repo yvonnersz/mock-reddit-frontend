@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   checkLogin() {
-    axios.get('http://localhost:3000/logged_in', { withCredentials: true })
+    axios.get('https://mock-reddit-backend.herokuapp.com/logged_in', { withCredentials: true })
     .then(response => {
       this.setState({
         user: response.data.user
@@ -29,7 +29,7 @@ class App extends React.Component {
       password: password
     }
 
-    axios.post("http://localhost:3000/sessions", {
+    axios.post("https://mock-reddit-backend.herokuapp.com/sessions", {
       user: user,
     }, { withCredentials: true })
     .then(response => {
@@ -47,7 +47,7 @@ class App extends React.Component {
   }
 
   handleLogOut() {
-    axios.delete('http://localhost:3000/logged_out', { withCredentials: true})
+    axios.delete('https://mock-reddit-backend.herokuapp.com/logged_out', { withCredentials: true})
     .then(response => {
       this.setState({
         user: ''

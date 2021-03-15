@@ -1,6 +1,6 @@
 export const deleteCommentVote = vote => {
   return dispatch => {
-    fetch(`http://localhost:3000/api/v1/comments/${vote.comment_id}/votes/${vote.id}`, {
+    fetch(`https://mock-reddit-backend.herokuapp.com/api/v1/comments/${vote.comment_id}/votes/${vote.id}`, {
       headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'

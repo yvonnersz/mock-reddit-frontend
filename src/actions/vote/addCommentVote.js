@@ -1,6 +1,6 @@
 export const addCommentVote = (vote, idComment) => {
   return dispatch => {
-    fetch(`http://localhost:3000/api/v1/comments/${idComment}/votes`, {
+    fetch(`https://mock-reddit-backend.herokuapp.com/api/v1/comments/${idComment}/votes`, {
       headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'

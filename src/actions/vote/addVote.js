@@ -1,6 +1,6 @@
 export const addVote = (vote, postId) => {
   return dispatch => {
-    fetch(`http://localhost:3000/api/v1/posts/${postId}/votes`, {
+    fetch(`https://mock-reddit-backend.herokuapp.com/api/v1/posts/${postId}/votes`, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'

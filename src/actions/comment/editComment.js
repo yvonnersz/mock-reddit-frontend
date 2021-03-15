@@ -1,6 +1,6 @@
 export const editComment = (comment, post) => {
   return dispatch => {
-    fetch(`http://localhost:3000/api/v1/posts/${post.id}/comments/${comment.id}`, {
+    fetch(`https://mock-reddit-backend.herokuapp.com/api/v1/posts/${post.id}/comments/${comment.id}`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"

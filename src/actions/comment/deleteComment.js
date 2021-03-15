@@ -1,6 +1,6 @@
 export const deleteComment = comment => {
   return dispatch => {
-    return fetch(`http://localhost:3000/api/v1/posts/${comment.post_id}/comments/${comment.id}`, {
+    return fetch(`https://mock-reddit-backend.herokuapp.com/api/v1/posts/${comment.post_id}/comments/${comment.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
