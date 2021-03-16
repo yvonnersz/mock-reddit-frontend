@@ -1,25 +1,30 @@
+# Mock Reddit (Frontend)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+A demo version of this project can be found through this [link](https://mock-reddit-frontend.herokuapp.com/).
 
 ![ScreenShot](https://github.com/yvonnersz/mock-reddit-frontend/blob/main/public/mock-reddit-home.png)
 
-# Installation
+## Installation
 NOTE: This project runs in conjection with mock-reddit-backend. Please follow instructions to start the backend server before continuing.
 
 - Clone lab.
-- Run `npm start` to start development server. *Please run on a different port from backend server!!!*
+- Run `npm start` to start development server. *Please run on a different port from backend server!!! To avoid running into any CORS issues, I recommend running on port 3001.*
 
-# User Story
+## User Story
 
 This is a clone of the popular social news website, Reddit. A User would be able to login with a username and password created during registration. A User would be able to create posts, leave comments, upvote/downvote content, and edit/delete their own content.
 
-# Built With
+## Built With
 
+- Axios
 - JavaScript
 - React & Redux
 - BootStrap
 - VSCode
 
-# Author
+## Author
 
 Yvonne Pham
 - Github: [@yvonnersz](https://github.com/yvonnersz) 
