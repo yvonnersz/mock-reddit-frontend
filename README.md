@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-A demo version of this project can be found through this [link](https://mock-reddit-frontend.herokuapp.com/).
+Please click [here](https://mock-reddit-frontend.herokuapp.com/) for a live demo of this project.
 
 ![ScreenShot](https://github.com/yvonnersz/mock-reddit-frontend/blob/main/public/mock-reddit-home.png)
 
