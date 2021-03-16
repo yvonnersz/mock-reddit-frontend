@@ -29,8 +29,8 @@ class PostsContainer extends React.Component {
           <Route path='/posts/:id' render={routerProps => <><Post {...routerProps} posts={this.props.posts} user={this.props.user}/></>} />
         </Switch>
 
-        <UserLogin handleLogin={this.props.handleLogin} user={this.props.user} loginError={this.props.loginError}/>
-        <UserInput />
+        <UserLogin handleLogin={this.props.handleLogin} user={this.props.user} loginError={this.props.loginError} />
+        <UserInput handleLogin={this.props.handleLogin} user={this.props.user} />
       </div>
     )
   }

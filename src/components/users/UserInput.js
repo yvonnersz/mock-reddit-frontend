@@ -7,7 +7,8 @@ class UserInput extends React.Component {
     this.state = {
       username: '',
       password: '',
-      password_confirmation: ''
+      password_confirmation: '',
+      registrationErrors: false
     };
   }
 
@@ -22,7 +23,7 @@ class UserInput extends React.Component {
     event.target.reset();
 
     axios.post(
-      'http://localhost:3000/users',
+      'https://mock-reddit-backend.herokuapp.com/users',
       {
         user: {
           username: this.state.username,
@@ -30,12 +31,22 @@ class UserInput extends React.Component {
           password_confirmation: this.state.password_confirmation
         }
       }, { withCredentials: true }
-    );
+    )
+    .then(response => {
+      if (response.data.error) {
+        this.setState({
+          registrationErrors: true
+        });
+      } else {
+        this.props.handleLogin(this.state.username, this.state.password);
 
-    this.setState({
-      username: '',
-      password: '',
-      password_confirmation: ''
+        this.setState({
+          username: '',
+          password: '',
+          password_confirmation: '',
+          registrationErrors: false
+        })
+      };
     });
   }
 
@@ -57,9 +68,21 @@ class UserInput extends React.Component {
 
               <form onSubmit={this.handleSubmit}>
 
-                <input type='text' name='username' placeholder='Enter in a username' onChange={this.handleOnChange} class='form-control mb-1'></input>
-                <input type='password' name='password' placeholder='Enter password' onChange={this.handleOnChange} class='form-control mb-1'></input>
-                <input type='password' name='password_confirmation' placeholder='Enter password' onChange={this.handleOnChange} class='form-control mb-1'></input>
+                <input type='text' name='username' placeholder='Enter in a username' onChange={this.handleOnChange} class='form-control mb-1' required></input>
+                <input type='password' name='password' placeholder='Enter password' onChange={this.handleOnChange} class='form-control mb-1' required></input>
+                <input type='password' name='password_confirmation' placeholder='Enter password' onChange={this.handleOnChange} class='form-control mb-1' required></input>
+
+                { this.props.user ? 
+                  <div class="alert alert-success mt-2 mb-2" role="alert">
+                    Successfully logged in as {this.props.user.username}
+                  </div> 
+                : null }
+
+                { this.state.registrationErrors === true ? 
+                  <div class="alert alert-danger" role="alert">
+                    Invalid. Please try again.
+                  </div> 
+                : null }
 
                 <div class='d-grid mt-1'>
                   <input type='submit' class='btn btn-primary' value='Register' />
