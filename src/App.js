@@ -18,7 +18,7 @@ class App extends React.Component {
     axios.get('https://mock-reddit-backend.herokuapp.com/logged_in', { withCredentials: true })
     .then(response => {
       this.setState({
-        user: response.data.user
+        user: response.data
       })
     });
   }
@@ -39,7 +39,7 @@ class App extends React.Component {
         })
       } else {
         this.setState({
-          user: response.data.user,
+          user: response.data,
           loginError: ''
         })
       }
