@@ -17,9 +17,11 @@ class App extends React.Component {
   checkLogin() {
     axios.get('https://mock-reddit-backend.herokuapp.com/logged_in', { withCredentials: true })
     .then(response => {
-      this.setState({
-        user: response.data
-      })
+      if (response.data.logged_in !== false) {
+        this.setState({
+          user: response.data
+        })
+      }
     });
   }
 
